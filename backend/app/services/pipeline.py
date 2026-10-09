@@ -7,9 +7,10 @@ from typing import Any
 
 from ..adapters.embeddings import Embedder
 from ..adapters.llm import LLMClient
+from ..config import get_settings
 from ..enums import MandatoryLevel, Method, Status
 from ..schemas import ComplianceResult, Evidence, Requirement
-from . import compliance, evidence as evidence_svc, extractor, matcher, risk, scope, scoring
+from . import compliance, contradictions as contradictions_svc, evidence as evidence_svc, extractor, matcher, risk, scope, scoring
 from .parser import PageChunk, coverage
 
 log = logging.getLogger(__name__)
@@ -37,6 +38,10 @@ def run_analysis(chunks: list[PageChunk], profile: dict[str, Any], llm: LLMClien
     if not reqs:  # NFR-003: never report success with silently missing sections
         detail = "; ".join(warnings[:3]) or "the documents contain no extractable text"
         raise PipelineError(f"No requirements were extracted. {detail}")
+    contradictions = []
+    if get_settings().contradiction_detection:
+        with stage("contradictions"):
+            contradictions = contradictions_svc.detect(reqs, llm, warnings=warnings)
     with stage("evidence"):
         # Lot scope: requirements that only name lots the supplier is not bidding for are not scored.
         skipped = scope.out_of_scope(reqs, profile.get("bid_lots"))
@@ -63,10 +68,12 @@ def run_analysis(chunks: list[PageChunk], profile: dict[str, Any], llm: LLMClien
                                f"Lot {', '.join(targets)}. Not assessed."))
     with stage("risk_score"):
         risks = risk.build_risks(reqs, results)
+        order = {"CRITICAL": 0, "HIGH": 1, "MEDIUM": 2, "LOW": 3}
+        risks = sorted(risks + contradictions_svc.to_risks(contradictions), key=lambda k: order[k.severity.value])
         snapshot = scoring.compute_score(reqs, results, risks)
 
     cov = coverage(chunks)
     if cov < 1.0:
         warnings.append(f"Parsing coverage {cov:.0%}: some pages had no extractable text.")
     return {"requirements": reqs, "evidence": ev, "matches": matches, "results": results, "risks": risks,
-            "score": snapshot, "warnings": warnings, "parsing_coverage": cov, "timings": timings}
+            "score": snapshot, "contradictions": contradictions, "warnings": warnings, "parsing_coverage": cov, "timings": timings}

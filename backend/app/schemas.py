@@ -135,3 +135,30 @@ class BatchClassification(BaseModel):
     """Several classification verdicts returned by a single LLM call."""
 
     results: list[BatchItem] = Field(default_factory=list)
+
+
+class ContradictionStatement(BaseModel):
+    requirement_id: str
+    text: str
+    document_id: str
+    page: int
+    excerpt: str
+
+
+class Contradiction(BaseModel):
+    """Two tender statements that cannot both be true. Citations come from stored requirements, not from the model."""
+
+    contradiction_id: str
+    statements: list[ContradictionStatement]
+    explanation: str
+    severity: Severity
+
+
+class PairVerdict(BaseModel):
+    pair_id: str
+    conflict: bool
+    explanation: str = ""
+
+
+class ContradictionBatch(BaseModel):
+    results: list[PairVerdict] = Field(default_factory=list)

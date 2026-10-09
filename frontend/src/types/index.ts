@@ -107,6 +107,21 @@ export interface DocumentInfo {
   pages: number;
 }
 
+export interface ContradictionStatement {
+  requirement_id: string;
+  text: string;
+  document_id: string;
+  page: number;
+  excerpt: string;
+}
+
+export interface Contradiction {
+  contradiction_id: string;
+  statements: ContradictionStatement[];
+  explanation: string;
+  severity: Severity;
+}
+
 export interface PageContent {
   document_id: string;
   page: number;
@@ -137,6 +152,7 @@ export interface AnalysisSummary {
   counts: RequirementCounts;
   recommendation?: Recommendation;
   final_score?: number;
+  contradiction_count?: number;
 }
 
 // ─── UI State ─────────────────────────────────────────────────────────────────

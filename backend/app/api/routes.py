@@ -13,7 +13,8 @@ from fastapi.responses import FileResponse
 from ..adapters.embeddings import get_embedder
 from ..adapters.llm import get_llm
 from ..config import get_settings
-from ..db import Analysis, Document, DocumentChunk, ModelRun, RequirementRow, RiskRow, ScoreRow, get_session
+from ..db import (Analysis, ContradictionRow, Document, DocumentChunk, ModelRun, RequirementRow, RiskRow, ScoreRow,
+                  get_session)
 from ..enums import JobStatus
 from ..services import parser
 from ..services.pipeline import run_analysis
@@ -102,6 +103,8 @@ def _execute(analysis_id: str) -> None:
                 db.delete(r)
             for k in a.risks:
                 db.delete(k)
+            for c in a.contradictions:
+                db.delete(c)
             by_res = {c.requirement_id: c for c in res["results"]}
             for r in res["requirements"]:
                 cands = [{"evidence": e.model_dump(), "score": sc} for e, sc in res["matches"][r.requirement_id]]
@@ -110,6 +113,8 @@ def _execute(analysis_id: str) -> None:
                                       data=r.model_dump(mode="json"),
                                       result=by_res[r.requirement_id].model_dump(mode="json"),
                                       evidence_candidates=cands))
+            for c in res["contradictions"]:
+                db.add(ContradictionRow(analysis_id=analysis_id, data=c.model_dump(mode="json")))
             for k in res["risks"]:
                 db.add(RiskRow(analysis_id=analysis_id, data=k.model_dump(mode="json")))
             if a.score:
@@ -158,7 +163,8 @@ def get_analysis(analysis_id: str) -> dict:
                            "mandatory": sum(r.mandatory_level == "MANDATORY" for r in a.requirements),
                            **{k: statuses.get(k, 0) for k in ("MET", "PARTIALLY_MET", "NOT_MET", "UNKNOWN")}},
                 "recommendation": a.score.data["recommendation"] if a.score else None,
-                "final_score": a.score.data["final_score"] if a.score else None}
+                "final_score": a.score.data["final_score"] if a.score else None,
+                "contradiction_count": len(a.contradictions)}
 
 
 @router.get("/analyses/{analysis_id}/requirements")
@@ -182,6 +188,12 @@ def get_requirements(analysis_id: str, status: str | None = None, category: str 
 def get_risks(analysis_id: str) -> list[dict]:
     with get_session() as db:
         return [k.data for k in _get(db, analysis_id).risks]
+
+
+@router.get("/analyses/{analysis_id}/contradictions")
+def get_contradictions(analysis_id: str) -> list[dict]:
+    with get_session() as db:
+        return [c.data for c in _get(db, analysis_id).contradictions]
 
 
 @router.get("/analyses/{analysis_id}/score")

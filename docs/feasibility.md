@@ -47,6 +47,8 @@ longer documents also have more requirements, so verify it before quoting it.
   terms before relying on them.
 - **Production:** at a few cents per tender the model cost is small next to the bid team's time; the real costs are
   hosting (two small always-on containers) and the human review the product is meant to support.
+- **Contradiction check cost:** at most one extra request per 8 candidate pairs, and none when no pair looks like a
+  conflict (the 3-conflict synthetic package used 1 extra request).
 - **Levers if cost or quota matters:** extraction is about 75% of output tokens, so the gap-filling pass is the main
   cost lever (skip it on short documents); batch size can go above 6; caching already removes repeat runs.
 

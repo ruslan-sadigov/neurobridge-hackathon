@@ -34,6 +34,7 @@ class Analysis(Base):
     documents: Mapped[list["Document"]] = relationship(cascade="all, delete-orphan")
     requirements: Mapped[list["RequirementRow"]] = relationship(cascade="all, delete-orphan")
     risks: Mapped[list["RiskRow"]] = relationship(cascade="all, delete-orphan")
+    contradictions: Mapped[list["ContradictionRow"]] = relationship(cascade="all, delete-orphan")
     score: Mapped["ScoreRow | None"] = relationship(cascade="all, delete-orphan", uselist=False)
     model_runs: Mapped[list["ModelRun"]] = relationship(cascade="all, delete-orphan")
 
@@ -73,6 +74,13 @@ class RequirementRow(Base):
 
 class RiskRow(Base):
     __tablename__ = "risk_item"
+    pk: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    analysis_id: Mapped[str] = mapped_column(ForeignKey("analysis.id"))
+    data: Mapped[dict] = mapped_column(JSON)
+
+
+class ContradictionRow(Base):
+    __tablename__ = "contradiction"
     pk: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     analysis_id: Mapped[str] = mapped_column(ForeignKey("analysis.id"))
     data: Mapped[dict] = mapped_column(JSON)

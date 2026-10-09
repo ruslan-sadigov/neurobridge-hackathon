@@ -116,3 +116,35 @@ NOT_MET in some runs. After the final changes the CFCU tender was re-measured (2
 
 What this second tender shows: evaluating on a different document found four failures the first one could not, and
 re-running the first tender after each change caught a regression in the same session.
+
+## 8. Cross-document contradiction detection (spec P1)
+
+**How it works.** Code first proposes candidate pairs at no API cost: two requirements from different pages or documents
+with high word overlap (about the same thing) but different numbers or dates, skipping pairs that name different lots.
+One batched model call (up to 8 pairs) then judges them; the model returns only a verdict and a one-sentence reason,
+and the app attaches both citations from its own records. Conflicts become risks (`CONFLICTING_TENDER_TERMS`) and can
+move the recommendation to GO_WITH_CONDITIONS. No candidates means no model call, so the added cost is at most one
+request per 8 candidate pairs.
+
+**Test data.** None of our real tenders contains a genuine conflict, so the check uses a fictional two-document package
+(`eval/make_synthetic_conflict_tender.py`): 3 planted conflicts (submission deadline 15 vs 22 March, minimum turnover
+EUR 2M vs 3M, tender validity 90 vs 120 days) and 3 decoys that must not be flagged (performance guarantee for Lot 1 vs
+Lot 2, identical bid security, ISO 9001 vs ISO 27001 as two different required certificates). The decoys test false
+alarms: code filters two of them, and the model must reject the ISO pair.
+
+| Check | Result |
+|---|---|
+| Code stage alone (no model) | proposes exactly the 3 planted pairs plus the ISO decoy; filters the other two decoys |
+| Unit and wiring tests (scripted model, 56 tests in total) | conflicts carry both citations; become risks; change the recommendation; no candidates means no call; a model failure never invents a conflict or fails the analysis |
+| **Real model, 1 valid run** | **3 of 3 planted conflicts found, 0 decoys flagged, 0 other flags, 6 requests** |
+
+**Limits, stated plainly.**
+- Only **one valid real-model run** exists. A second run and a third were lost to the free tier's daily limit (500
+  requests per day) and are recorded as invalid, not scored. The harness now marks runs with failed model calls as
+  invalid and saves after every run. One run shows the feature works, not how reliable it is; repeat it before quoting
+  a rate.
+- The test package is fictional and small (12 statements), and its conflicts are explicit. Real tenders hide conflicts in
+  tables, annexes and different languages, and the matcher only considers statements with differing numbers or dates, so
+  conflicts expressed in words alone (for example "bids by email" vs "bids by post only") are not found.
+- There is no real-tender conflict case yet. A genuine amendment or clarification pair from a public tender would be a
+  much stronger test.

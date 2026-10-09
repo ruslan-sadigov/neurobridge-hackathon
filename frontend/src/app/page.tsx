@@ -6,9 +6,10 @@ import { ProgressLoader } from "@/components/ProgressLoader";
 import { HeroSection } from "@/components/HeroSection";
 import { RiskPanel } from "@/components/RiskPanel";
 import { ComplianceMatrix } from "@/components/ComplianceMatrix";
+import { ConflictPanel } from "@/components/ConflictPanel";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useAnalysisSummary, useRequirements, useRisks, useScore } from "@/hooks/useAnalysis";
-import { AlertTriangle, LayoutGrid, ShieldAlert } from "lucide-react";
+import { useAnalysisSummary, useContradictions, useRequirements, useRisks, useScore } from "@/hooks/useAnalysis";
+import { AlertTriangle, GitCompareArrows, LayoutGrid, ShieldAlert } from "lucide-react";
 import type { AppView } from "@/types";
 
 function Dashboard({ analysisId, onReset }: { analysisId: string; onReset: () => void }) {
@@ -16,6 +17,7 @@ function Dashboard({ analysisId, onReset }: { analysisId: string; onReset: () =>
   const { data: requirements = [], isLoading: reqLoading } = useRequirements(analysisId);
   const { data: risks = [], isLoading: riskLoading } = useRisks(analysisId);
   const { data: score } = useScore(analysisId);
+  const { data: contradictions = [] } = useContradictions(analysisId);
 
   if (!summary || !score) {
     return (
@@ -65,6 +67,15 @@ function Dashboard({ analysisId, onReset }: { analysisId: string; onReset: () =>
                 </span>
               )}
             </TabsTrigger>
+            <TabsTrigger value="conflicts" className="gap-1.5">
+              <GitCompareArrows className="h-3.5 w-3.5" />
+              Conflicts
+              {contradictions.length > 0 && (
+                <span className="inline-flex items-center justify-center h-4 w-4 rounded-full bg-amber-100 text-amber-700 text-[10px] font-bold">
+                  {contradictions.length}
+                </span>
+              )}
+            </TabsTrigger>
             <TabsTrigger value="matrix" className="gap-1.5">
               <LayoutGrid className="h-3.5 w-3.5" />
               Compliance Matrix
@@ -80,6 +91,10 @@ function Dashboard({ analysisId, onReset }: { analysisId: string; onReset: () =>
             ) : (
               <RiskPanel risks={risks} requirements={requirements} />
             )}
+          </TabsContent>
+
+          <TabsContent value="conflicts">
+            <ConflictPanel contradictions={contradictions} documents={summary.documents} />
           </TabsContent>
 
           <TabsContent value="matrix">

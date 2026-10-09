@@ -1,6 +1,7 @@
 import axios from "axios";
 import type {
   AnalysisSummary,
+  Contradiction,
   RequirementWithResult,
   PageContent,
   RiskItem,
@@ -88,6 +89,10 @@ const mock = {
     await delay(100);
     return MOCK_SCORE;
   },
+  getContradictions: async (_id: string): Promise<Contradiction[]> => {
+    await delay(100);
+    return [];
+  },
   getPage: async (documentId: string, page: number): Promise<PageContent> => {
     await delay(150);
     return {
@@ -140,6 +145,10 @@ const real = {
   },
   getScore: async (analysisId: string): Promise<ScoreSnapshot> => {
     const { data } = await client.get(`/analyses/${analysisId}/score`);
+    return data;
+  },
+  getContradictions: async (analysisId: string): Promise<Contradiction[]> => {
+    const { data } = await client.get(`/analyses/${analysisId}/contradictions`);
     return data;
   },
   getPage: async (documentId: string, page: number): Promise<PageContent> => {

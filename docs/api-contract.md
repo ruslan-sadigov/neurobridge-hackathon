@@ -17,6 +17,7 @@ GET  /analyses/{id}                     -> poll until status is COMPLETE or FAIL
 GET  /analyses/{id}/requirements        -> compliance matrix (filterable)
 GET  /analyses/{id}/risks               -> ranked risks
 GET  /analyses/{id}/score               -> dimensions + recommendation
+GET  /analyses/{id}/contradictions      -> conflicting statements across the tender documents
 GET  /documents/{doc_id}/pages/{n}      -> page text for source drill-down
 GET  /documents/{doc_id}/file           -> original PDF
 DELETE /analyses/{id}                   -> remove the analysis and its files
@@ -37,6 +38,7 @@ A full analysis of a 5-page tender took about 1 minute (62 s measured) on the fr
 | `GET /analyses/{id}/requirements` | optional `status`, `category`, `mandatory_level` query filters (exact match) | array of requirement + result | `06_...`, `07_...` |
 | `GET /analyses/{id}/risks` | none | array of risks, most severe first | `08_risks.json` |
 | `GET /analyses/{id}/score` | none | score snapshot | `09_score.json` |
+| `GET /analyses/{id}/contradictions` | none | array of contradictions (empty if none found) | shape below |
 | `GET /documents/{doc_id}/pages/{n}` | none | `{document_id, page, text, extraction_method}` | `10_document_page.json` |
 | `GET /documents/{doc_id}/file` | none | the PDF (`application/pdf`) | - |
 | `DELETE /analyses/{id}` | none | `{deleted: id}` | - |
@@ -89,6 +91,20 @@ is `UNKNOWN`. `confidence` is diagnostic only; never display it as a probability
 
 **Source drill-down:** open `sources[0]` by calling `GET /documents/{document_id}/pages/{page}` and highlight
 `excerpt` inside `text`, or link to `GET /documents/{document_id}/file` (PDF) at that page.
+
+**Contradiction (`/contradictions` item):** two statements from the tender package that may not both be true.
+
+```
+{ contradiction_id: "CON-001", severity: "HIGH" | "MEDIUM", explanation: "<one sentence naming the differing values>",
+  statements: [ { requirement_id, text, document_id, page, excerpt },      // always exactly two,
+                { requirement_id, text, document_id, page, excerpt } ] }   // from different pages or documents
+```
+
+`severity` is HIGH if either statement is a mandatory requirement, otherwise MEDIUM. Citations come from the stored
+requirements, not from the model; open them with `GET /documents/{document_id}/pages/{page}` like any other source.
+Each conflict also appears in `/risks` as a risk with `reason_code: "CONFLICTING_TENDER_TERMS"` (recommended action:
+ask the buyer to clarify), so conflicts can move the recommendation to `GO_WITH_CONDITIONS`. The analysis summary has
+`contradiction_count`. BidBridge never decides which statement is right; a later document may amend an earlier one.
 
 **Risk:** `{requirement_id, severity, explanation, recommended_action, reason_code}`. Join to the requirement by
 `requirement_id`.

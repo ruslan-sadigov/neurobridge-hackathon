@@ -1,0 +1,18 @@
+{
+  "tender_files": [
+    "fixtures/tenders/SYN_conflict_tender_1_invitation.pdf",
+    "fixtures/tenders/SYN_conflict_tender_2_datasheet.pdf"
+  ],
+  "supplier_file": "fixtures/supplier_marmara_secure.json",
+  "annotation_status": "FROZEN by construction: the fictional documents were written with these planted conflicts and decoys (eval/make_synthetic_conflict_tender.py)",
+  "planted_conflicts": [
+    {"id": "C1", "name": "submission deadline", "a": ["15march2027"], "b": ["22march2027"]},
+    {"id": "C2", "name": "minimum turnover", "a": ["2000000"], "b": ["3000000"]},
+    {"id": "C3", "name": "tender validity", "a": ["90days"], "b": ["120days"]}
+  ],
+  "decoys": [
+    {"id": "D1", "name": "performance guarantee for different lots", "a": ["lot1", "guarantee"], "b": ["lot2", "guarantee"]},
+    {"id": "D2", "name": "identical bid security", "a": ["bidsecurity", "50000"], "b": ["bidsecurity", "50000"]},
+    {"id": "D3", "name": "two different certificates", "a": ["iso9001"], "b": ["iso27001"]}
+  ]
+}

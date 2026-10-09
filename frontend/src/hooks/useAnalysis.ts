@@ -63,3 +63,12 @@ export function usePage(documentId: string | null, page: number | null) {
     staleTime: Infinity,
   });
 }
+
+export function useContradictions(analysisId: string | null) {
+  return useQuery({
+    queryKey: ["contradictions", analysisId],
+    queryFn: () => api.getContradictions(analysisId!),
+    enabled: !!analysisId,
+    staleTime: 30_000,
+  });
+}
