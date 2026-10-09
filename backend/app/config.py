@@ -19,6 +19,7 @@ class Settings(BaseSettings):
     embedding_backend: str = "local"  # local | hash
     embedding_model: str = "BAAI/bge-m3"
 
+    cors_origins: str = "http://localhost:3000"  # comma-separated; set to the deployed frontend URL(s)
     database_url: str = "sqlite:///./bidbridge.db"
     storage_dir: str = "./storage"
     max_upload_mb: int = 50

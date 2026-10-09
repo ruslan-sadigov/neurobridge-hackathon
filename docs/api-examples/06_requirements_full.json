@@ -1,0 +1,199 @@
+[
+  {
+    "requirement_id": "REQ-001",
+    "text": "All supplies under this contract must originate in one or more eligible countries.",
+    "category": "TECHNICAL",
+    "mandatory_level": "MANDATORY",
+    "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+    },
+    "sources": [
+      {
+        "document_id": "f278f081c4f1",
+        "page": 1,
+        "section": null,
+        "excerpt": "All supplies under this contract must originate in one or more of these countries."
+      }
+    ],
+    "extraction_confidence": 1.0,
+    "result": {
+      "requirement_id": "REQ-001",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [],
+      "rationale": "The evidence does not mention the origin of the supplies, making it impossible to determine if they originate in eligible countries.",
+      "confidence": 1.0,
+      "risk_severity": "MEDIUM",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+    },
+    "evidence_candidates": [
+      {
+        "evidence": {
+          "evidence_id": "EVD-001",
+          "type": "CERTIFICATE",
+          "label": "ISO 9001 Certificate",
+          "value": "ISO 9001",
+          "text": "Certificate: ISO 9001",
+          "source": "company_profile",
+          "issued_date": "2025-01-10",
+          "expiry_date": "2028-01-09",
+          "metadata": {}
+        },
+        "score": 0.1601281464099884
+      }
+    ]
+  },
+  {
+    "requirement_id": "REQ-002",
+    "text": "Tenderers must submit a signed declaration, included in the tender form for a supply contract, confirming they are not in any exclusion situations listed in Section 2.6.10.1. of the practical guide.",
+    "category": "LEGAL",
+    "mandatory_level": "MANDATORY",
+    "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+    },
+    "sources": [
+      {
+        "document_id": "f278f081c4f1",
+        "page": 2,
+        "section": null,
+        "excerpt": "Tenderers must submit a signed declaration, included in the tender form for a supply contract, to the effect that they are not in any of the situations listed in Section 2.6.10.1. of the practical guide."
+      }
+    ],
+    "extraction_confidence": 1.0,
+    "result": {
+      "requirement_id": "REQ-002",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [],
+      "rationale": "The provided evidence does not contain any information regarding a signed declaration of exclusion situations.",
+      "confidence": 1.0,
+      "risk_severity": "HIGH",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+    },
+    "evidence_candidates": [
+      {
+        "evidence": {
+          "evidence_id": "EVD-F-founded_year",
+          "type": "COMPANY_FACT",
+          "label": "founded_year",
+          "value": 2018,
+          "text": "CaspianTech LLC founded_year: 2018",
+          "source": "company_profile",
+          "issued_date": null,
+          "expiry_date": null,
+          "metadata": {}
+        },
+        "score": 0.20698030292987823
+      },
+      {
+        "evidence": {
+          "evidence_id": "EVD-F-employees",
+          "type": "COMPANY_FACT",
+          "label": "employees",
+          "value": 42,
+          "text": "CaspianTech LLC employees: 42",
+          "source": "company_profile",
+          "issued_date": null,
+          "expiry_date": null,
+          "metadata": {}
+        },
+        "score": 0.20698030292987823
+      },
+      {
+        "evidence": {
+          "evidence_id": "EVD-P-001",
+          "type": "PROJECT",
+          "label": "Network Modernization A",
+          "value": 420000,
+          "text": "Project Network Modernization A (2025), value 420000 AZN, network infrastructure, enterprise",
+          "source": "company_profile",
+          "issued_date": null,
+          "expiry_date": null,
+          "metadata": {
+            "year": 2025,
+            "value": 420000,
+            "currency": "AZN",
+            "tags": [
+              "network infrastructure",
+              "enterprise"
+            ]
+          }
+        },
+        "score": 0.12309148907661438
+      }
+    ]
+  },
+  {
+    "requirement_id": "REQ-003",
+    "text": "Tenderers must not be included in the lists of EU restrictive measures at the moment of the award decision.",
+    "category": "LEGAL",
+    "mandatory_level": "MANDATORY",
+    "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+    },
+    "sources": [
+      {
+        "document_id": "f278f081c4f1",
+        "page": 2,
+        "section": null,
+        "excerpt": "Tenderers included in the lists of EU restrictive measures (see Section 2.4. of the PRAG) at the moment of the award decision cannot be awarded the contract."
+      }
+    ],
+    "extraction_confidence": 1.0,
+    "result": {
+      "requirement_id": "REQ-003",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [],
+      "rationale": "The evidence provides information about the company's founded year and number of employees, but does not mention whether the tenderer is included in the lists of EU restrictive measures.",
+      "confidence": 1.0,
+      "risk_severity": "HIGH",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+    },
+    "evidence_candidates": [
+      {
+        "evidence": {
+          "evidence_id": "EVD-F-founded_year",
+          "type": "COMPANY_FACT",
+          "label": "founded_year",
+          "value": 2018,
+          "text": "CaspianTech LLC founded_year: 2018",
+          "source": "company_profile",
+          "issued_date": null,
+          "expiry_date": null,
+          "metadata": {}
+        },
+        "score": 0.15000000596046448
+      },
+      {
+        "evidence": {
+          "evidence_id": "EVD-F-employees",
+          "type": "COMPANY_FACT",
+          "label": "employees",
+          "value": 42,
+          "text": "CaspianTech LLC employees: 42",
+          "source": "company_profile",
+          "issued_date": null,
+          "expiry_date": null,
+          "metadata": {}
+        },
+        "score": 0.15000000596046448
+      }
+    ]
+  }
+]

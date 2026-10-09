@@ -1,0 +1,33 @@
+{
+  "analysis_id": "f79fa3d90ffb",
+  "status": "COMPLETE",
+  "error": null,
+  "summary": {
+    "warnings": [],
+    "timings": {
+      "extract": 13.0,
+      "evidence": 0.0,
+      "classify": 60.0,
+      "risk_score": 0.0
+    },
+    "parsing_coverage": 1.0,
+    "requirement_count": 26
+  },
+  "documents": [
+    {
+      "document_id": "f278f081c4f1",
+      "filename": "TR_CFCU_IT_network_equipment_2018.pdf",
+      "pages": 5
+    }
+  ],
+  "counts": {
+    "total": 26,
+    "mandatory": 22,
+    "MET": 2,
+    "PARTIALLY_MET": 0,
+    "NOT_MET": 2,
+    "UNKNOWN": 22
+  },
+  "recommendation": "NO_GO",
+  "final_score": 26.2
+}

@@ -435,7 +435,7 @@
       "supporting_evidence_ids": [
        "EVD-R-2025"
       ],
-      "rationale": "required annual_revenue > 4.875e+06 AZN; supplier has 1.2e+06 AZN.",
+      "rationale": "required annual_revenue > 4,875,000 AZN; supplier has 1,200,000 AZN.",
       "confidence": 0.99,
       "risk_severity": "CRITICAL",
       "reason_code": "FINANCIAL_THRESHOLD_NOT_MET"
@@ -472,7 +472,7 @@
       "supporting_evidence_ids": [
        "EVD-R-2025"
       ],
-      "rationale": "required annual_revenue > 5.46e+06 AZN; supplier has 1.2e+06 AZN.",
+      "rationale": "required annual_revenue > 5,460,000 AZN; supplier has 1,200,000 AZN.",
       "confidence": 0.99,
       "risk_severity": "CRITICAL",
       "reason_code": "FINANCIAL_THRESHOLD_NOT_MET"
@@ -1350,7 +1350,7 @@
       "supporting_evidence_ids": [
        "EVD-R-2025"
       ],
-      "rationale": "required annual_revenue > 4.875e+06 AZN; supplier has 1.2e+06 AZN.",
+      "rationale": "required annual_revenue > 4,875,000 AZN; supplier has 1,200,000 AZN.",
       "confidence": 0.99,
       "risk_severity": "CRITICAL",
       "reason_code": "FINANCIAL_THRESHOLD_NOT_MET"
@@ -1387,7 +1387,7 @@
       "supporting_evidence_ids": [
        "EVD-R-2025"
       ],
-      "rationale": "required annual_revenue > 5.46e+06 AZN; supplier has 1.2e+06 AZN.",
+      "rationale": "required annual_revenue > 5,460,000 AZN; supplier has 1,200,000 AZN.",
       "confidence": 0.99,
       "risk_severity": "CRITICAL",
       "reason_code": "FINANCIAL_THRESHOLD_NOT_MET"
@@ -2294,7 +2294,7 @@
       "supporting_evidence_ids": [
        "EVD-R-2025"
       ],
-      "rationale": "required annual_revenue > 4.875e+06 AZN; supplier has 1.2e+06 AZN.",
+      "rationale": "required annual_revenue > 4,875,000 AZN; supplier has 1,200,000 AZN.",
       "confidence": 0.99,
       "risk_severity": "CRITICAL",
       "reason_code": "FINANCIAL_THRESHOLD_NOT_MET"
@@ -2331,7 +2331,7 @@
       "supporting_evidence_ids": [
        "EVD-R-2025"
       ],
-      "rationale": "required annual_revenue > 5.46e+06 AZN; supplier has 1.2e+06 AZN.",
+      "rationale": "required annual_revenue > 5,460,000 AZN; supplier has 1,200,000 AZN.",
       "confidence": 0.99,
       "risk_severity": "CRITICAL",
       "reason_code": "FINANCIAL_THRESHOLD_NOT_MET"

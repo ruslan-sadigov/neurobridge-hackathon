@@ -1,0 +1,30 @@
+[
+  {
+    "requirement_id": "REQ-009",
+    "severity": "CRITICAL",
+    "explanation": "required annual_revenue > 4,875,000 AZN; supplier has 1,200,000 AZN.",
+    "recommended_action": "Obtain the missing qualification/document, find a partner, or do not bid.",
+    "reason_code": "FINANCIAL_THRESHOLD_NOT_MET"
+  },
+  {
+    "requirement_id": "REQ-010",
+    "severity": "CRITICAL",
+    "explanation": "required annual_revenue > 5,460,000 AZN; supplier has 1,200,000 AZN.",
+    "recommended_action": "Obtain the missing qualification/document, find a partner, or do not bid.",
+    "reason_code": "FINANCIAL_THRESHOLD_NOT_MET"
+  },
+  {
+    "requirement_id": "REQ-002",
+    "severity": "HIGH",
+    "explanation": "The provided evidence does not contain any information regarding a signed declaration of exclusion situations.",
+    "recommended_action": "Add the supporting evidence to the supplier profile or ask the buyer to clarify.",
+    "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+  },
+  {
+    "requirement_id": "REQ-003",
+    "severity": "HIGH",
+    "explanation": "The evidence provides information about the company's founded year and number of employees, but does not mention whether the tenderer is included in the lists of EU restrictive measures.",
+    "recommended_action": "Add the supporting evidence to the supplier profile or ask the buyer to clarify.",
+    "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+  }
+]

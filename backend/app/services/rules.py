@@ -128,7 +128,7 @@ def _numeric(rule, evidence, fx) -> Optional[RuleOutcome]:
 
     ok = OPS[rule.operator](actual, target)
     unit = unit_label if unit_label is not None else (f" {rule.unit}" if rule.unit else "")
-    detail = f"required {rule.field} {rule.operator} {target:g}{unit}; supplier has {actual:g}{unit}."
+    detail = f"required {rule.field} {rule.operator} {target:,.0f}{unit}; supplier has {actual:,.0f}{unit}."
     if ok:
         return RuleOutcome(Status.MET, ids, detail)
     # count shortfall with some matches is PARTIAL (e.g. 1 of 2 projects)

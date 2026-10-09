@@ -1,0 +1,74 @@
+{
+  "dimensions": [
+    {
+      "name": "Mandatory compliance",
+      "weight": 0.4,
+      "score": 0.29545454545454547,
+      "coverage": 0.18181818181818182,
+      "requirement_count": 22
+    },
+    {
+      "name": "Technical fit",
+      "weight": 0.2,
+      "score": 0.25,
+      "coverage": 0.0,
+      "requirement_count": 3
+    },
+    {
+      "name": "Experience",
+      "weight": 0.15,
+      "score": 0.25,
+      "coverage": 0.0,
+      "requirement_count": 2
+    },
+    {
+      "name": "Financial eligibility",
+      "weight": 0.1,
+      "score": 0.17857142857142858,
+      "coverage": 0.2857142857142857,
+      "requirement_count": 7
+    },
+    {
+      "name": "Documentation readiness",
+      "weight": 0.1,
+      "score": 0.25,
+      "coverage": 0.0,
+      "requirement_count": 2
+    },
+    {
+      "name": "Delivery feasibility",
+      "weight": 0.05,
+      "score": null,
+      "coverage": null,
+      "requirement_count": 0
+    }
+  ],
+  "final_score": 26.2,
+  "recommendation": "NO_GO",
+  "reason_codes": [
+    "FINANCIAL_THRESHOLD_NOT_MET"
+  ],
+  "overall_coverage": 0.182,
+  "config": {
+    "weights": {
+      "Mandatory compliance": 0.4,
+      "Technical fit": 0.2,
+      "Experience": 0.15,
+      "Financial eligibility": 0.1,
+      "Documentation readiness": 0.1,
+      "Delivery feasibility": 0.05
+    },
+    "status_points": {
+      "MET": 1.0,
+      "PARTIALLY_MET": 0.5,
+      "NOT_MET": 0.0,
+      "UNKNOWN": 0.25
+    },
+    "level_weights": {
+      "MANDATORY": 1.0,
+      "PREFERRED": 0.5,
+      "UNKNOWN": 0.5,
+      "INFORMATIONAL": 0.0
+    }
+  }
+}
