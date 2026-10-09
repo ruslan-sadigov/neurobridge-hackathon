@@ -11,20 +11,22 @@ CFCU/EU tender notice (5 pages, 14 annotated mandatory requirements), the synthe
 
 ## 1. Measured results (3 runs each, CFCU tender)
 
-| Metric | v1 baseline | v2 + gap pass | v2.1 + tighter prompt | v3 + batched classification | Spec target |
-|---|---|---|---|---|---|
-| Requirement recall | 69% (57-79) | 95% (93-100) | 93% (79-100) | 91% (86-93) | 90% |
-| Mandatory recall | 69% | 95% | 93% | 91% | 95% |
-| Citation validity (quote is on the cited page) | 100% | 100% | 100% | 100% | 95% |
-| Unsupported positives (MET with no evidence) | 0% | 0% | 0% | 0% | under 5% |
-| MET where answer should be NOT_MET/UNKNOWN | 3% | 0% | 0% | 0% | - |
-| Compliance accuracy (vs annotated status) | 87% | 85% | 84% | 90% (85-100) | 85% |
-| Strict precision (extracted item is in annotation) | 100% | 58% | 59% | 59% | 90% |
-| Mandatory-level accuracy | 98% | 87% | 96% | 92% | - |
+| Metric | v1 baseline | v2 + gap pass | v2.1 + tighter prompt | v3 + batched classification | v3.1 + tolerant quote matching | Spec target |
+|---|---|---|---|---|---|---|
+| Requirement recall | 69% (57-79) | 95% (93-100) | 93% (79-100) | 91% (86-93) | 96% (93-100) | 90% |
+| Mandatory recall | 69% | 95% | 93% | 91% | 96% | 95% |
+| Citation validity (quote is on the cited page) | 100% | 100% | 100% | 100% | 100% | 95% |
+| Unsupported positives (MET with no evidence) | 0% | 0% | 0% | 0% | 0% | under 5% |
+| MET where answer should be NOT_MET/UNKNOWN | 3% | 0% | 0% | 0% | 0% | - |
+| Compliance accuracy (vs annotated status) | 87% | 85% | 84% | 90% (85-100) | 85% (85-86) | 85% |
+| Strict precision (extracted item is in annotation) | 100% | 58% | 59% | 59% | 54% | 90% |
+| Mandatory-level accuracy | 98% | 87% | 96% | 92% | 94% | - |
 
 v3 cut the API requests per analysis from about 28 to 9-10 (batched classification, informational clauses skipped,
 identical calls cached) with no loss in the key trust metrics. Request counts are measured; the small movements in recall
 and accuracy are within the run-to-run variation seen between versions, so no accuracy claim is made for v3 over v2.1.
+v3.1 (tolerant quote matching, 2 runs) recovered clauses that were being dropped; recall moved from 91% to 96%, but with
+only two runs the difference between versions is suggestive, not proven.
 
 Reading the table:
 - **Strict precision fell because the annotation is incomplete, not because the model invents text.** The extra items
@@ -47,6 +49,8 @@ Reading the table:
 | 7 | Experience requirements: annotation says NOT_MET (supplier's whole portfolio, 420k AZN, is below 2.5M EUR), pipeline says UNKNOWN | Needs cross-currency arithmetic over a fuzzy "similar contracts" condition | None; UNKNOWN is the conservative answer. Needs a human decision on the intended label | Open |
 | 8 | Extra MANDATORY items (capacity-provider conditions etc.) add noise to the risk list | Real but conditional clauses; model cannot tell if they apply | Surface as lower-severity or "conditional"; needs product decision | Open |
 | 9 | A supplier bidding only for Lot 2 was failed on Lot 1 requirements (SCADA/RTU experience, Lot 1 guarantee), giving NO_GO | The tool had no notion of which lots the supplier bids for | New `bid_lots` supplier setting: requirements that name only other lots are marked out of scope (not scored, no risk), with the reason shown. Unit test added | Fixed |
+| 10 | Real requirements silently dropped, including the eligibility-of-establishment clause: the model tidied a typo in the source ("in a eligible country" became "in an eligible country"), or quoted a sentence that continues across a page break (with the page's running header in between). The strict quote check rejected both | Quote verification was an exact substring test on one page | Tolerant matcher (`services/quotes.py`): accepts a quote when 90% of its words appear contiguously per page, and stores the **page's own wording** as the citation, so excerpts stay verbatim. Invented or paraphrased quotes are still rejected (tests). Recall 91% to 96%, citation validity unchanged at 100% | Fixed |
+| 11 | A PARTIALLY_MET guarantee carried reason code `FINANCIAL_THRESHOLD_NOT_MET` | Reason code was chosen by category only | PARTIALLY_MET always maps to `MANDATORY_PARTIALLY_MET`; category-specific codes are for NOT_MET only. Test added | Fixed |
 
 ## 3. Where the system returns UNKNOWN instead of inventing an answer
 

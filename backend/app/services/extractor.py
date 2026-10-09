@@ -7,6 +7,7 @@ from ..adapters.llm import LLMClient, LLMError
 from ..config import get_settings
 from ..schemas import ExtractionResult, Requirement, SourceRef
 from .parser import PageChunk
+from .quotes import locate_quote
 
 EXTRACT_SYSTEM = """Extract bidder requirements from the tender text. Rules:
 - Only extract statements that impose a requirement on the bidder; skip descriptive/background text.
@@ -34,18 +35,6 @@ GAP_SYSTEM = EXTRACT_SYSTEM + """
 
 SECOND PASS: a first pass already extracted the requirements listed in <already_extracted>. Re-read the
 document text and return ONLY additional requirements that are NOT yet covered. Return an empty list if none."""
-
-
-def _ws(s: str) -> str:
-    return re.sub(r"\s+", " ", s).strip().lower()
-
-
-def _locate(quote: str, pages: list[PageChunk]) -> PageChunk | None:
-    q = _ws(quote)
-    for p in pages:
-        if q and q in _ws(p.text):
-            return p
-    return None
 
 
 def extract_requirements(chunks: list[PageChunk], llm: LLMClient, start_index: int = 1) -> tuple[list[Requirement], list[str]]:
@@ -79,14 +68,15 @@ def extract_requirements(chunks: list[PageChunk], llm: LLMClient, start_index: i
                 except LLMError as e:  # the first pass still stands; surface the failure
                     warnings.append(f"{doc_id} pages {window[0].page_number}-{window[-1].page_number}: gap pass failed: {e}")
             for item in items:
-                page = _locate(item.supporting_quote, window)
-                if page is None:
+                located = locate_quote(item.supporting_quote, window)
+                if located is None:
                     warnings.append(f"{doc_id}: dropped requirement with unverifiable quote: {item.text[:60]}")
                     continue
+                page, excerpt = located  # the excerpt is the tender's own wording, even if the model tidied the quote
                 reqs.append(Requirement(
                     requirement_id=f"REQ-{n:03d}", text=item.text, category=item.category,
                     mandatory_level=item.mandatory_level, normalized_rule=item.normalized_rule,
-                    sources=[SourceRef(document_id=doc_id, page=page.page_number, excerpt=item.supporting_quote)],
+                    sources=[SourceRef(document_id=doc_id, page=page.page_number, excerpt=excerpt)],
                     extraction_confidence=item.extraction_confidence))
                 n += 1
     return dedupe(reqs), warnings

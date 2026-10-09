@@ -32,10 +32,11 @@ BATCH_SYSTEM = (
 def reason_code_for(req: Requirement, status: Status) -> ReasonCode | None:
     if status == Status.UNKNOWN and req.mandatory_level == MandatoryLevel.MANDATORY:
         return ReasonCode.MANDATORY_EVIDENCE_UNKNOWN
-    if status not in (Status.NOT_MET, Status.PARTIALLY_MET):
+    if status == Status.PARTIALLY_MET:  # a partial result is not a threshold failure, whatever the category
+        return ReasonCode.MANDATORY_PARTIALLY_MET
+    if status != Status.NOT_MET:
         return None
-    fallback = (ReasonCode.MANDATORY_REQUIREMENT_NOT_MET if status == Status.NOT_MET
-                else ReasonCode.MANDATORY_PARTIALLY_MET)
+    fallback = ReasonCode.MANDATORY_REQUIREMENT_NOT_MET
     return {
         Category.CERTIFICATION: ReasonCode.MANDATORY_CERTIFICATION_MISSING,
         Category.EXPERIENCE: ReasonCode.EXPERIENCE_THRESHOLD_NOT_MET,
