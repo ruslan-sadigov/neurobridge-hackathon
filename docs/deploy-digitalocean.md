@@ -76,7 +76,7 @@ The second should show `access-control-allow-origin: https://<frontend URL>`. Th
 
 1. Open the frontend URL.
 2. Upload `backend/fixtures/tenders/TR_CFCU_IT_network_equipment_2018.pdf`, click **Load demo profile**, **Run**.
-3. Wait 2-3 minutes. Expect the dashboard with about 26 requirements, a NO_GO recommendation and critical risks for
+3. Wait about 1-2 minutes (62 s measured for this tender). Expect the dashboard with about 26 requirements, a NO_GO recommendation and critical risks for
    the turnover requirements.
 4. Open a requirement, click **View full page**: the tender page text should load with the sentence highlighted.
 5. A browser address of the form `...?analysis=<id>` should reopen the same results after a refresh.

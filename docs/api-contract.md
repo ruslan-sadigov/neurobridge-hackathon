@@ -22,7 +22,7 @@ GET  /documents/{doc_id}/file           -> original PDF
 DELETE /analyses/{id}                   -> remove the analysis and its files
 ```
 
-A full analysis takes about 2-3 minutes on the free Gemini tier, so use the background mode and poll.
+A full analysis of a 5-page tender took about 1 minute (62 s measured) on the free Gemini tier; longer documents take longer, so use the background mode and poll.
 `GET /health` returns `{"status":"ok"}`.
 
 ## Endpoints

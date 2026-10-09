@@ -11,27 +11,44 @@
 | Storage | SQLite for development, Postgres for the demo; original PDFs on disk or S3-compatible storage | Implemented |
 | Infrastructure | One small Python API server. No GPU, no queue | Implemented |
 
-## 2. Running cost (estimates, not measured billing)
+## 2. Running cost (measured on one run, priced from Google's published rates)
 
-**Measured API requests per analysis of the 5-page CFCU notice: 9-10** (3 runs), down from about 28 before the call
-reduction. They are 6 extraction requests (3 two-page windows, each with a gap-filling second pass) plus about 3-4
-batched classification requests (6 requirements per request; informational clauses are not sent at all). Identical
-repeat calls are served from a disk cache, so re-running the same tender with the same supplier profile costs no
-requests. Quality was re-measured after the change (see `evaluation-and-failures.md`): recall 90%, compliance accuracy
-90%, citation validity 100%, unsupported positives 0%.
+**Measurement:** one full analysis of the 5-page CFCU notice (17,500 characters) against the strong demo supplier,
+cache off, `gemini-3.5-flash-lite`, using the token counts returned by the API itself:
 
-Token counts were **not** measured; a rough estimate from page text length is **about 20-30K input tokens and 5K
-output tokens per 5-page tender**, scaling roughly linearly with page count. Only 4 of about 26 results came from
-deterministic rules; the others were mostly UNKNOWN or judged by the LLM.
+| Call type | Requests | Input tokens | Output tokens |
+|---|---|---|---|
+| Requirement extraction (3 two-page windows, two passes, plus 1 retry after invalid JSON) | 7 | 19,185 | 7,441 |
+| Batched classification (6 requirements per request) | 4 | 6,425 | 2,047 |
+| **Total** | **11** | **25,610** | **9,488** |
 
-- **Prototype/hackathon:** free tier (15 requests/min, 250K tokens/min, 500 requests/day on the key we used). One
-  analysis uses about 10 of the 500 daily requests, so about 50 tender analyses per day, and it should finish faster
-  than the earlier 2-3 minutes (not re-timed).
-- **Production:** cost per tender = input tokens x input price + output tokens x output price. Flash-lite class models
-  are priced for high volume, but **we have not priced it**: check Google's current pricing page and multiply by the
-  token counts above, then re-measure with the token usage the pipeline already logs (`model_run`).
-- **Levers if cost or quota matters:** cache extraction by file checksum (spec NFR-008), skip the gap pass on short
-  documents, batch classification (several requirements per call), and run deterministic rules first (already done).
+The API reported 0 thinking tokens for this model. Wall-clock time was **62 seconds**; the analysis produced 31
+requirements and a GO_WITH_CONDITIONS recommendation. The failed attempt's tokens are included because they are billed.
+
+**Price:** Google's pricing page (updated 2026-10-07) lists `gemini-3.5-flash-lite` at **$0.30 per 1M input tokens and
+$2.50 per 1M output tokens** (output includes thinking tokens) on the paid tier.
+
+| | Calculation | Cost |
+|---|---|---|
+| One 5-page tender | 25,610 x $0.30/M + 9,488 x $2.50/M | **about $0.031** (3 US cents) |
+| Per page | $0.031 / 5 | about $0.006 |
+| 100-page bidding document | linear extrapolation, **not tested** | about $0.63 |
+| 1,000 five-page tenders | linear | about $31 |
+
+Request counts across three earlier runs were 9-10 (one run had 11 because of a retry), down from about 28 before the
+call reduction (batched classification, informational clauses skipped, identical calls cached on disk so a repeat run
+costs nothing). The extrapolation to longer documents assumes extraction and classification scale with page count;
+longer documents also have more requirements, so verify it before quoting it.
+
+- **Prototype/hackathon:** free tier (15 requests/min, 250K tokens/min, 500 requests/day on the key we used): about
+  10 requests per analysis means about 50 analyses a day, at about a minute each. **Privacy caveat from the same
+  pricing page: free-tier content is used to improve Google's products.** That is acceptable for public tenders and
+  fictional suppliers, but real client documents should only go through a paid account. Check the paid tier's data
+  terms before relying on them.
+- **Production:** at a few cents per tender the model cost is small next to the bid team's time; the real costs are
+  hosting (two small always-on containers) and the human review the product is meant to support.
+- **Levers if cost or quota matters:** extraction is about 75% of output tokens, so the gap-filling pass is the main
+  cost lever (skip it on short documents); batch size can go above 6; caching already removes repeat runs.
 
 ## 3. Risks and limits (honest)
 

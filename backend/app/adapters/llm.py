@@ -30,6 +30,18 @@ class LLMError(RuntimeError):
 # Number of real provider requests made by this process (retries included); reported by the eval harness.
 REQUEST_COUNT = {"n": 0}
 
+# Billed tokens per call type (schema name), recorded for every provider response, including ones that later
+# fail validation, because those tokens are still billed. Thinking tokens are billed as output.
+USAGE: dict[str, dict[str, int]] = {}
+
+
+def record_usage(kind: str, input_tokens: int | None, output_tokens: int | None, thinking_tokens: int | None = 0) -> None:
+    u = USAGE.setdefault(kind, {"requests": 0, "input": 0, "output": 0, "thinking": 0})
+    u["requests"] += 1
+    u["input"] += input_tokens or 0
+    u["output"] += output_tokens or 0
+    u["thinking"] += thinking_tokens or 0
+
 
 def _is_permanent(e: Exception) -> bool:
     """Bad key / bad request / permission errors will not fix themselves: fail fast instead of retrying."""
@@ -67,6 +79,7 @@ class AnthropicLLM:
                     tools=[tool], tool_choice={"type": "tool", "name": "submit"},
                     messages=[{"role": "user", "content": user}],
                 )
+                record_usage(schema.__name__, resp.usage.input_tokens, resp.usage.output_tokens)
                 block = next(b for b in resp.content if b.type == "tool_use")
                 result = schema.model_validate(block.input)
                 self.last_run = {"model": model, "prompt_version": get_settings().prompt_version,
@@ -118,6 +131,9 @@ class GeminiLLM:
                 self._last_call = t0
                 REQUEST_COUNT["n"] += 1
                 resp = self._client.models.generate_content(model=model, contents=user, config=cfg)
+                _u = resp.usage_metadata
+                record_usage(schema.__name__, getattr(_u, "prompt_token_count", 0), getattr(_u, "candidates_token_count", 0),
+                             getattr(_u, "thoughts_token_count", 0))
                 result = schema.model_validate_json(resp.text)
                 u = resp.usage_metadata
                 self.last_run = {"model": model, "prompt_version": get_settings().prompt_version,

@@ -77,7 +77,7 @@ export function ProgressLoader({ analysisId, onComplete, onError }: ProgressLoad
               <Loader2 className="h-6 w-6 text-brand-500 animate-spin" />
             </div>
             <h2 className="text-xl font-bold text-navy-900">Analyzing Tender</h2>
-            <p className="text-slate-500 text-sm mt-1">AI pipeline is parsing, matching, and scoring. This usually takes 2–3 minutes.</p>
+            <p className="text-slate-500 text-sm mt-1">AI pipeline is parsing, matching, and scoring. This usually takes 1–2 minutes.</p>
           </div>
 
           {/* Progress bar */}
