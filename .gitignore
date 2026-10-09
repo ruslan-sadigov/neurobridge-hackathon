@@ -36,3 +36,4 @@ Thumbs.db
 # Generated exports of the spec documents (keep the .docx sources)
 *.pdf
 !backend/tests/fixtures/*.pdf
+!backend/fixtures/tenders/*.pdf

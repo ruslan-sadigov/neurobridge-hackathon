@@ -10,12 +10,16 @@ from .parser import PageChunk
 
 EXTRACT_SYSTEM = """Extract bidder requirements from the tender text. Rules:
 - Only extract statements that impose a requirement on the bidder; skip descriptive/background text.
-- mandatory_level: MANDATORY (must/shall/required/disqualification), PREFERRED (should/advantage), INFORMATIONAL, or UNKNOWN.
+- mandatory_level: MANDATORY only for eligibility/qualification/compliance conditions the bidder must satisfy
+  (legal status, exclusion grounds, financial capacity, experience, certifications, staffing, required documents/guarantees).
+  Tender-process mechanics (submission deadline, language, envelope marking, how to submit, document purchase,
+  validity period, number of lots one may bid for) are INFORMATIONAL. PREFERRED = should/advantage. UNKNOWN if unclear.
 - category: one of LEGAL, FINANCIAL, TECHNICAL, EXPERIENCE, CERTIFICATION, PERSONNEL, DOCUMENTATION, DELIVERY, COMMERCIAL, CONTRACTUAL.
 - normalized_rule: when measurable, fill rule_type (membership|threshold|count|date|boolean), field, operator (contains|>=|>|<=|<|==), value, unit.
   Supported fields: certifications (membership/contains), annual_revenue (threshold), employees (threshold),
-  founded_year (threshold), projects_count (count; put project value/tag constraints in filters {min_value, tags}).
-  Otherwise rule_type = none.
+  founded_year (threshold). Use projects_count (operator >= only) ONLY for a plain minimum number of projects with no
+  similarity, value, tag or sector condition; otherwise rule_type = none. Never invent a rule for an upper bound.
+  Put the currency code (EUR, USD, AZN) in unit for money thresholds.
 - supporting_quote must be copied VERBATIM from the text. Keep the original language; do not translate."""
 
 WINDOW_PAGES = 2  # pages per LLM call; overlap handled by dedup
@@ -50,7 +54,7 @@ def extract_requirements(chunks: list[PageChunk], llm: LLMClient, start_index: i
             body = "\n\n".join(f'<document id="{doc_id}" page="{p.page_number}">\n{p.text}\n</document>' for p in window)
             try:
                 result = llm.complete_json(system=EXTRACT_SYSTEM, user=body, schema=ExtractionResult,
-                                           model=s.llm_extraction_model)
+                                           model=s.extraction_model)
             except LLMError as e:  # explicit failure visibility (NFR-003)
                 warnings.append(f"{doc_id} pages {window[0].page_number}-{window[-1].page_number}: {e}")
                 continue

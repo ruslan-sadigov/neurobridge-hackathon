@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+import re
 from datetime import date
 from typing import Any, Callable, Optional
 
@@ -26,16 +27,50 @@ def _norm(s: Any) -> str:
     return "".join(ch for ch in str(s).lower() if ch.isalnum())
 
 
+# Only the AZN/USD peg is built in. Any other currency (EUR, ...) must be supplied by the supplier
+# profile ("fx_rates": {"EUR": <AZN per 1 EUR>}); otherwise the check is UNKNOWN, never a bare-number compare.
+DEFAULT_FX: dict[str, float] = {"AZN": 1.0, "USD": 1.70}
+
+
+# The LLM may map a requirement onto the wrong supplier field (e.g. "bid security 200,000" -> annual_revenue).
+# A rule only runs deterministically when the requirement text actually talks about that field.
+FIELD_KEYWORDS: dict[str, str] = {
+    "annual_revenue": r"turnover|revenue|sales",
+    "employees": r"staff|employee|personnel|headcount|workforce",
+    "founded_year": r"founded|established|incorporat|years? (of|in) (experience|operation|business)|in operation",
+    "projects_count": r"contract|project|reference|deliver|install|complet",
+}
+
+
+def field_matches_text(rule: NormalizedRule, text: str) -> bool:
+    pattern = FIELD_KEYWORDS.get(rule.field or "")
+    return True if pattern is None else bool(re.search(pattern, text, re.I))
+
+
+def _currency(unit: Any) -> str | None:
+    u = str(unit or "").strip().upper()
+    return u if len(u) == 3 and u.isalpha() else None
+
+
+def _convert(amount: float, src: str, dst: str, fx: dict[str, float]) -> float | None:
+    if src == dst:
+        return amount
+    if src not in fx or dst not in fx:
+        return None
+    return amount * fx[src] / fx[dst]
+
+
 def evaluate(rule: NormalizedRule, evidence: list[Evidence], *, complete_types: set[str] | None = None,
-             today: Optional[date] = None) -> Optional[RuleOutcome]:
+             today: Optional[date] = None, fx_rates: dict[str, float] | None = None) -> Optional[RuleOutcome]:
     complete_types = complete_types or set()
+    fx = {**DEFAULT_FX, **(fx_rates or {})}
     today = today or date.today()
     if rule.rule_type == RuleType.NONE or not rule.field:
         return None
     if rule.rule_type == RuleType.MEMBERSHIP:
         return _membership(rule, evidence, complete_types, today)
     if rule.rule_type in (RuleType.THRESHOLD, RuleType.COUNT):
-        return _numeric(rule, evidence)
+        return _numeric(rule, evidence, fx)
     return None
 
 
@@ -55,7 +90,7 @@ def _membership(rule, evidence, complete_types, today) -> Optional[RuleOutcome]:
     return None
 
 
-def _numeric(rule, evidence) -> Optional[RuleOutcome]:
+def _numeric(rule, evidence, fx) -> Optional[RuleOutcome]:
     if rule.operator not in OPS or rule.value is None:
         return None
     try:
@@ -63,14 +98,14 @@ def _numeric(rule, evidence) -> Optional[RuleOutcome]:
     except (TypeError, ValueError):
         return None
 
+    unit_label: str | None = None
     if rule.field == "projects_count":
+        # Only a plain "at least N projects" is deterministic. Similarity wording, value or tag constraints
+        # need semantic judgement, and an upper bound on project count is meaningless.
+        meaningful = {k for k, v in rule.filters.items() if v not in (None, "", [], {})}
+        if meaningful - {"lot"} or rule.operator not in (">=", ">", "=="):
+            return None
         projects = [e for e in evidence if e.type == "PROJECT"]
-        min_val = rule.filters.get("min_value")
-        tags = [t.lower() for t in rule.filters.get("tags", [])]
-        if min_val is not None:
-            projects = [p for p in projects if (p.value or 0) >= float(min_val)]
-        if tags:
-            projects = [p for p in projects if any(t in p.text.lower() for t in tags)]
         actual: float = len(projects)
         ids = [p.evidence_id for p in projects]
     elif rule.field == "annual_revenue":
@@ -78,6 +113,13 @@ def _numeric(rule, evidence) -> Optional[RuleOutcome]:
         if not revs:
             return None
         actual, ids = float(revs[-1].value), [revs[-1].evidence_id]
+        want_cur, have_cur = _currency(rule.unit), revs[-1].metadata.get("currency")
+        if want_cur and have_cur:  # compare in the supplier's currency, or give up -> UNKNOWN
+            converted = _convert(target, want_cur, have_cur, fx)
+            if converted is None:
+                return None
+            target = converted
+            unit_label = f" {have_cur}"
     else:  # company facts: employees, founded_year, ...
         facts = [e for e in evidence if e.type == "COMPANY_FACT" and e.label == rule.field]
         if not facts:
@@ -85,7 +127,7 @@ def _numeric(rule, evidence) -> Optional[RuleOutcome]:
         actual, ids = float(facts[0].value), [facts[0].evidence_id]
 
     ok = OPS[rule.operator](actual, target)
-    unit = f" {rule.unit}" if rule.unit else ""
+    unit = unit_label if unit_label is not None else (f" {rule.unit}" if rule.unit else "")
     detail = f"required {rule.field} {rule.operator} {target:g}{unit}; supplier has {actual:g}{unit}."
     if ok:
         return RuleOutcome(Status.MET, ids, detail)

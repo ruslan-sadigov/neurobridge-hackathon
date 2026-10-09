@@ -6,9 +6,13 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=("../.env", ".env"), extra="ignore")
 
+    llm_provider: str = "anthropic"  # anthropic | gemini
     anthropic_api_key: str = ""
     llm_extraction_model: str = "claude-sonnet-5-5"
     llm_classification_model: str = "claude-haiku-5-5"
+    gemini_api_key: str = ""
+    gemini_model: str = "gemini-2.5-flash"
+    llm_min_interval_s: float = 0.0  # throttle between calls (free Gemini tier is rate limited)
     prompt_version: str = "v1"
 
     embedding_backend: str = "local"  # local | hash
@@ -22,6 +26,15 @@ class Settings(BaseSettings):
     ocr_enabled: bool = True
     ocr_langs: str = "eng+aze"
     min_chars_per_page: int = 40  # below this a page is treated as image-only
+
+
+    @property
+    def extraction_model(self) -> str:
+        return self.gemini_model if self.llm_provider == "gemini" else self.llm_extraction_model
+
+    @property
+    def classification_model(self) -> str:
+        return self.gemini_model if self.llm_provider == "gemini" else self.llm_classification_model
 
 
 @lru_cache

@@ -5,13 +5,14 @@ from ..adapters.llm import LLMClient
 from ..config import get_settings
 from ..enums import Category, MandatoryLevel, Method, ReasonCode, Status
 from ..schemas import ClassificationResult, ComplianceResult, Evidence, Requirement
-from .rules import evaluate
+from .rules import evaluate, field_matches_text
 
 CLASSIFY_SYSTEM = (
     "Decide whether the supplier evidence satisfies the tender requirement. Use ONLY the evidence given. "
     "Return MET only if evidence clearly satisfies it, PARTIALLY_MET if it satisfies part, NOT_MET only if "
-    "evidence clearly contradicts it, otherwise UNKNOWN. Cite evidence_ids you relied on. "
-    "Never use outside knowledge about the company."
+    "an evidence record states something that CONFLICTS with the requirement (set evidence_contradicts=true). "
+    "If the evidence merely does not mention the required item, the answer is UNKNOWN, not NOT_MET. "
+    "Cite evidence_ids you relied on. Never use outside knowledge about the company."
 )
 
 
@@ -32,9 +33,12 @@ def reason_code_for(req: Requirement, status: Status) -> ReasonCode | None:
 
 
 def classify(req: Requirement, all_evidence: list[Evidence], candidates: list[tuple[Evidence, float]],
-             llm: LLMClient | None, complete_types: set[str] | None = None) -> ComplianceResult:
+             llm: LLMClient | None, complete_types: set[str] | None = None,
+             fx_rates: dict[str, float] | None = None) -> ComplianceResult:
     # 1. deterministic
-    outcome = evaluate(req.normalized_rule, all_evidence, complete_types=complete_types)
+    outcome = None
+    if field_matches_text(req.normalized_rule, req.text):
+        outcome = evaluate(req.normalized_rule, all_evidence, complete_types=complete_types, fx_rates=fx_rates)
     if outcome is not None:
         return ComplianceResult(
             requirement_id=req.requirement_id, status=outcome.status, method=Method.DETERMINISTIC_RULE,
@@ -52,13 +56,15 @@ def classify(req: Requirement, all_evidence: list[Evidence], candidates: list[tu
     ev_block = "\n".join(f'<evidence id="{e.evidence_id}">{e.label}: {e.text}</evidence>' for e, _ in candidates)
     user = f"<requirement>{req.text}</requirement>\n{ev_block}"
     res = llm.complete_json(system=CLASSIFY_SYSTEM, user=user, schema=ClassificationResult,
-                            model=get_settings().llm_classification_model)
+                            model=get_settings().classification_model)
 
     valid_ids = {e.evidence_id for e, _ in candidates}
     cited = [i for i in res.evidence_ids if i in valid_ids]  # drop hallucinated ids
     status = res.status
     if status in (Status.MET, Status.PARTIALLY_MET) and not cited:
         status = Status.UNKNOWN  # FR-034: no unsupported positives
+    if status == Status.NOT_MET and not (res.evidence_contradicts and cited):
+        status = Status.UNKNOWN  # FR-012: absence of evidence is UNKNOWN, not NOT_MET
     return ComplianceResult(
         requirement_id=req.requirement_id, status=status, method=Method.LLM_SEMANTIC,
         supporting_evidence_ids=cited, rationale=res.rationale, confidence=res.confidence,

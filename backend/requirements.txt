@@ -11,3 +11,4 @@ numpy>=1.26
 # Optional (heavy): local multilingual embeddings / OCR
 # sentence-transformers>=3.0
 # pytesseract>=0.3
+google-genai>=1.0

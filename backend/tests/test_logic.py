@@ -44,8 +44,6 @@ def test_threshold_and_count():
     assert evaluate(rev, EVIDENCE).status == Status.NOT_MET
     cnt = NormalizedRule(rule_type=RuleType.COUNT, field="projects_count", operator=">=", value=2)
     assert evaluate(cnt, EVIDENCE).status == Status.PARTIALLY_MET  # 1 of 2
-    cnt.filters = {"min_value": 1_000_000}
-    assert evaluate(cnt, EVIDENCE).status == Status.NOT_MET
 
 
 def test_expired_certificate_is_not_met():
@@ -127,3 +125,40 @@ def test_matcher_ranks_relevant_evidence_first():
     r = req("R", Category.CERTIFICATION, text="Bidder must hold a valid ISO 9001 certificate")
     top = match_evidence([r], EVIDENCE, HashingEmbedder())["R"]
     assert top and top[0][0].type in ("CERTIFICATE", "DOCUMENT")
+
+
+def test_filtered_or_upper_bound_counts_are_not_deterministic():
+    cnt = NormalizedRule(rule_type=RuleType.COUNT, field="projects_count", operator=">=", value=1,
+                         filters={"min_value": 1_000_000})
+    assert evaluate(cnt, EVIDENCE) is None  # needs semantic judgement
+    cnt = NormalizedRule(rule_type=RuleType.COUNT, field="projects_count", operator="<=", value=5)
+    assert evaluate(cnt, EVIDENCE) is None  # "at most N projects" is not a qualification test
+
+
+def test_currency_mismatch_is_unknown_unless_fx_rate_given():
+    rev = NormalizedRule(rule_type=RuleType.THRESHOLD, field="annual_revenue", operator=">", value=2_500_000, unit="EUR")
+    assert evaluate(rev, EVIDENCE) is None  # no EUR rate -> UNKNOWN, never a bare-number compare
+    out = evaluate(rev, EVIDENCE, fx_rates={"EUR": 1.95})  # 2.5M EUR = 4.875M AZN > 1.2M AZN
+    assert out.status == Status.NOT_MET and "AZN" in out.rationale
+    usd = NormalizedRule(rule_type=RuleType.THRESHOLD, field="annual_revenue", operator=">", value=500_000, unit="USD")
+    assert evaluate(usd, EVIDENCE).status == Status.MET  # 500k USD = 850k AZN < 1.2M AZN
+
+
+def test_llm_not_met_without_contradiction_becomes_unknown():
+    class AbsentLLM:
+        def complete_json(self, **kw):
+            return ClassificationResult(status=Status.NOT_MET, rationale="not mentioned", evidence_ids=["EVD-001"],
+                                        evidence_contradicts=False, confidence=0.9)
+
+    r = req("R1", Category.DOCUMENTATION, text="Submit a signed declaration of honour")
+    res = compliance.classify(r, EVIDENCE, [(next(e for e in EVIDENCE if e.evidence_id == "EVD-001"), 0.5)], AbsentLLM())
+    assert res.status == Status.UNKNOWN
+
+
+def test_rule_mapped_to_wrong_field_is_not_applied():
+    wrong = NormalizedRule(rule_type=RuleType.THRESHOLD, field="annual_revenue", operator=">=", value=200000, unit="USD")
+    r = req("R1", Category.FINANCIAL, rule=wrong, text="Bids need to be secured by a Bid Security of USD 200.000")
+    res = compliance.classify(r, EVIDENCE, [], llm=None)
+    assert res.status == Status.UNKNOWN and res.method == Method.NO_EVIDENCE
+    ok = req("R2", Category.FINANCIAL, rule=wrong, text="Average annual turnover must exceed USD 200.000")
+    assert compliance.classify(ok, EVIDENCE, [], llm=None).status == Status.MET

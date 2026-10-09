@@ -73,6 +73,9 @@ class ClassificationResult(BaseModel):
     status: Status
     rationale: str
     evidence_ids: list[str] = Field(default_factory=list)
+    evidence_contradicts: bool = Field(
+        default=False, description="True only if an evidence record conflicts with the requirement; "
+                                   "False if the evidence merely lacks the required item")
     confidence: float = Field(ge=0, le=1)
 
     @field_validator("rationale")
