@@ -12,6 +12,12 @@ interface SetupFormProps {
   onAnalysisStarted: (analysisId: string) => void;
 }
 
+// Fictional demo suppliers (served from /public/demo, copies of backend/fixtures). Same tender, different verdicts.
+const DEMO_SUPPLIERS = [
+  { file: "supplier_weak.json", label: "Load weak demo supplier" },
+  { file: "supplier_strong.json", label: "Load strong demo supplier" },
+];
+
 export function SetupForm({ onAnalysisStarted }: SetupFormProps) {
   const [pdfFiles, setPdfFiles] = useState<File[]>([]);
   const [supplierJson, setSupplierJson] = useState<string>("");
@@ -65,6 +71,18 @@ export function SetupForm({ onAnalysisStarted }: SetupFormProps) {
     } catch {
       setSupplierError("Invalid JSON — please check the format.");
       return false;
+    }
+  };
+
+  const loadDemoSupplier = async (file: string) => {
+    try {
+      const res = await fetch(`/demo/${file}`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const text = JSON.stringify(await res.json(), null, 2);
+      setSupplierJson(text);
+      validateJson(text);
+    } catch {
+      setSupplierError("Could not load the demo profile.");
     }
   };
 
@@ -175,7 +193,7 @@ export function SetupForm({ onAnalysisStarted }: SetupFormProps) {
               Supplier Profile
               {parsedJson && <span className="ml-2 text-xs text-emerald-600 font-normal">✓ {parsedJson.company_name || "Valid JSON"}</span>}
             </CardTitle>
-            <CardDescription>Paste your company profile JSON or upload a .json file</CardDescription>
+            <CardDescription>Paste your company profile JSON or upload a .json file. The demo suppliers are fictional.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
             <div className="flex gap-2">
@@ -183,18 +201,17 @@ export function SetupForm({ onAnalysisStarted }: SetupFormProps) {
                 Upload JSON file
               </Button>
               <input ref={jsonInputRef} type="file" accept=".json" className="hidden" onChange={handleJsonFile} />
-              <Button
-                variant="ghost"
-                size="sm"
-                className="text-brand-600 hover:text-brand-700 hover:bg-brand-50 font-medium"
-                onClick={() => {
-                  const demo = `{"company_name":"CaspianTech LLC","founded_year":2018,"employees":42,"annual_revenue":{"2025":1200000,"currency":"AZN"},"certifications":[{"name":"ISO 9001","evidence_id":"EVD-001","issued_date":"2025-01-10","expiry_date":"2028-01-09"}],"projects":[{"name":"Network Modernization A","year":2025,"value":420000,"currency":"AZN","tags":["network infrastructure","enterprise"]}],"documents":[{"type":"certificate","name":"ISO 9001","evidence_id":"EVD-001"}],"complete_evidence_types":["CERTIFICATE"],"fx_rates":{"EUR":1.95}}`;
-                  setSupplierJson(demo);
-                  validateJson(demo);
-                }}
-              >
-                Load demo profile
-              </Button>
+              {DEMO_SUPPLIERS.map((d) => (
+                <Button
+                  key={d.file}
+                  variant="ghost"
+                  size="sm"
+                  className="text-brand-600 hover:text-brand-700 hover:bg-brand-50 font-medium"
+                  onClick={() => loadDemoSupplier(d.file)}
+                >
+                  {d.label}
+                </Button>
+              ))}
             </div>
             <textarea
               value={supplierJson}

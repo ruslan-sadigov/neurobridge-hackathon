@@ -15,6 +15,12 @@ def build_evidence(profile: dict[str, Any]) -> list[Evidence]:
             ev.append(Evidence(evidence_id=f"EVD-F-{key}", type="COMPANY_FACT", label=key,
                                value=profile[key], text=f"{name} {key}: {profile[key]}"))
 
+    # Free-form facts, e.g. {"label": "Country of establishment", "value": "Turkey", "text": "..."}.
+    for i, f in enumerate(profile.get("facts", []), 1):
+        ev.append(Evidence(evidence_id=f.get("evidence_id", f"EVD-FACT-{i:03d}"), type="COMPANY_FACT",
+                           label=f["label"], value=f.get("value"),
+                           text=f.get("text") or f"{name} {f['label']}: {f.get('value')}"))
+
     for i, c in enumerate(profile.get("certifications", []), 1):
         item = c if isinstance(c, dict) else {"name": c}
         ev.append(Evidence(evidence_id=item.get("evidence_id", f"EVD-C-{i:03d}"), type="CERTIFICATE",
@@ -35,12 +41,14 @@ def build_evidence(profile: dict[str, Any]) -> list[Evidence]:
         tags = ", ".join(p.get("tags", []))
         ev.append(Evidence(evidence_id=p.get("evidence_id", f"EVD-P-{i:03d}"), type="PROJECT", label=p["name"],
                            value=p.get("value"),
-                           text=f"Project {p['name']} ({p.get('year')}), value {p.get('value')} {p.get('currency')}, {tags}",
+                           text=(f"Project {p['name']} ({p.get('year')}), value {p.get('value')} {p.get('currency')}, {tags}"
+                                 + (f". {p['description']}" if p.get("description") else "")),
                            metadata={k: v for k, v in p.items() if k != "name"}))
 
     for d in profile.get("documents", []):
         ev.append(Evidence(evidence_id=d["evidence_id"], type="DOCUMENT", label=d["name"], value=d["name"],
-                           text=f"Document ({d.get('type')}): {d['name']}"))
+                           text=f"Document ({d.get('type')}): {d['name']}"
+                                + (f". {d['description']}" if d.get("description") else "")))
 
     seen: set[str] = set()  # keep the first record when ids repeat
     out: list[Evidence] = []

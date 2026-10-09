@@ -1,0 +1,107 @@
+{
+  "company_name": "Marmara Secure Systems (synthetic demo supplier)",
+  "synthetic": true,
+  "note": "Fictional company created for demonstration. Not a real organisation; all figures are invented.",
+  "founded_year": 2009,
+  "employees": 85,
+  "annual_revenue": {
+    "2022": 3400000,
+    "2023": 3900000,
+    "2024": 4600000,
+    "currency": "EUR"
+  },
+  "facts": [
+    {
+      "evidence_id": "EVD-F-country",
+      "label": "Country of establishment",
+      "value": "Turkey",
+      "text": "Legal entity registered and effectively established in Ankara, Turkey."
+    },
+    {
+      "evidence_id": "EVD-F-focus",
+      "label": "Business focus",
+      "value": "IT network and information security integration",
+      "text": "Supplies, installs and maintains enterprise network equipment and information security appliances (firewalls, intrusion prevention, network access control) for public-sector and utility customers. No SCADA or remote terminal unit (RTU) delivery experience."
+    }
+  ],
+  "certifications": [
+    {
+      "name": "ISO 9001",
+      "evidence_id": "EVD-C-9001",
+      "issued_date": "2024-03-15",
+      "expiry_date": "2027-03-14"
+    },
+    {
+      "name": "ISO 27001",
+      "evidence_id": "EVD-C-27001",
+      "issued_date": "2024-06-20",
+      "expiry_date": "2027-06-19"
+    }
+  ],
+  "projects": [
+    {
+      "evidence_id": "EVD-P-001",
+      "name": "Provincial hospital network and security upgrade",
+      "year": 2024,
+      "value": 1400000,
+      "currency": "EUR",
+      "tags": [
+        "IT network equipment",
+        "information security"
+      ],
+      "description": "Delivered and installed core switches, firewalls and network access control for a public hospital group; completed on time with final acceptance certificate."
+    },
+    {
+      "evidence_id": "EVD-P-002",
+      "name": "Ministry data centre firewall and intrusion-prevention refresh",
+      "year": 2023,
+      "value": 1100000,
+      "currency": "EUR",
+      "tags": [
+        "IT network equipment",
+        "information security"
+      ],
+      "description": "Supplied and commissioned firewall and intrusion-prevention appliances with three years of support for a central government data centre."
+    },
+    {
+      "evidence_id": "EVD-P-003",
+      "name": "Regional university campus network",
+      "year": 2022,
+      "value": 900000,
+      "currency": "EUR",
+      "tags": [
+        "IT network equipment"
+      ],
+      "description": "Supplied and installed campus switching and wireless network equipment; completed and accepted."
+    }
+  ],
+  "documents": [
+    {
+      "evidence_id": "EVD-D-declaration",
+      "type": "declaration",
+      "name": "Signed declaration on grounds for exclusion",
+      "description": "Declaration of honour (PRAG section 2.6.10.1 format) prepared and signed by the managing director for this tender."
+    },
+    {
+      "evidence_id": "EVD-D-maf",
+      "type": "authorization",
+      "name": "Manufacturer authorization letters",
+      "description": "Authorization letters from two network and security equipment manufacturers; the equipment to be supplied is manufactured in Germany and the Netherlands."
+    },
+    {
+      "evidence_id": "EVD-D-bank",
+      "type": "bank letter",
+      "name": "Bank guarantee facility confirmation",
+      "description": "Bank letter confirming a guarantee facility of 300,000 EUR approved for tender and performance guarantees; the bank issues a guarantee for a specific tender within two working days of request."
+    }
+  ],
+  "complete_evidence_types": [
+    "CERTIFICATE"
+  ],
+  "fx_rates": {
+    "EUR": 1.95
+  },
+  "bid_lots": [
+    "2"
+  ]
+}

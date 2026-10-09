@@ -46,6 +46,7 @@ Reading the table:
 | 6 | 38 of 38 requirements flagged MANDATORY, including deadlines and envelope rules, inflating risks | Extraction prompt did not distinguish eligibility from process | Prompt separates eligibility conditions from tender mechanics; level accuracy 87% to 96% | Partly fixed |
 | 7 | Experience requirements: annotation says NOT_MET (supplier's whole portfolio, 420k AZN, is below 2.5M EUR), pipeline says UNKNOWN | Needs cross-currency arithmetic over a fuzzy "similar contracts" condition | None; UNKNOWN is the conservative answer. Needs a human decision on the intended label | Open |
 | 8 | Extra MANDATORY items (capacity-provider conditions etc.) add noise to the risk list | Real but conditional clauses; model cannot tell if they apply | Surface as lower-severity or "conditional"; needs product decision | Open |
+| 9 | A supplier bidding only for Lot 2 was failed on Lot 1 requirements (SCADA/RTU experience, Lot 1 guarantee), giving NO_GO | The tool had no notion of which lots the supplier bids for | New `bid_lots` supplier setting: requirements that name only other lots are marked out of scope (not scored, no risk), with the reason shown. Unit test added | Fixed |
 
 ## 3. Where the system returns UNKNOWN instead of inventing an answer
 
@@ -66,3 +67,19 @@ per tender, 5 pages) on found requirements and time. Do not report a figure unti
 20 unit tests (no API key needed): rule engine (thresholds, counts, expiry, currency, wrong-field guard), compliance
 guards, risk severity, score reproducibility and critical-gap veto, schema validation, evidence retrieval, and the
 evaluation metrics themselves.
+
+## 6. Demo scenario: one real tender, two fictional suppliers
+
+Both suppliers are fictional and labelled synthetic; the tender (CFCU/EU notice) is a real public document.
+
+| Supplier | Profile | Result on the CFCU tender |
+|---|---|---|
+| CaspianTech LLC (weak) | 1.2M AZN revenue, 42 staff, ISO 9001, one project | **NO_GO**: turnover far below the 2.5-2.8M EUR threshold (critical mandatory gap) |
+| Marmara Secure Systems (strong, bids Lot 2) | 4.6M EUR revenue, 85 staff, ISO 9001 and 27001, three network/security projects, signed declaration, bank guarantee facility | **GO_WITH_CONDITIONS** (score about 49): 4 MET, 2 PARTIALLY_MET, 0 NOT_MET, Lot 1 items out of scope, remaining items UNKNOWN (sanctions status, supplies origin, consortium conditions) |
+
+Honest notes: the strong profile was designed after seeing the weak one's results and its bank-letter wording was
+adjusted once (an initial "guarantee not yet issued" phrasing produced NOT_MET). It demonstrates the product's behaviour;
+it is not a test of accuracy and does not enter the metrics above. The strong supplier's reason codes include
+`FINANCIAL_THRESHOLD_NOT_MET` for a PARTIALLY_MET guarantee, which is imprecise naming (open issue). A key requirement
+(eligibility of establishment) was dropped in this run because the model's quote did not match the page exactly,
+another example of run-to-run variation.

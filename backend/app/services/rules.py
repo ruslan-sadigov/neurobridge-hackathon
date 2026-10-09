@@ -124,7 +124,10 @@ def _numeric(rule, evidence, fx) -> Optional[RuleOutcome]:
         facts = [e for e in evidence if e.type == "COMPANY_FACT" and e.label == rule.field]
         if not facts:
             return None
-        actual, ids = float(facts[0].value), [facts[0].evidence_id]
+        try:
+            actual, ids = float(facts[0].value), [facts[0].evidence_id]
+        except (TypeError, ValueError):  # a text fact (e.g. a country) cannot be compared numerically
+            return None
 
     ok = OPS[rule.operator](actual, target)
     unit = unit_label if unit_label is not None else (f" {rule.unit}" if rule.unit else "")
