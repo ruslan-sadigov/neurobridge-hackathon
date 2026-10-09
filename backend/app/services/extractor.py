@@ -13,7 +13,10 @@ EXTRACT_SYSTEM = """Extract bidder requirements from the tender text. Rules:
 - mandatory_level: MANDATORY only for eligibility/qualification/compliance conditions the bidder must satisfy
   (legal status, exclusion grounds, financial capacity, experience, certifications, staffing, required documents/guarantees).
   Tender-process mechanics (submission deadline, language, envelope marking, how to submit, document purchase,
-  validity period, number of lots one may bid for) are INFORMATIONAL. PREFERRED = should/advantage. UNKNOWN if unclear.
+  validity period, number of lots one may bid for, delivery channel such as post/courier/hand delivery, "tenders
+  submitted any other way will not be considered", notification by electronic means, recommendations about mailing,
+  where to obtain documents, who to send questions to) are INFORMATIONAL. A clause is MANDATORY only if failing it
+  would make the BIDDER ineligible or unqualified. PREFERRED = should/advantage. UNKNOWN if unclear.
 - category: one of LEGAL, FINANCIAL, TECHNICAL, EXPERIENCE, CERTIFICATION, PERSONNEL, DOCUMENTATION, DELIVERY, COMMERCIAL, CONTRACTUAL.
 - normalized_rule: when measurable, fill rule_type (membership|threshold|count|date|boolean), field, operator (contains|>=|>|<=|<|==), value, unit.
   Supported fields: certifications (membership/contains), annual_revenue (threshold), employees (threshold),

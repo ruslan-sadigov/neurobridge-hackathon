@@ -1,0 +1,395 @@
+{
+ "aggregate": {
+  "n_extracted": {
+   "mean": 31.333,
+   "min": 30,
+   "max": 33
+  },
+  "n_annotated_scored": {
+   "mean": 14.0,
+   "min": 14,
+   "max": 14
+  },
+  "requirement_recall": {
+   "mean": 0.953,
+   "min": 0.929,
+   "max": 1.0
+  },
+  "mandatory_recall": {
+   "mean": 0.953,
+   "min": 0.929,
+   "max": 1.0
+  },
+  "requirement_precision": {
+   "mean": 0.576,
+   "min": 0.515,
+   "max": 0.613
+  },
+  "mandatory_level_accuracy": {
+   "mean": 0.868,
+   "min": 0.824,
+   "max": 0.947
+  },
+  "category_accuracy": {
+   "mean": 0.907,
+   "min": 0.833,
+   "max": 0.947
+  },
+  "citation_validity": {
+   "mean": 1.0,
+   "min": 1.0,
+   "max": 1.0
+  },
+  "compliance_accuracy": {
+   "mean": 0.85,
+   "min": 0.846,
+   "max": 0.857
+  },
+  "false_positive_met_rate": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "unsupported_positive_rate": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  }
+ },
+ "per_run": [
+  {
+   "n_extracted": 33,
+   "n_annotated_scored": 14,
+   "requirement_recall": 0.929,
+   "mandatory_recall": 0.929,
+   "requirement_precision": 0.515,
+   "mandatory_level_accuracy": 0.824,
+   "category_accuracy": 0.941,
+   "citation_validity": 1.0,
+   "compliance_accuracy": 0.846,
+   "false_positive_met_rate": 0.0,
+   "unsupported_positive_rate": 0.0,
+   "missed": [
+    "A01"
+   ],
+   "status_wrong": [
+    {
+     "id": "A13",
+     "expected": "NOT_MET",
+     "got": "UNKNOWN",
+     "why": "The evidence does not mention the delivery and installation of RTUs in electricity transmission at voltage levels above 36 kV within the las"
+    },
+    {
+     "id": "A14",
+     "expected": "NOT_MET",
+     "got": "UNKNOWN",
+     "why": "The evidence provides details for only one contract in a different currency and amount, failing to reach the cumulative threshold of 2,500,0"
+    }
+   ],
+   "unmatched_extracted": [
+    {
+     "id": "REQ-004",
+     "page": 2,
+     "text": "Only one application may be submitted per lot and tenders for parts of a lot will not be considered. Variant s",
+     "level": "INFORMATIONAL"
+    },
+    {
+     "id": "REQ-006",
+     "page": 2,
+     "text": "Tenderers must provide a tender guarantee of 90,000.00 EUR for Lot 2 when submitting their tender.",
+     "level": "MANDATORY"
+    },
+    {
+     "id": "REQ-016",
+     "page": 3,
+     "text": "Such entities, for instance the parent company of the economic operator, must respect the same rules of eligib",
+     "level": "MANDATORY"
+    },
+    {
+     "id": "REQ-017",
+     "page": 4,
+     "text": "With regard to economic and financial criteria, the entities upon whose capacity the tenderer relies, become j",
+     "level": "MANDATORY"
+    },
+    {
+     "id": "REQ-019",
+     "page": 4,
+     "text": "Tenderers with questions regarding this tender should send them in writing at the latest 21 days before the de",
+     "level": "INFORMATIONAL"
+    },
+    {
+     "id": "REQ-020",
+     "page": 4,
+     "text": "Any tender submitted to the Contracting Authority after this deadline will not be considered.",
+     "level": "INFORMATIONAL"
+    },
+    {
+     "id": "REQ-022",
+     "page": 3,
+     "text": "In case a tenderer applies to multiple lots, the tenderer should meet, for economic and financial capacity cri",
+     "level": "MANDATORY"
+    },
+    {
+     "id": "REQ-023",
+     "page": 3,
+     "text": "In case a tenderer applies to multiple lots, the tenderer should meet, for professional capacity criterion, cu",
+     "level": "MANDATORY"
+    },
+    {
+     "id": "REQ-024",
+     "page": 3,
+     "text": "If the tender relies on other entities it must prove to the Contracting Authority that it will have at its dis",
+     "level": "MANDATORY"
+    },
+    {
+     "id": "REQ-025",
+     "page": 4,
+     "text": "Proof of the capacity will also have to be furnished when requested by the Contracting Authority",
+     "level": "MANDATORY"
+    },
+    {
+     "id": "REQ-026",
+     "page": 4,
+     "text": "With regard to technical and professional criteria, a tenderer may only rely on the capacities of other entiti",
+     "level": "MANDATORY"
+    },
+    {
+     "id": "REQ-027",
+     "page": 5,
+     "text": "Tenders must be submitted either by post, courier service, or hand delivered to the specified address.",
+     "level": "INFORMATIONAL"
+    },
+    {
+     "id": "REQ-029",
+     "page": 5,
+     "text": "Tenders submitted by any other means will not be considered.",
+     "level": "MANDATORY"
+    },
+    {
+     "id": "REQ-031",
+     "page": 5,
+     "text": "Tenders must be submitted to the specified address by post, courier service, or hand delivery.",
+     "level": "INFORMATIONAL"
+    },
+    {
+     "id": "REQ-032",
+     "page": 5,
+     "text": "By submitting a tender candidates accept to receive notification of the outcome of the procedure by electronic",
+     "level": "MANDATORY"
+    },
+    {
+     "id": "REQ-033",
+     "page": 5,
+     "text": "It is recommended to use registered mail in case the postmark would not be readable.",
+     "level": "PREFERRED"
+    }
+   ]
+  },
+  {
+   "n_extracted": 30,
+   "n_annotated_scored": 14,
+   "requirement_recall": 0.929,
+   "mandatory_recall": 0.929,
+   "requirement_precision": 0.6,
+   "mandatory_level_accuracy": 0.833,
+   "category_accuracy": 0.833,
+   "citation_validity": 1.0,
+   "compliance_accuracy": 0.846,
+   "false_positive_met_rate": 0.0,
+   "unsupported_positive_rate": 0.0,
+   "missed": [
+    "A01"
+   ],
+   "status_wrong": [
+    {
+     "id": "A13",
+     "expected": "NOT_MET",
+     "got": "UNKNOWN",
+     "why": "The evidence provides a contract (Network Modernization A) with a value in AZN and no mention of the cumulative amount reaching 2,500,000 EU"
+    },
+    {
+     "id": "A14",
+     "expected": "NOT_MET",
+     "got": "UNKNOWN",
+     "why": "The evidence lists one contract with a value in AZN and no explicit mention of the cumulative total meeting 2,500,000 EUR in the specified f"
+    }
+   ],
+   "unmatched_extracted": [
+    {
+     "id": "REQ-001",
+     "page": 1,
+     "text": "Clarifications may be sought from the Contracting Authority at the following email address pao@cfcu.gov.tr at ",
+     "level": "INFORMATIONAL"
+    },
+    {
+     "id": "REQ-005",
+     "page": 2,
+     "text": "Candidates may submit an application for one lot only, several lots or all of the lots, but only one applicati",
+     "level": "INFORMATIONAL"
+    },
+    {
+     "id": "REQ-016",
+     "page": 3,
+     "text": "Such entities, for instance the parent company of the economic operator, must respect the same rules of eligib",
+     "level": "MANDATORY"
+    },
+    {
+     "id": "REQ-017",
+     "page": 4,
+     "text": "With regard to economic and financial criteria, the entities upon whose capacity the tenderer relies, become j",
+     "level": "MANDATORY"
+    },
+    {
+     "id": "REQ-021",
+     "page": 3,
+     "text": "In case a tenderer applies to multiple lots, the tenderer should meet: for economic and financial capacity cri",
+     "level": "MANDATORY"
+    },
+    {
+     "id": "REQ-022",
+     "page": 3,
+     "text": "In case a tenderer applies to multiple lots, the tenderer should meet: for professional capacity criterion, cu",
+     "level": "MANDATORY"
+    },
+    {
+     "id": "REQ-023",
+     "page": 3,
+     "text": "If the tender relies on other entities it must prove to the Contracting Authority that it will have at its dis",
+     "level": "MANDATORY"
+    },
+    {
+     "id": "REQ-024",
+     "page": 4,
+     "text": "With regard to technical and professional criteria, a tenderer may only rely on the capacities of other entiti",
+     "level": "MANDATORY"
+    },
+    {
+     "id": "REQ-025",
+     "page": 5,
+     "text": "Tenders must be submitted either by post, courier service, or hand delivered to the specified address of the C",
+     "level": "INFORMATIONAL"
+    },
+    {
+     "id": "REQ-027",
+     "page": 5,
+     "text": "Tenders submitted by any other means will not be considered.",
+     "level": "MANDATORY"
+    },
+    {
+     "id": "REQ-029",
+     "page": 5,
+     "text": "By submitting a tender candidates accept to receive notification of the outcome of the procedure by electronic",
+     "level": "MANDATORY"
+    },
+    {
+     "id": "REQ-030",
+     "page": 5,
+     "text": "It is recommended to use registered mail in case the postmark would not be readable.",
+     "level": "PREFERRED"
+    }
+   ]
+  },
+  {
+   "n_extracted": 31,
+   "n_annotated_scored": 14,
+   "requirement_recall": 1.0,
+   "mandatory_recall": 1.0,
+   "requirement_precision": 0.613,
+   "mandatory_level_accuracy": 0.947,
+   "category_accuracy": 0.947,
+   "citation_validity": 1.0,
+   "compliance_accuracy": 0.857,
+   "false_positive_met_rate": 0.0,
+   "unsupported_positive_rate": 0.0,
+   "missed": [],
+   "status_wrong": [
+    {
+     "id": "A13",
+     "expected": "NOT_MET",
+     "got": "UNKNOWN",
+     "why": "The evidence does not mention the delivery and installation of RTUs, cumulative amount in EUR, electricity transmission at voltage levels ab"
+    },
+    {
+     "id": "A14",
+     "expected": "NOT_MET",
+     "got": "UNKNOWN",
+     "why": "The evidence provides a single contract in a different currency (AZN) and lacks sufficient information to verify the cumulative amount of at"
+    }
+   ],
+   "unmatched_extracted": [
+    {
+     "id": "REQ-005",
+     "page": 2,
+     "text": "Only one application may be submitted per lot. Tenders for parts of a lot will not be considered. Tenderers ma",
+     "level": "INFORMATIONAL"
+    },
+    {
+     "id": "REQ-010",
+     "page": 1,
+     "text": "Clarifications may be sought from the Contracting Authority at the following email address pao@cfcu.gov.tr at ",
+     "level": "INFORMATIONAL"
+    },
+    {
+     "id": "REQ-011",
+     "page": 2,
+     "text": "Any tenderer may state in its tender that it would offer a discount in the event that its tender is accepted f",
+     "level": "PREFERRED"
+    },
+    {
+     "id": "REQ-018",
+     "page": 3,
+     "text": "If the tender relies on other entities it must prove that it will have at its disposal the resources necessary",
+     "level": "MANDATORY"
+    },
+    {
+     "id": "REQ-019",
+     "page": 3,
+     "text": "Capacity-providing entities must respect the same rules of eligibility and notably that of nationality, as the",
+     "level": "MANDATORY"
+    },
+    {
+     "id": "REQ-020",
+     "page": 4,
+     "text": "With regard to economic and financial criteria, the entities upon whose capacity the tenderer relies, become j",
+     "level": "MANDATORY"
+    },
+    {
+     "id": "REQ-024",
+     "page": 3,
+     "text": "In case a tenderer applies to multiple lots, the tenderer should meet for economic and financial capacity crit",
+     "level": "MANDATORY"
+    },
+    {
+     "id": "REQ-025",
+     "page": 4,
+     "text": "With regard to technical and professional criteria, a tenderer may only rely on the capacities of other entiti",
+     "level": "MANDATORY"
+    },
+    {
+     "id": "REQ-026",
+     "page": 5,
+     "text": "Tenders must be submitted either by post, courier service, or hand delivered to the specified address of the C",
+     "level": "INFORMATIONAL"
+    },
+    {
+     "id": "REQ-029",
+     "page": 5,
+     "text": "Tenders submitted by any other means than post, courier service, or hand delivery will not be considered.",
+     "level": "MANDATORY"
+    },
+    {
+     "id": "REQ-030",
+     "page": 5,
+     "text": "Candidates accept to receive notification of the outcome of the procedure by electronic means by submitting a ",
+     "level": "MANDATORY"
+    },
+    {
+     "id": "REQ-031",
+     "page": 5,
+     "text": "It is recommended to use registered mail in case the postmark would not be readable.",
+     "level": "PREFERRED"
+    }
+   ]
+  }
+ ]
+}
