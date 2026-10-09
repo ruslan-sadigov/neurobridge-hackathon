@@ -20,9 +20,17 @@ EXTRACT_SYSTEM = """Extract bidder requirements from the tender text. Rules:
   founded_year (threshold). Use projects_count (operator >= only) ONLY for a plain minimum number of projects with no
   similarity, value, tag or sector condition; otherwise rule_type = none. Never invent a rule for an upper bound.
   Put the currency code (EUR, USD, AZN) in unit for money thresholds.
+- Be EXHAUSTIVE: output one item per distinct condition, obligation, guarantee, exclusion ground, threshold,
+  period or limit that applies to the bidder or its tender. Do not merge separate conditions and do not skip
+  boilerplate-looking clauses (eligibility/origin rules, exclusion lists, guarantees, validity, delivery periods).
 - supporting_quote must be copied VERBATIM from the text. Keep the original language; do not translate."""
 
 WINDOW_PAGES = 2  # pages per LLM call; overlap handled by dedup
+
+GAP_SYSTEM = EXTRACT_SYSTEM + """
+
+SECOND PASS: a first pass already extracted the requirements listed in <already_extracted>. Re-read the
+document text and return ONLY additional requirements that are NOT yet covered. Return an empty list if none."""
 
 
 def _ws(s: str) -> str:
@@ -58,7 +66,16 @@ def extract_requirements(chunks: list[PageChunk], llm: LLMClient, start_index: i
             except LLMError as e:  # explicit failure visibility (NFR-003)
                 warnings.append(f"{doc_id} pages {window[0].page_number}-{window[-1].page_number}: {e}")
                 continue
-            for item in result.requirements:
+            items = list(result.requirements)
+            if s.extraction_gap_pass:  # recall: LLMs under-extract dense pages, so ask for what is missing
+                known = "\n".join(f"- {it.text}" for it in items) or "(none)"
+                try:
+                    more = llm.complete_json(system=GAP_SYSTEM, schema=ExtractionResult, model=s.extraction_model,
+                                             user=f"<already_extracted>\n{known}\n</already_extracted>\n\n{body}")
+                    items += more.requirements
+                except LLMError as e:  # the first pass still stands; surface the failure
+                    warnings.append(f"{doc_id} pages {window[0].page_number}-{window[-1].page_number}: gap pass failed: {e}")
+            for item in items:
                 page = _locate(item.supporting_quote, window)
                 if page is None:
                     warnings.append(f"{doc_id}: dropped requirement with unverifiable quote: {item.text[:60]}")

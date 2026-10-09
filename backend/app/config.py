@@ -13,7 +13,8 @@ class Settings(BaseSettings):
     gemini_api_key: str = ""
     gemini_model: str = "gemini-2.5-flash"
     llm_min_interval_s: float = 0.0  # throttle between calls (free Gemini tier is rate limited)
-    prompt_version: str = "v1"
+    prompt_version: str = "v2"
+    extraction_gap_pass: bool = True  # second extraction pass that only looks for missed requirements
 
     embedding_backend: str = "local"  # local | hash
     embedding_model: str = "BAAI/bge-m3"
