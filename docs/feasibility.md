@@ -52,8 +52,8 @@ longer documents also have more requirements, so verify it before quoting it.
 
 ## 3. Risks and limits (honest)
 
-- **Small evaluation:** one annotated tender, one synthetic supplier, assistant-drafted labels not yet reviewed by an
-  expert. See `evaluation-and-failures.md`.
+- **Small evaluation:** two annotated tenders (CFCU/EU and World Bank), two synthetic suppliers, assistant-drafted labels
+  not yet reviewed by an expert (the second annotation is also not blind). See `evaluation-and-failures.md`.
 - **Run-to-run variance:** recall ranged 79-100% between identical runs even at temperature 0. Production use needs
   repeated extraction or voting, and a "possibly incomplete" warning.
 - **Decision support, not eligibility advice.** The score prioritises work; critical gaps always veto the recommendation.

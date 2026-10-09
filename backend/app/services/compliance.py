@@ -18,6 +18,11 @@ log = logging.getLogger(__name__)
 RULES_TEXT = (
     "Return MET only if evidence clearly satisfies it, PARTIALLY_MET if it satisfies part, NOT_MET only if "
     "an evidence record states something that CONFLICTS with the requirement (set evidence_contradicts=true). "
+    "A conflict means the evidence gives a value or fact for the SAME thing the requirement asks about and it falls "
+    "short. Evidence about a different or partial item is NOT a conflict: for example one bank guarantee facility "
+    "does not show the supplier's total liquid assets or credit lines, so answer UNKNOWN, not NOT_MET. "
+    "PARTIALLY_MET means a distinct part of the requirement is clearly satisfied (for example one of two required "
+    "items); being below a required amount is not partial satisfaction. "
     "If the evidence merely does not mention the required item, the answer is UNKNOWN, not NOT_MET. "
     "Cite evidence_ids you relied on. Never use outside knowledge about the company."
 )

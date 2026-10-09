@@ -75,6 +75,11 @@ def evaluate(rule: NormalizedRule, evidence: list[Evidence], *, complete_types: 
 
 
 def _membership(rule, evidence, complete_types, today) -> Optional[RuleOutcome]:
+    # A certificate rule only makes sense for a named certificate or standard ("ISO 27001", "CMMI", "PCI DSS").
+    # The model sometimes turns a declaration ("certify that all software is licensed") into one; leave those to
+    # semantic review instead of failing the supplier for lacking a "certificate" with that name.
+    if not re.search(r"\d|[A-Z]{2,}", str(rule.value or "")):
+        return None
     wanted = _norm(rule.value)
     certs = [e for e in evidence if e.type == "CERTIFICATE"]
     hits = [e for e in certs if wanted and wanted in _norm(e.value)]

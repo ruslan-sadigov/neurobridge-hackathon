@@ -6,8 +6,9 @@ CFCU/EU tender notice (5 pages, 14 annotated mandatory requirements), the synthe
 
 > **Caveat:** the ground-truth annotation (`eval/annotations/TR_CFCU.json`) was drafted by the assistant from a manual
 > read of the PDF and is marked `DRAFT`. It has **not** been reviewed by a procurement expert. All metrics are
-> provisional until a human freezes it. One tender and one supplier profile is a small sample; treat results as a
-> prototype measurement, not a benchmark.
+> provisional until a human freezes it. Two tenders (CFCU/EU and World Bank/Turkey) and two synthetic suppliers is a small sample; treat results as a
+> prototype measurement, not a benchmark. The second annotation (`eval/annotations/TR_WB.json`) was **not blind**: the
+> assistant had seen pipeline output on that tender in an early development run before annotating it.
 
 ## 1. Measured results (3 runs each, CFCU tender)
 
@@ -51,6 +52,10 @@ Reading the table:
 | 9 | A supplier bidding only for Lot 2 was failed on Lot 1 requirements (SCADA/RTU experience, Lot 1 guarantee), giving NO_GO | The tool had no notion of which lots the supplier bids for | New `bid_lots` supplier setting: requirements that name only other lots are marked out of scope (not scored, no risk), with the reason shown. Unit test added | Fixed |
 | 10 | Real requirements silently dropped, including the eligibility-of-establishment clause: the model tidied a typo in the source ("in a eligible country" became "in an eligible country"), or quoted a sentence that continues across a page break (with the page's running header in between). The strict quote check rejected both | Quote verification was an exact substring test on one page | Tolerant matcher (`services/quotes.py`): accepts a quote when 90% of its words appear contiguously per page, and stores the **page's own wording** as the citation, so excerpts stay verbatim. Invented or paraphrased quotes are still rejected (tests). Recall 91% to 96%, citation validity unchanged at 100% | Fixed |
 | 11 | A PARTIALLY_MET guarantee carried reason code `FINANCIAL_THRESHOLD_NOT_MET` | Reason code was chosen by category only | PARTIALLY_MET always maps to `MANDATORY_PARTIALLY_MET`; category-specific codes are for NOT_MET only. Test added | Fixed |
+| 12 | World Bank tender: a 300,000 EUR bank guarantee facility was judged NOT_MET against "liquid assets or credit lines of at least USD 2M" (3 of 3 runs) | The model treated evidence about a partial item as proof of absence | Prompt: a conflict needs a value for the SAME thing; a different or partial item gives UNKNOWN. Compliance accuracy 79% to 89%. Still wrong in 1 of 3 later runs | Mostly fixed |
+| 13 | World Bank tender: joint-venture conditions (collective turnover of USD 20M with a 40% lead partner) were checked against a single supplier's revenue and failed it | No notion of bidding alone vs as a joint venture | New `bid_as: "single"` profile setting: conditions that name a joint venture and not a single bidder are marked out of scope, with the reason shown. Test added | Fixed |
+| 14 | **Regression caused by fix 12 and caught by re-running CFCU:** after the prompt change, amount shortfalls were reported as PARTIALLY_MET (false MET rate 0% to 8%) | My prompt wording "UNKNOWN (or PARTIALLY_MET)" invited it | Removed that wording and defined PARTIALLY_MET (a distinct part satisfied; being below an amount is not partial). False MET back to 0% on both tenders | Fixed |
+| 15 | A declaration ("certify that all software is licensed") was turned into a certificate-membership rule and failed the supplier for lacking a certificate by that name | Wrong-field mapping again, this time to `certifications` | Certificate rules only run for named certificates or standards (contain a digit or an acronym); declarations go to semantic review. Test added | Fixed |
 
 ## 3. Where the system returns UNKNOWN instead of inventing an answer
 
@@ -87,3 +92,27 @@ it is not a test of accuracy and does not enter the metrics above. The strong su
 `FINANCIAL_THRESHOLD_NOT_MET` for a PARTIALLY_MET guarantee, which is imprecise naming (open issue). A key requirement
 (eligibility of establishment) was dropped in this run because the model's quote did not match the page exactly,
 another example of run-to-run variation.
+
+## 7. Second tender: World Bank notice (AF-GA2.2, Turkey, 2014)
+
+4 pages, 17 annotated requirements plus 3 informational clauses, scored against the strong synthetic supplier (bids
+alone). `acceptable_statuses` in the annotation lists alternatives a reasonable reviewer would accept for ambiguous
+items (for example a similar-contract requirement where the profile gives no client count: PARTIALLY_MET or UNKNOWN).
+
+| Metric | First run (3 runs) | After fixes 12-13 (3 runs) | After fixes 14-15 (3 runs) |
+|---|---|---|---|
+| Requirement and mandatory recall | 92% | 90% | 94% |
+| Citation validity | 100% | 100% | 100% |
+| Compliance accuracy | 79% | 89% | **96%** (94-100) |
+| False MET (should not be MET) | 2% | 4% | **0%** |
+| Unsupported positives | 0% | 0% | 0% |
+| API requests per analysis | 7 | 6 | 6 |
+
+Remaining: B17 (eligibility under the World Bank Guidelines, an annotator-judgement item) is usually missed; category
+accuracy is only 72% because the model's labels differ from mine on borderline items (bid security as COMMERCIAL vs
+FINANCIAL, deadlines as DELIVERY vs COMMERCIAL), which do not affect scoring for informational clauses; B04 is still judged
+NOT_MET in some runs. After the final changes the CFCU tender was re-measured (2 runs): recall 96%, citation validity
+100%, false MET 0%, compliance accuracy 85% (the same two debatable experience labels).
+
+What this second tender shows: evaluating on a different document found four failures the first one could not, and
+re-running the first tender after each change caught a regression in the same session.

@@ -1,0 +1,134 @@
+{
+ "aggregate": {
+  "n_extracted": {
+   "mean": 19.0,
+   "min": 19,
+   "max": 19
+  },
+  "n_annotated_scored": {
+   "mean": 17.0,
+   "min": 17,
+   "max": 17
+  },
+  "requirement_recall": {
+   "mean": 0.941,
+   "min": 0.941,
+   "max": 0.941
+  },
+  "mandatory_recall": {
+   "mean": 0.941,
+   "min": 0.941,
+   "max": 0.941
+  },
+  "requirement_precision": {
+   "mean": 1.0,
+   "min": 1.0,
+   "max": 1.0
+  },
+  "mandatory_level_accuracy": {
+   "mean": 1.0,
+   "min": 1.0,
+   "max": 1.0
+  },
+  "category_accuracy": {
+   "mean": 0.719,
+   "min": 0.684,
+   "max": 0.737
+  },
+  "citation_validity": {
+   "mean": 1.0,
+   "min": 1.0,
+   "max": 1.0
+  },
+  "compliance_accuracy": {
+   "mean": 0.959,
+   "min": 0.938,
+   "max": 1.0
+  },
+  "false_positive_met_rate": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "unsupported_positive_rate": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  }
+ },
+ "per_run": [
+  {
+   "n_extracted": 19,
+   "n_annotated_scored": 17,
+   "requirement_recall": 0.941,
+   "mandatory_recall": 0.941,
+   "requirement_precision": 1.0,
+   "mandatory_level_accuracy": 1.0,
+   "category_accuracy": 0.737,
+   "citation_validity": 1.0,
+   "compliance_accuracy": 0.938,
+   "false_positive_met_rate": 0.0,
+   "unsupported_positive_rate": null,
+   "missed": [
+    "B17"
+   ],
+   "status_wrong": [
+    {
+     "id": "B14",
+     "expected": [
+      "MET",
+      "PARTIALLY_MET"
+     ],
+     "got": "UNKNOWN",
+     "why": "The evidence shows a bank guarantee facility confirmation of 300,000 EUR approved for tender and performance guarantees, but it does not est"
+    }
+   ],
+   "unmatched_extracted": []
+  },
+  {
+   "n_extracted": 19,
+   "n_annotated_scored": 17,
+   "requirement_recall": 0.941,
+   "mandatory_recall": 0.941,
+   "requirement_precision": 1.0,
+   "mandatory_level_accuracy": 1.0,
+   "category_accuracy": 0.684,
+   "citation_validity": 1.0,
+   "compliance_accuracy": 1.0,
+   "false_positive_met_rate": 0.0,
+   "unsupported_positive_rate": 0.0,
+   "missed": [
+    "B17"
+   ],
+   "status_wrong": [],
+   "unmatched_extracted": []
+  },
+  {
+   "n_extracted": 19,
+   "n_annotated_scored": 17,
+   "requirement_recall": 0.941,
+   "mandatory_recall": 0.941,
+   "requirement_precision": 1.0,
+   "mandatory_level_accuracy": 1.0,
+   "category_accuracy": 0.737,
+   "citation_validity": 1.0,
+   "compliance_accuracy": 0.938,
+   "false_positive_met_rate": 0.0,
+   "unsupported_positive_rate": 0.0,
+   "missed": [
+    "B17"
+   ],
+   "status_wrong": [
+    {
+     "id": "B04",
+     "expected": [
+      "UNKNOWN"
+     ],
+     "got": "NOT_MET",
+     "why": "The evidence shows a bank guarantee facility of 300,000 EUR, which falls well short of the required USD 2,000,000 (or equivalent in a freely"
+    }
+   ],
+   "unmatched_extracted": []
+  }
+ ]
+}

@@ -4,7 +4,40 @@
    "requirements": [
     {
      "requirement_id": "REQ-001",
-     "text": "Participation is open to all natural persons who are nationals of and legal persons which are effectively established in a Member State of the European Union or in an eligible country or territory as defined under Regulation (EU) No. 236/2014, and international organisations.",
+     "text": "Clarifications may be sought from the Contracting Authority at the following email address pao@cfcu.gov.tr at the latest 21 days before the deadline for submission of applications",
+     "category": "COMMERCIAL",
+     "mandatory_level": "INFORMATIONAL",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_CFCU_IT_network_equipment_2018",
+       "page": 1,
+       "section": null,
+       "excerpt": "Clarifications may be sought from the Contracting Authority at the following email address pao@cfcu.gov.tr  at\nthe latest 21 days before the deadline for submission of applications stated at the point 19 below."
+      }
+     ],
+     "extraction_confidence": 0.95,
+     "result": {
+      "requirement_id": "REQ-001",
+      "status": "UNKNOWN",
+      "method": "NO_EVIDENCE",
+      "supporting_evidence_ids": [],
+      "rationale": "Tender-process clause (informational); not assessed against supplier evidence.",
+      "confidence": 1.0,
+      "risk_severity": null,
+      "reason_code": null
+     }
+    },
+    {
+     "requirement_id": "REQ-002",
+     "text": "Participation is open to all natural persons who are nationals of and legal persons which are effectively established in a Member State of the European Union or in a eligible country or territory as defined under Regulation (EU) No. 236/2014, or international organisations.",
      "category": "LEGAL",
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
@@ -20,25 +53,28 @@
        "document_id": "TR_CFCU_IT_network_equipment_2018",
        "page": 1,
        "section": null,
-       "excerpt": "Participation is open to all natural persons who are nationals of and legal persons (participating either individually or in a grouping – consortium – of tenderers) which are effectively established in a Member State of the European Union or in a eligible country or territory as defined under the Regulation (EU) No. 236/2014 establishing common rules and procedures for the implementation of the Union's instruments for external action (CIR) for the applicable instrument under which the contract is financed (see also heading 22 below). Participation is also open to international organisations."
+       "excerpt": "Participation is open to all natural persons who are nationals of and legal persons (participating either\nindividually or in a grouping – consortium – of tenderers) which are effectively established in a Member State\nof the European Union or in a eligible country or territory as defined under the Regulation (EU) No. 236/2014\nestablishing common rules and procedures for the implementation of the Union's instruments for external\naction (CIR) for the applicable instrument under which the contract is financed (see also heading 22 below).\nParticipation is also open to international organisations."
       }
      ],
      "extraction_confidence": 1.0,
      "result": {
-      "requirement_id": "REQ-001",
+      "requirement_id": "REQ-002",
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
-      "supporting_evidence_ids": [],
-      "rationale": "The evidence does not mention the nationality or place of establishment of the tenderer.",
+      "supporting_evidence_ids": [
+       "EVD-F-founded_year",
+       "EVD-F-employees"
+      ],
+      "rationale": "The evidence does not mention the country of establishment or nationality of the tenderer.",
       "confidence": 1.0,
       "risk_severity": "HIGH",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
      }
     },
     {
-     "requirement_id": "REQ-002",
+     "requirement_id": "REQ-003",
      "text": "All supplies under this contract must originate in one or more of the eligible countries.",
-     "category": "LEGAL",
+     "category": "TECHNICAL",
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
       "rule_type": "none",
@@ -58,18 +94,20 @@
      ],
      "extraction_confidence": 1.0,
      "result": {
-      "requirement_id": "REQ-002",
+      "requirement_id": "REQ-003",
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
-      "supporting_evidence_ids": [],
-      "rationale": "The evidence does not provide information regarding the origin of the supplies.",
+      "supporting_evidence_ids": [
+       "EVD-001"
+      ],
+      "rationale": "The provided evidence does not contain information about the origin of the supplies.",
       "confidence": 1.0,
-      "risk_severity": "HIGH",
+      "risk_severity": "MEDIUM",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
      }
     },
     {
-     "requirement_id": "REQ-003",
+     "requirement_id": "REQ-004",
      "text": "Tenderers must submit a signed declaration, included in the tender form for a supply contract, to the effect that they are not in any of the situations listed in Section 2.6.10.1. of the practical guide.",
      "category": "DOCUMENTATION",
      "mandatory_level": "MANDATORY",
@@ -86,23 +124,26 @@
        "document_id": "TR_CFCU_IT_network_equipment_2018",
        "page": 2,
        "section": null,
-       "excerpt": "Tenderers must submit a signed declaration, included in the tender form for a supply contract, to the effect that they are not in any of the situations listed in Section 2.6.10.1. of the practical guide."
+       "excerpt": "Tenderers must submit a signed declaration, included in the tender form for a supply contract, to the effect that\nthey are not in any of the situations listed in Section 2.6.10.1. of the practical guide."
       }
      ],
      "extraction_confidence": 1.0,
      "result": {
-      "requirement_id": "REQ-003",
+      "requirement_id": "REQ-004",
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
-      "supporting_evidence_ids": [],
-      "rationale": "The evidence does not contain the required signed declaration regarding the situations listed in Section 2.6.10.1.",
+      "supporting_evidence_ids": [
+       "EVD-001",
+       "EVD-P-001"
+      ],
+      "rationale": "The evidence does not include the required signed declaration regarding exclusion situations.",
       "confidence": 1.0,
       "risk_severity": "HIGH",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
      }
     },
     {
-     "requirement_id": "REQ-004",
+     "requirement_id": "REQ-005",
      "text": "Tenderers included in the lists of EU restrictive measures at the moment of the award decision cannot be awarded the contract.",
      "category": "LEGAL",
      "mandatory_level": "MANDATORY",
@@ -119,40 +160,7 @@
        "document_id": "TR_CFCU_IT_network_equipment_2018",
        "page": 2,
        "section": null,
-       "excerpt": "Tenderers included in the lists of EU restrictive measures (see Section 2.4. of the PRAG) at the moment of the award decision cannot be awarded the contract."
-      }
-     ],
-     "extraction_confidence": 1.0,
-     "result": {
-      "requirement_id": "REQ-004",
-      "status": "UNKNOWN",
-      "method": "LLM_SEMANTIC",
-      "supporting_evidence_ids": [],
-      "rationale": "The evidence contains no information regarding EU restrictive measures concerning the tenderer.",
-      "confidence": 1.0,
-      "risk_severity": "HIGH",
-      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
-     }
-    },
-    {
-     "requirement_id": "REQ-005",
-     "text": "Tenders for parts of a lot will not be considered.",
-     "category": "COMMERCIAL",
-     "mandatory_level": "MANDATORY",
-     "normalized_rule": {
-      "rule_type": "none",
-      "field": null,
-      "operator": null,
-      "value": null,
-      "unit": null,
-      "filters": {}
-     },
-     "sources": [
-      {
-       "document_id": "TR_CFCU_IT_network_equipment_2018",
-       "page": 2,
-       "section": null,
-       "excerpt": "Tenders for parts of a lot will not be considered."
+       "excerpt": "Tenderers included in the lists of EU restrictive measures (see Section 2.4. of the PRAG) at the moment of the\naward decision cannot be awarded the contract."
       }
      ],
      "extraction_confidence": 1.0,
@@ -160,16 +168,19 @@
       "requirement_id": "REQ-005",
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
-      "supporting_evidence_ids": [],
-      "rationale": "The evidence does not state whether tenders for parts of a lot are submitted or considered.",
+      "supporting_evidence_ids": [
+       "EVD-F-founded_year",
+       "EVD-F-employees"
+      ],
+      "rationale": "The evidence lacks information regarding EU restrictive measures lists status.",
       "confidence": 1.0,
-      "risk_severity": "MEDIUM",
+      "risk_severity": "HIGH",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
      }
     },
     {
      "requirement_id": "REQ-006",
-     "text": "Tenderers may not submit a tender for a variant solution in addition to their tender for the supplies required in the tender dossier.",
+     "text": "Only one application may be submitted per lot. Tenders for parts of a lot will not be considered. Tenderers may not submit a tender for a variant solution in addition to their tender for the supplies required in the tender dossier.",
      "category": "COMMERCIAL",
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
@@ -185,7 +196,7 @@
        "document_id": "TR_CFCU_IT_network_equipment_2018",
        "page": 2,
        "section": null,
-       "excerpt": "Tenderers may not submit a tender for a variant solution in addition to their tender for the supplies required in the tender dossier."
+       "excerpt": "The candidates may submit an application for one lot only, several lots or all of the lots, but only one application\nmay be submitted per lot. Tenders for parts of a lot will not be considered. Tenderers may not submit a tender for\na variant solution in addition to their tender for the supplies required in the tender dossier."
       }
      ],
      "extraction_confidence": 1.0,
@@ -193,8 +204,10 @@
       "requirement_id": "REQ-006",
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
-      "supporting_evidence_ids": [],
-      "rationale": "The evidence does not mention whether variant solutions are submitted.",
+      "supporting_evidence_ids": [
+       "EVD-P-001"
+      ],
+      "rationale": "The evidence provides project details but contains no statements concerning application limits per lot, parts of lots, or variant solutions.",
       "confidence": 1.0,
       "risk_severity": "MEDIUM",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
@@ -211,9 +224,7 @@
       "operator": ">=",
       "value": 80000.0,
       "unit": "EUR",
-      "filters": {
-       "lot": "Lot 1"
-      }
+      "filters": {}
      },
      "sources": [
       {
@@ -228,8 +239,11 @@
       "requirement_id": "REQ-007",
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
-      "supporting_evidence_ids": [],
-      "rationale": "The provided evidence does not mention any tender guarantee for Lot 1.",
+      "supporting_evidence_ids": [
+       "EVD-R-2025",
+       "EVD-P-001"
+      ],
+      "rationale": "The evidence provides revenue and project details, but does not mention the submission of a tender guarantee.",
       "confidence": 1.0,
       "risk_severity": "HIGH",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
@@ -246,9 +260,7 @@
       "operator": ">=",
       "value": 90000.0,
       "unit": "EUR",
-      "filters": {
-       "lot": "Lot 2"
-      }
+      "filters": {}
      },
      "sources": [
       {
@@ -264,7 +276,7 @@
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
       "supporting_evidence_ids": [],
-      "rationale": "The provided evidence does not mention any tender guarantee for Lot 2.",
+      "rationale": "The evidence does not mention any tender guarantee provided for Lot 2.",
       "confidence": 1.0,
       "risk_severity": "HIGH",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
@@ -277,7 +289,7 @@
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
       "rule_type": "threshold",
-      "field": "performance_guarantee_percentage",
+      "field": "performance_guarantee_percent",
       "operator": ">=",
       "value": 10.0,
       "unit": "%",
@@ -288,7 +300,7 @@
        "document_id": "TR_CFCU_IT_network_equipment_2018",
        "page": 2,
        "section": null,
-       "excerpt": "The successful tenderer will be asked to provide a performance guarantee of 10 % of the amount of the contract at the signing of the contract."
+       "excerpt": "The successful tenderer will be asked to provide a performance guarantee of 10 % of the amount of the contract\nat the signing of the contract."
       }
      ],
      "extraction_confidence": 1.0,
@@ -297,7 +309,7 @@
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
       "supporting_evidence_ids": [],
-      "rationale": "The provided evidence does not mention the performance guarantee requirement.",
+      "rationale": "The evidence does not contain information regarding a performance guarantee.",
       "confidence": 1.0,
       "risk_severity": "HIGH",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
@@ -305,14 +317,14 @@
     },
     {
      "requirement_id": "REQ-010",
-     "text": "This guarantee must be provided together with the return of the countersigned contract no later than 30 days after the tenderer receives the contract signed by the Contracting Authority.",
+     "text": "This performance guarantee must be provided together with the return of the countersigned contract no later than 30 days after the tenderer receives the contract signed by the Contracting Authority.",
      "category": "CONTRACTUAL",
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
       "rule_type": "threshold",
       "field": "performance_guarantee_submission_days",
       "operator": "<=",
-      "value": 30.0,
+      "value": 30,
       "unit": "days",
       "filters": {}
      },
@@ -321,7 +333,7 @@
        "document_id": "TR_CFCU_IT_network_equipment_2018",
        "page": 2,
        "section": null,
-       "excerpt": "This guarantee must be provided together with the return of the countersigned contract no later than 30 days after the tenderer receives the contract signed by the Contracting Authority."
+       "excerpt": "This guarantee must be provided together with the return of the countersigned\ncontract no later than 30 days after the tenderer receives the contract signed by the Contracting Authority."
       }
      ],
      "extraction_confidence": 1.0,
@@ -343,7 +355,7 @@
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
       "rule_type": "threshold",
-      "field": "validity_period",
+      "field": "tender_validity_days",
       "operator": ">=",
       "value": 90,
       "unit": "days",
@@ -363,7 +375,7 @@
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
       "supporting_evidence_ids": [],
-      "rationale": "The provided evidence does not state the validity period of tenders.",
+      "rationale": "The evidence does not state the validity period of the tenders.",
       "confidence": 1.0,
       "risk_severity": "MEDIUM",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
@@ -376,10 +388,10 @@
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
       "rule_type": "threshold",
-      "field": "implementation_period",
+      "field": "period_of_implementation",
       "operator": "<=",
       "value": 540,
-      "unit": "calendar days",
+      "unit": "days",
       "filters": {}
      },
      "sources": [
@@ -404,7 +416,7 @@
     },
     {
      "requirement_id": "REQ-013",
-     "text": "For Lot 1: the average annual turnover of the tenderer must exceed 2 500 000 EUR",
+     "text": "For Lot 1, the average annual turnover of the tenderer must exceed 2 500 000 EUR",
      "category": "FINANCIAL",
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
@@ -441,7 +453,7 @@
     },
     {
      "requirement_id": "REQ-014",
-     "text": "For Lot 2: the average annual turnover of the tenderer must exceed 2 800 000 EUR",
+     "text": "For Lot 2, the average annual turnover of the tenderer must exceed 2 800 000 EUR",
      "category": "FINANCIAL",
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
@@ -552,7 +564,7 @@
     },
     {
      "requirement_id": "REQ-017",
-     "text": "For Lot 1; the tenderer has delivered and installed RTUs under contracts with a cumulative amount of at least 2 500 000 EUR in the fields relating to electricity transmission at voltage levels above 36 kV implemented within the last 5 years",
+     "text": "For Lot 1, the tenderer has delivered and installed RTUs under contracts with a cumulative amount of at least 2 500 000 EUR in the fields relating to electricity transmission at voltage levels above 36 kV implemented within 5 years from the submission deadline",
      "category": "EXPERIENCE",
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
@@ -568,7 +580,7 @@
        "document_id": "TR_CFCU_IT_network_equipment_2018",
        "page": 3,
        "section": null,
-       "excerpt": "— For Lot 1; the tenderer has delivered and installed RTUs under contracts with a cumulative amount of at\nleast 2 500 000 EUR (proportion carried out by the candidate) in the fields relating to electricity transmission at\nvoltage levels above 36 kV which was implemented during the following period: 5 years from the submission\ndeadline"
+       "excerpt": "— For Lot 1; the tenderer has delivered and installed RTUs under contracts with a cumulative amount of at least 2 500 000 EUR (proportion carried out by the candidate) in the fields relating to electricity transmission at voltage levels above 36 kV which was implemented during the following period: 5 years from the submission deadline"
       }
      ],
      "extraction_confidence": 1.0,
@@ -576,10 +588,8 @@
       "requirement_id": "REQ-017",
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
-      "supporting_evidence_ids": [
-       "EVD-P-001"
-      ],
-      "rationale": "The evidence provides information on a network modernization project, but does not sufficiently establish the cumulative amount of 2,500,000 EUR for RTUs in electricity transmission above 36 kV within the last 5 years.",
+      "supporting_evidence_ids": [],
+      "rationale": "The evidence does not provide information about RTU deliveries for Lot 1 in electricity transmission above 36 kV.",
       "confidence": 1.0,
       "risk_severity": "HIGH",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
@@ -587,7 +597,7 @@
     },
     {
      "requirement_id": "REQ-018",
-     "text": "For Lot 2: the tenderer has delivered supplies under at most 5 (five) contracts with a cumulative amount of at least 2 500 000 EUR in the fields relating to IT Network Equipment implemented within the last 5 years",
+     "text": "For Lot 2, the tenderer has delivered supplies under at most 5 (five) contracts with a cumulative amount of at least 2 500 000 EUR in the fields relating to IT Network Equipment implemented within 5 years from the submission deadline",
      "category": "EXPERIENCE",
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
@@ -603,7 +613,7 @@
        "document_id": "TR_CFCU_IT_network_equipment_2018",
        "page": 3,
        "section": null,
-       "excerpt": "— For Lot 2: the tenderer has delivered supplies under at most 5 (five) contracts with a cumulative amount of\nat least 2 500 000 EUR (proportion carried out by the candidate) in the fields relating to IT Network Equipment\nwhich was implemented during the following period: 5 years from the submission deadline"
+       "excerpt": "— For Lot 2: the tenderer has delivered supplies under at most 5 (five) contracts with a cumulative amount of at least 2 500 000 EUR (proportion carried out by the candidate) in the fields relating to IT Network Equipment which was implemented during the following period: 5 years from the submission deadline"
       }
      ],
      "extraction_confidence": 1.0,
@@ -611,10 +621,8 @@
       "requirement_id": "REQ-018",
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
-      "supporting_evidence_ids": [
-       "EVD-P-001"
-      ],
-      "rationale": "The evidence provides information on a network modernization project valued at 420,000 AZN, which is insufficient to meet the cumulative amount of 2,500,000 EUR for IT Network Equipment.",
+      "supporting_evidence_ids": [],
+      "rationale": "The evidence lists a project worth 420,000 AZN which does not meet the cumulative amount of 2,500,000 EUR, but the requirement specifically asks about IT Network Equipment contracts; the provided project is network infrastructure. Therefore, it is classified as UNKNOWN rather than a direct conflict.",
       "confidence": 1.0,
       "risk_severity": "HIGH",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
@@ -622,139 +630,7 @@
     },
     {
      "requirement_id": "REQ-019",
-     "text": "If the tender relies on other entities it must prove to the Contracting Authority that it will have at its disposal the resources necessary for performance of the contract, for example by producing a commitment on the part of those entities to place those resources at its disposal.",
-     "category": "LEGAL",
-     "mandatory_level": "MANDATORY",
-     "normalized_rule": {
-      "rule_type": "none",
-      "field": null,
-      "operator": null,
-      "value": null,
-      "unit": null,
-      "filters": {}
-     },
-     "sources": [
-      {
-       "document_id": "TR_CFCU_IT_network_equipment_2018",
-       "page": 3,
-       "section": null,
-       "excerpt": "If the tender relies on other entities it must prove to the\nContracting Authority that it will have at its disposal the resources necessary for performance of the contract, for\nexample by producing a commitment on the part of those entities to place those resources at its disposal."
-      }
-     ],
-     "extraction_confidence": 1.0,
-     "result": {
-      "requirement_id": "REQ-019",
-      "status": "UNKNOWN",
-      "method": "LLM_SEMANTIC",
-      "supporting_evidence_ids": [],
-      "rationale": "The evidence does not mention relying on other entities or commitments of resources.",
-      "confidence": 1.0,
-      "risk_severity": "HIGH",
-      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
-     }
-    },
-    {
-     "requirement_id": "REQ-020",
-     "text": "Such entities, for instance the parent company of the economic operator, must respect the same rules of eligibility and notably that of nationality, as the economic operator relying on them and must comply with the selection criteria for which the economic operator relies on them.",
-     "category": "LEGAL",
-     "mandatory_level": "MANDATORY",
-     "normalized_rule": {
-      "rule_type": "none",
-      "field": null,
-      "operator": null,
-      "value": null,
-      "unit": null,
-      "filters": {}
-     },
-     "sources": [
-      {
-       "document_id": "TR_CFCU_IT_network_equipment_2018",
-       "page": 3,
-       "section": null,
-       "excerpt": "Such entities, for instance the parent company of the economic operator, must respect the same rules of eligibility\nand notably that of nationality, as the economic operator relying on them and must comply with the selection\ncriteria for which the economic operator relies on them."
-      }
-     ],
-     "extraction_confidence": 1.0,
-     "result": {
-      "requirement_id": "REQ-020",
-      "status": "UNKNOWN",
-      "method": "LLM_SEMANTIC",
-      "supporting_evidence_ids": [],
-      "rationale": "The evidence does not mention relying on other entities or their eligibility/nationality compliance.",
-      "confidence": 1.0,
-      "risk_severity": "HIGH",
-      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
-     }
-    },
-    {
-     "requirement_id": "REQ-021",
-     "text": "Tenders must be submitted using the standard tender form for a supply contract included in the tender dossier, whose format and instructions must be strictly observed.",
-     "category": "DOCUMENTATION",
-     "mandatory_level": "MANDATORY",
-     "normalized_rule": {
-      "rule_type": "none",
-      "field": null,
-      "operator": null,
-      "value": null,
-      "unit": null,
-      "filters": {}
-     },
-     "sources": [
-      {
-       "document_id": "TR_CFCU_IT_network_equipment_2018",
-       "page": 4,
-       "section": null,
-       "excerpt": "Tenders must be submitted using the standard tender form for a supply contract included in the tender dossier, whose format and instructions must be strictly observed."
-      }
-     ],
-     "extraction_confidence": 1.0,
-     "result": {
-      "requirement_id": "REQ-021",
-      "status": "UNKNOWN",
-      "method": "LLM_SEMANTIC",
-      "supporting_evidence_ids": [],
-      "rationale": "The evidence does not mention the use of the standard tender form for a supply contract.",
-      "confidence": 1.0,
-      "risk_severity": "HIGH",
-      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
-     }
-    },
-    {
-     "requirement_id": "REQ-022",
-     "text": "Tenders must be submitted in English exclusively to the Contracting Authority in a sealed envelope",
-     "category": "DOCUMENTATION",
-     "mandatory_level": "INFORMATIONAL",
-     "normalized_rule": {
-      "rule_type": "none",
-      "field": null,
-      "operator": null,
-      "value": null,
-      "unit": null,
-      "filters": {}
-     },
-     "sources": [
-      {
-       "document_id": "TR_CFCU_IT_network_equipment_2018",
-       "page": 4,
-       "section": null,
-       "excerpt": "Tenders must be submitted in English exclusively to the Contracting Authority in a sealed envelope:"
-      }
-     ],
-     "extraction_confidence": 1.0,
-     "result": {
-      "requirement_id": "REQ-022",
-      "status": "UNKNOWN",
-      "method": "NO_EVIDENCE",
-      "supporting_evidence_ids": [],
-      "rationale": "Tender-process clause (informational); not assessed against supplier evidence.",
-      "confidence": 1.0,
-      "risk_severity": null,
-      "reason_code": null
-     }
-    },
-    {
-     "requirement_id": "REQ-023",
-     "text": "In case a tenderer applies to multiple lots, the tenderer should meet for economic and financial capacity criterion, the cumulative amount of the average annual turnover required for the relative lots",
+     "text": "In case a tenderer applies to multiple lots, the tenderer should meet, for economic and financial capacity criterion, the cumulative amount of the average annual turnover required for the relative lots",
      "category": "FINANCIAL",
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
@@ -770,26 +646,24 @@
        "document_id": "TR_CFCU_IT_network_equipment_2018",
        "page": 3,
        "section": null,
-       "excerpt": "In case a tenderer applies to multiple lots, the tenderer should meet:\n— for economic and financial capacity criterion, the cumulative amount of the average annual turnover required\nfor the relative lots"
+       "excerpt": "— for economic and financial capacity criterion, the cumulative amount of the average annual turnover required for the relative lots,"
       }
      ],
      "extraction_confidence": 1.0,
      "result": {
-      "requirement_id": "REQ-023",
+      "requirement_id": "REQ-019",
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
-      "supporting_evidence_ids": [
-       "EVD-R-2025"
-      ],
-      "rationale": "The evidence provides annual revenue for 2025, but does not state requirements or cumulative turnover for multiple lots.",
+      "supporting_evidence_ids": [],
+      "rationale": "The evidence provides 2025 annual revenue and one project, but does not specify the full turnover requirements for multiple lots.",
       "confidence": 1.0,
       "risk_severity": "HIGH",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
      }
     },
     {
-     "requirement_id": "REQ-024",
-     "text": "In case a tenderer applies to multiple lots, the tenderer should meet for professional capacity criterion, cumulative number of staff required for the relative lots",
+     "requirement_id": "REQ-020",
+     "text": "In case a tenderer applies to multiple lots, the tenderer should meet, for professional capacity criterion, cumulative number of staff required for the relative lots",
      "category": "PERSONNEL",
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
@@ -810,21 +684,87 @@
      ],
      "extraction_confidence": 1.0,
      "result": {
-      "requirement_id": "REQ-024",
+      "requirement_id": "REQ-020",
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
       "supporting_evidence_ids": [
        "EVD-F-employees"
       ],
-      "rationale": "The evidence states employee count, but does not provide details on multiple lots or cumulative staff requirements.",
+      "rationale": "The evidence provides employee counts and project data, but lacks information regarding multiple lots and whether cumulative staff requirements are met.",
       "confidence": 1.0,
       "risk_severity": "MEDIUM",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
      }
     },
     {
-     "requirement_id": "REQ-025",
-     "text": "Furthermore, the data for this third entity for the relevant selection criterion should be included in the tender in a separate document.",
+     "requirement_id": "REQ-021",
+     "text": "If the tender relies on other entities it must prove to the Contracting Authority that it will have at its disposal the resources necessary for performance of the contract, for example by producing a commitment on the part of those entities to place those resources at its disposal",
+     "category": "CONTRACTUAL",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_CFCU_IT_network_equipment_2018",
+       "page": 3,
+       "section": null,
+       "excerpt": "If the tender relies on other entities it must prove to the Contracting Authority that it will have at its disposal the resources necessary for performance of the contract, for example by producing a commitment on the part of those entities to place those resources at its disposal."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-021",
+      "status": "UNKNOWN",
+      "method": "NO_EVIDENCE",
+      "supporting_evidence_ids": [],
+      "rationale": "No supplier evidence available to verify this requirement.",
+      "confidence": 1.0,
+      "risk_severity": "MEDIUM",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    },
+    {
+     "requirement_id": "REQ-022",
+     "text": "Capacity-providing entities, for instance the parent company of the economic operator, must respect the same rules of eligibility and notably that of nationality, as the economic operator relying on them and must comply with the selection criteria for which the economic operator relies on them",
+     "category": "LEGAL",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_CFCU_IT_network_equipment_2018",
+       "page": 3,
+       "section": null,
+       "excerpt": "Such entities, for instance the parent company of the economic operator, must respect the same rules of eligibility and notably that of nationality, as the economic operator relying on them and must comply with the selection criteria for which the economic operator relies on them."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-022",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [],
+      "rationale": "The evidence provides founding year, employee count, and project details, but contains no information regarding capacity-providing entities, their eligibility, nationality, or compliance with selection criteria.",
+      "confidence": 1.0,
+      "risk_severity": "HIGH",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    },
+    {
+     "requirement_id": "REQ-023",
+     "text": "The data for this third entity for the relevant selection criterion should be included in the tender in a separate document",
      "category": "DOCUMENTATION",
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
@@ -845,54 +785,19 @@
      ],
      "extraction_confidence": 1.0,
      "result": {
-      "requirement_id": "REQ-025",
+      "requirement_id": "REQ-023",
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
       "supporting_evidence_ids": [],
-      "rationale": "The evidence does not mention any third entity or data included in a separate document.",
+      "rationale": "The evidence includes an ISO 9001 certificate and project details, but does not provide information on whether third-party selection criterion data is included in a separate document.",
       "confidence": 1.0,
       "risk_severity": "HIGH",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
      }
     },
     {
-     "requirement_id": "REQ-026",
-     "text": "Proof of the capacity will also have to be furnished when requested by the Contracting Authority.",
-     "category": "DOCUMENTATION",
-     "mandatory_level": "MANDATORY",
-     "normalized_rule": {
-      "rule_type": "none",
-      "field": null,
-      "operator": null,
-      "value": null,
-      "unit": null,
-      "filters": {}
-     },
-     "sources": [
-      {
-       "document_id": "TR_CFCU_IT_network_equipment_2018",
-       "page": 4,
-       "section": null,
-       "excerpt": "Proof of the capacity will also have to be furnished when requested by the Contracting Authority."
-      }
-     ],
-     "extraction_confidence": 1.0,
-     "result": {
-      "requirement_id": "REQ-026",
-      "status": "UNKNOWN",
-      "method": "LLM_SEMANTIC",
-      "supporting_evidence_ids": [
-       "EVD-001"
-      ],
-      "rationale": "The evidence provides an ISO 9001 certificate, but does not mention whether proof of capacity will be furnished upon request.",
-      "confidence": 0.9,
-      "risk_severity": "HIGH",
-      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
-     }
-    },
-    {
-     "requirement_id": "REQ-027",
-     "text": "With regard to technical and professional criteria, a tenderer may only rely on the capacities of other entities where the latter will perform the tasks for which these capacities are required.",
+     "requirement_id": "REQ-024",
+     "text": "With regard to technical and professional criteria, a tenderer may only rely on the capacities of other entities where the latter will perform the tasks for which these capacities are required",
      "category": "TECHNICAL",
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
@@ -913,21 +818,19 @@
      ],
      "extraction_confidence": 1.0,
      "result": {
-      "requirement_id": "REQ-027",
+      "requirement_id": "REQ-024",
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
-      "supporting_evidence_ids": [
-       "EVD-P-001"
-      ],
-      "rationale": "The evidence shows a project reference (Network Modernization A) but does not address reliance on the capacities of other entities and whether they will perform the tasks.",
-      "confidence": 0.9,
+      "supporting_evidence_ids": [],
+      "rationale": "The evidence provides details about a project, but contains no information on relying on other entities or whether those entities will perform the tasks.",
+      "confidence": 1.0,
       "risk_severity": "MEDIUM",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
      }
     },
     {
-     "requirement_id": "REQ-028",
-     "text": "With regard to economic and financial criteria, the entities upon whose capacity the tenderer relies, become jointly and severally liable for the performance of the contract.",
+     "requirement_id": "REQ-025",
+     "text": "With regard to economic and financial criteria, the entities upon whose capacity the tenderer relies, become jointly and severally liable for the performance of the contract",
      "category": "FINANCIAL",
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
@@ -948,23 +851,21 @@
      ],
      "extraction_confidence": 1.0,
      "result": {
-      "requirement_id": "REQ-028",
+      "requirement_id": "REQ-025",
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
-      "supporting_evidence_ids": [
-       "EVD-R-2025"
-      ],
-      "rationale": "The evidence provides annual revenue for 2025 but does not address joint and several liability of entities upon whose capacity the tenderer relies.",
-      "confidence": 0.9,
+      "supporting_evidence_ids": [],
+      "rationale": "The evidence provides annual revenue data, but contains no information regarding joint and several liability of entities upon whose capacity the tenderer relies.",
+      "confidence": 1.0,
       "risk_severity": "HIGH",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
      }
     },
     {
-     "requirement_id": "REQ-029",
-     "text": "Tenders must be submitted either by post or by courier service, or hand delivered directly to the premises of the Contracting Authority.",
-     "category": "DELIVERY",
-     "mandatory_level": "INFORMATIONAL",
+     "requirement_id": "REQ-026",
+     "text": "Tenders must be submitted using the standard tender form for a supply contract included in the tender dossier, whose format and instructions must be strictly observed",
+     "category": "DOCUMENTATION",
+     "mandatory_level": "MANDATORY",
      "normalized_rule": {
       "rule_type": "none",
       "field": null,
@@ -976,25 +877,58 @@
      "sources": [
       {
        "document_id": "TR_CFCU_IT_network_equipment_2018",
-       "page": 5,
+       "page": 4,
        "section": null,
-       "excerpt": "— EITHER by post or by courier service, in which case the evidence shall be constituted by the postmark or the\ndate of the deposit slip, to:\nCentral Finance and Contracts Unit (CFCU)\nAttn: Mr. M. Selim Uslu - PAO - CFCU Director\nT.C. Hazine ve Maliye Bakanlığı Kampüsü\nE Blok İnönü Bulvarı No: 36, 06510 Emek/Ankara, TURKEY\n— OR hand delivered by the participant in person or by an agent directly to the premises of the Contracting\nAuthority in return for a signed and dated receipt, in which case the evidence shall be constituted by this\nacknowledgement of receipt, to:\nCentral Finance and Contracts Unit (CFCU)\nAttn: Mr. M. Selim Uslu - PAO - CFCU Director\nT.C. Hazine ve Maliye Bakanlığı Kampüsü\nE Blok İnönü Bulvarı No: 36, 06510 Emek/Ankara, TURKEY"
+       "excerpt": "Tenders must be submitted using the standard tender form for a supply contract included in the tender dossier, whose format and instructions must be strictly observed."
       }
      ],
-     "extraction_confidence": 0.95,
+     "extraction_confidence": 1.0,
      "result": {
-      "requirement_id": "REQ-029",
+      "requirement_id": "REQ-026",
       "status": "UNKNOWN",
-      "method": "NO_EVIDENCE",
+      "method": "LLM_SEMANTIC",
       "supporting_evidence_ids": [],
-      "rationale": "Tender-process clause (informational); not assessed against supplier evidence.",
+      "rationale": "The evidence shows an ISO 9001 certificate, project details, and employee counts, but does not indicate whether tenders were submitted using the standard tender form for a supply contract.",
       "confidence": 1.0,
-      "risk_severity": null,
-      "reason_code": null
+      "risk_severity": "HIGH",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
      }
     },
     {
-     "requirement_id": "REQ-030",
+     "requirement_id": "REQ-027",
+     "text": "Tenders must be submitted in English exclusively to the Contracting Authority in a sealed envelope",
+     "category": "DOCUMENTATION",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_CFCU_IT_network_equipment_2018",
+       "page": 4,
+       "section": null,
+       "excerpt": "Tenders must be submitted in English exclusively to the Contracting Authority in a sealed envelope:"
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-027",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [],
+      "rationale": "The provided evidence does not contain any information regarding the language of tender submission or whether it is submitted in a sealed envelope to the Contracting Authority.",
+      "confidence": 1.0,
+      "risk_severity": "HIGH",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    },
+    {
+     "requirement_id": "REQ-028",
      "text": "The contract title and the Publication reference must be clearly marked on the envelope containing the tender.",
      "category": "DOCUMENTATION",
      "mandatory_level": "INFORMATIONAL",
@@ -1011,12 +945,12 @@
        "document_id": "TR_CFCU_IT_network_equipment_2018",
        "page": 5,
        "section": null,
-       "excerpt": "The contract title and the Publication reference (see item 1 above) must be clearly marked on the envelope\ncontaining the tender and must always be mentioned in all subsequent correspondence with the Contracting\nAuthority."
+       "excerpt": "The contract title and the Publication reference (see item 1 above) must be clearly marked on the envelope containing the tender and must always be mentioned in all subsequent correspondence with the Contracting Authority."
       }
      ],
      "extraction_confidence": 0.95,
      "result": {
-      "requirement_id": "REQ-030",
+      "requirement_id": "REQ-028",
       "status": "UNKNOWN",
       "method": "NO_EVIDENCE",
       "supporting_evidence_ids": [],
@@ -1027,7 +961,7 @@
      }
     },
     {
-     "requirement_id": "REQ-031",
+     "requirement_id": "REQ-029",
      "text": "Tenders submitted by any other means will not be considered.",
      "category": "DELIVERY",
      "mandatory_level": "INFORMATIONAL",
@@ -1049,7 +983,7 @@
      ],
      "extraction_confidence": 0.95,
      "result": {
-      "requirement_id": "REQ-031",
+      "requirement_id": "REQ-029",
       "status": "UNKNOWN",
       "method": "NO_EVIDENCE",
       "supporting_evidence_ids": [],
@@ -1060,9 +994,9 @@
      }
     },
     {
-     "requirement_id": "REQ-032",
+     "requirement_id": "REQ-030",
      "text": "Candidates accept to receive notification of the outcome of the procedure by electronic means.",
-     "category": "COMMERCIAL",
+     "category": "CONTRACTUAL",
      "mandatory_level": "INFORMATIONAL",
      "normalized_rule": {
       "rule_type": "none",
@@ -1077,12 +1011,12 @@
        "document_id": "TR_CFCU_IT_network_equipment_2018",
        "page": 5,
        "section": null,
-       "excerpt": "By submitting a tender candidates accept to receive notification of the outcome of the procedure by electronic\nmeans."
+       "excerpt": "By submitting a tender candidates accept to receive notification of the outcome of the procedure by electronic means."
       }
      ],
      "extraction_confidence": 0.95,
      "result": {
-      "requirement_id": "REQ-032",
+      "requirement_id": "REQ-030",
       "status": "UNKNOWN",
       "method": "NO_EVIDENCE",
       "supporting_evidence_ids": [],
@@ -1093,9 +1027,9 @@
      }
     },
     {
-     "requirement_id": "REQ-033",
+     "requirement_id": "REQ-031",
      "text": "All written communications for this tender procedure and contract must be in English.",
-     "category": "DOCUMENTATION",
+     "category": "LEGAL",
      "mandatory_level": "INFORMATIONAL",
      "normalized_rule": {
       "rule_type": "none",
@@ -1115,7 +1049,7 @@
      ],
      "extraction_confidence": 0.95,
      "result": {
-      "requirement_id": "REQ-033",
+      "requirement_id": "REQ-031",
       "status": "UNKNOWN",
       "method": "NO_EVIDENCE",
       "supporting_evidence_ids": [],
@@ -1158,7 +1092,7 @@
    "requirements": [
     {
      "requirement_id": "REQ-001",
-     "text": "Participation is open to all natural persons who are nationals of and legal persons which are effectively established in a Member State of the European Union or in an eligible country or territory as defined under Regulation (EU) No. 236/2014, and international organisations.",
+     "text": "Participation is open to all natural persons who are nationals of and legal persons which are effectively established in a Member State of the European Union or in an eligible country or territory as defined under Regulation (EU) No 236/2014, and international organisations.",
      "category": "LEGAL",
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
@@ -1183,7 +1117,7 @@
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
       "supporting_evidence_ids": [],
-      "rationale": "The evidence does not mention the country of establishment or nationality of the tenderer.",
+      "rationale": "The evidence does not provide information regarding the nationality or place of establishment of the tenderer.",
       "confidence": 1.0,
       "risk_severity": "HIGH",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
@@ -1192,7 +1126,7 @@
     {
      "requirement_id": "REQ-002",
      "text": "All supplies under this contract must originate in one or more of the eligible countries.",
-     "category": "TECHNICAL",
+     "category": "LEGAL",
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
       "rule_type": "none",
@@ -1216,16 +1150,16 @@
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
       "supporting_evidence_ids": [],
-      "rationale": "The evidence contains only an ISO 9001 certificate and does not provide information regarding the origin of supplies.",
+      "rationale": "The evidence does not state the origin of the supplies under the contract.",
       "confidence": 1.0,
-      "risk_severity": "MEDIUM",
+      "risk_severity": "HIGH",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
      }
     },
     {
      "requirement_id": "REQ-003",
      "text": "Tenderers must submit a signed declaration, included in the tender form for a supply contract, to the effect that they are not in any of the situations listed in Section 2.6.10.1. of the practical guide.",
-     "category": "LEGAL",
+     "category": "DOCUMENTATION",
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
       "rule_type": "none",
@@ -1249,7 +1183,7 @@
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
       "supporting_evidence_ids": [],
-      "rationale": "No evidence regarding the signed declaration concerning exclusion situations is provided.",
+      "rationale": "The evidence does not contain the required signed declaration regarding exclusion situations.",
       "confidence": 1.0,
       "risk_severity": "HIGH",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
@@ -1282,7 +1216,7 @@
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
       "supporting_evidence_ids": [],
-      "rationale": "The evidence does not contain information about EU restrictive measures.",
+      "rationale": "The evidence contains no information regarding EU restrictive measures lists.",
       "confidence": 1.0,
       "risk_severity": "HIGH",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
@@ -1290,8 +1224,8 @@
     },
     {
      "requirement_id": "REQ-005",
-     "text": "Only one application may be submitted per lot. Tenders for parts of a lot will not be considered. Tenderers may not submit a tender for a variant solution in addition to their tender for the supplies required in the tender dossier.",
-     "category": "LEGAL",
+     "text": "Only one application may be submitted per lot, and tenders for parts of a lot will not be considered.",
+     "category": "COMMERCIAL",
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
       "rule_type": "none",
@@ -1306,7 +1240,7 @@
        "document_id": "TR_CFCU_IT_network_equipment_2018",
        "page": 2,
        "section": null,
-       "excerpt": "The candidates may submit an application for one lot only, several lots or all of the lots, but only one application may be submitted per lot. Tenders for parts of a lot will not be considered. Tenderers may not submit a tender for a variant solution in addition to their tender for the supplies required in the tender dossier."
+       "excerpt": "The candidates may submit an application for one lot only, several lots or all of the lots, but only one application may be submitted per lot. Tenders for parts of a lot will not be considered."
       }
      ],
      "extraction_confidence": 1.0,
@@ -1315,14 +1249,47 @@
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
       "supporting_evidence_ids": [],
-      "rationale": "The evidence does not mention the number of applications submitted per lot or variant solutions.",
+      "rationale": "The evidence shows project history but does not confirm that only one application/tender is submitted per lot.",
       "confidence": 1.0,
-      "risk_severity": "HIGH",
+      "risk_severity": "MEDIUM",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
      }
     },
     {
      "requirement_id": "REQ-006",
+     "text": "Tenderers may not submit a tender for a variant solution in addition to their tender for the supplies required in the tender dossier.",
+     "category": "COMMERCIAL",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_CFCU_IT_network_equipment_2018",
+       "page": 2,
+       "section": null,
+       "excerpt": "Tenderers may not submit a tender for a variant solution in addition to their tender for the supplies required in the tender dossier."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-006",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [],
+      "rationale": "The evidence does not state whether a variant solution was submitted.",
+      "confidence": 1.0,
+      "risk_severity": "MEDIUM",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    },
+    {
+     "requirement_id": "REQ-007",
      "text": "Tenderers must provide a tender guarantee of 80,000.00 EUR for Lot 1 when submitting their tender.",
      "category": "FINANCIAL",
      "mandatory_level": "MANDATORY",
@@ -1341,23 +1308,23 @@
        "document_id": "TR_CFCU_IT_network_equipment_2018",
        "page": 2,
        "section": null,
-       "excerpt": "— for Lot 1: 80 000,00 EUR."
+       "excerpt": "Tenderers must provide a tender guarantee of; — for Lot 1: 80 000,00 EUR."
       }
      ],
      "extraction_confidence": 1.0,
      "result": {
-      "requirement_id": "REQ-006",
+      "requirement_id": "REQ-007",
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
       "supporting_evidence_ids": [],
-      "rationale": "The evidence lists revenue and projects but does not mention the tender guarantee.",
+      "rationale": "The evidence does not mention the tender guarantee for Lot 1.",
       "confidence": 1.0,
       "risk_severity": "HIGH",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
      }
     },
     {
-     "requirement_id": "REQ-007",
+     "requirement_id": "REQ-008",
      "text": "Tenderers must provide a tender guarantee of 90,000.00 EUR for Lot 2 when submitting their tender.",
      "category": "FINANCIAL",
      "mandatory_level": "MANDATORY",
@@ -1381,26 +1348,26 @@
      ],
      "extraction_confidence": 1.0,
      "result": {
-      "requirement_id": "REQ-007",
+      "requirement_id": "REQ-008",
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
       "supporting_evidence_ids": [],
-      "rationale": "The provided evidence does not mention the tender guarantee for Lot 2.",
+      "rationale": "The evidence does not mention the tender guarantee for Lot 2.",
       "confidence": 1.0,
       "risk_severity": "HIGH",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
      }
     },
     {
-     "requirement_id": "REQ-008",
-     "text": "The successful tenderer will be asked to provide a performance guarantee of 10 % of the amount of the contract at the signing of the contract.",
+     "requirement_id": "REQ-009",
+     "text": "The successful tenderer will be asked to provide a performance guarantee of 10% of the amount of the contract at the signing of the contract.",
      "category": "FINANCIAL",
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
       "rule_type": "threshold",
       "field": "performance_guarantee_percentage",
       "operator": ">=",
-      "value": 10,
+      "value": 10.0,
       "unit": "%",
       "filters": {}
      },
@@ -1414,20 +1381,20 @@
      ],
      "extraction_confidence": 1.0,
      "result": {
-      "requirement_id": "REQ-008",
+      "requirement_id": "REQ-009",
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
       "supporting_evidence_ids": [],
-      "rationale": "The provided evidence does not mention the performance guarantee of 10% of the contract amount.",
+      "rationale": "The evidence does not mention performance guarantees.",
       "confidence": 1.0,
       "risk_severity": "HIGH",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
      }
     },
     {
-     "requirement_id": "REQ-009",
+     "requirement_id": "REQ-010",
      "text": "This guarantee must be provided together with the return of the countersigned contract no later than 30 days after the tenderer receives the contract signed by the Contracting Authority.",
-     "category": "FINANCIAL",
+     "category": "CONTRACTUAL",
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
       "rule_type": "threshold",
@@ -1447,21 +1414,21 @@
      ],
      "extraction_confidence": 1.0,
      "result": {
-      "requirement_id": "REQ-009",
+      "requirement_id": "REQ-010",
       "status": "UNKNOWN",
-      "method": "LLM_SEMANTIC",
+      "method": "NO_EVIDENCE",
       "supporting_evidence_ids": [],
-      "rationale": "The provided evidence does not mention the timeline for returning the guarantee with the countersigned contract.",
+      "rationale": "No supplier evidence available to verify this requirement.",
       "confidence": 1.0,
-      "risk_severity": "HIGH",
+      "risk_severity": "MEDIUM",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
      }
     },
     {
-     "requirement_id": "REQ-010",
+     "requirement_id": "REQ-011",
      "text": "Tenders must remain valid for a period of 90 days after the deadline for submission of tenders.",
      "category": "COMMERCIAL",
-     "mandatory_level": "MANDATORY",
+     "mandatory_level": "INFORMATIONAL",
      "normalized_rule": {
       "rule_type": "threshold",
       "field": "tender_validity_days",
@@ -1480,19 +1447,19 @@
      ],
      "extraction_confidence": 1.0,
      "result": {
-      "requirement_id": "REQ-010",
+      "requirement_id": "REQ-011",
       "status": "UNKNOWN",
-      "method": "LLM_SEMANTIC",
+      "method": "NO_EVIDENCE",
       "supporting_evidence_ids": [],
-      "rationale": "The provided evidence does not mention the tender validity period.",
+      "rationale": "Tender-process clause (informational); not assessed against supplier evidence.",
       "confidence": 1.0,
-      "risk_severity": "MEDIUM",
-      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+      "risk_severity": null,
+      "reason_code": null
      }
     },
     {
-     "requirement_id": "REQ-011",
-     "text": "For Lot 1, the average annual turnover of the tenderer must exceed 2 500 000 EUR",
+     "requirement_id": "REQ-012",
+     "text": "The average annual turnover of the tenderer for Lot 1 must exceed 2 500 000 EUR.",
      "category": "FINANCIAL",
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
@@ -1515,7 +1482,7 @@
      ],
      "extraction_confidence": 1.0,
      "result": {
-      "requirement_id": "REQ-011",
+      "requirement_id": "REQ-012",
       "status": "NOT_MET",
       "method": "DETERMINISTIC_RULE",
       "supporting_evidence_ids": [
@@ -1528,8 +1495,8 @@
      }
     },
     {
-     "requirement_id": "REQ-012",
-     "text": "For Lot 2, the average annual turnover of the tenderer must exceed 2 800 000 EUR",
+     "requirement_id": "REQ-013",
+     "text": "The average annual turnover of the tenderer for Lot 2 must exceed 2 800 000 EUR.",
      "category": "FINANCIAL",
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
@@ -1552,7 +1519,7 @@
      ],
      "extraction_confidence": 1.0,
      "result": {
-      "requirement_id": "REQ-012",
+      "requirement_id": "REQ-013",
       "status": "NOT_MET",
       "method": "DETERMINISTIC_RULE",
       "supporting_evidence_ids": [
@@ -1565,8 +1532,8 @@
      }
     },
     {
-     "requirement_id": "REQ-013",
-     "text": "For Lot 1, at least 5 staff currently work for the tenderer",
+     "requirement_id": "REQ-014",
+     "text": "For Lot 1, at least 5 staff currently work for the tenderer.",
      "category": "PERSONNEL",
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
@@ -1589,7 +1556,7 @@
      ],
      "extraction_confidence": 1.0,
      "result": {
-      "requirement_id": "REQ-013",
+      "requirement_id": "REQ-014",
       "status": "MET",
       "method": "DETERMINISTIC_RULE",
       "supporting_evidence_ids": [
@@ -1602,8 +1569,8 @@
      }
     },
     {
-     "requirement_id": "REQ-014",
-     "text": "For Lot 2, at least 5 staff currently work for the tenderer",
+     "requirement_id": "REQ-015",
+     "text": "For Lot 2, at least 5 staff currently work for the tenderer.",
      "category": "PERSONNEL",
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
@@ -1626,7 +1593,7 @@
      ],
      "extraction_confidence": 1.0,
      "result": {
-      "requirement_id": "REQ-014",
+      "requirement_id": "REQ-015",
       "status": "MET",
       "method": "DETERMINISTIC_RULE",
       "supporting_evidence_ids": [
@@ -1639,8 +1606,8 @@
      }
     },
     {
-     "requirement_id": "REQ-015",
-     "text": "For Lot 1, the tenderer has delivered and installed RTUs under contracts with a cumulative amount of at least 2 500 000 EUR in the fields relating to electricity transmission at voltage levels above 36 kV implemented within 5 years from the submission deadline",
+     "requirement_id": "REQ-016",
+     "text": "For Lot 1, the tenderer has delivered and installed RTUs under contracts with a cumulative amount of at least 2 500 000 EUR in the fields relating to electricity transmission at voltage levels above 36 kV within the last 5 years from submission deadline.",
      "category": "EXPERIENCE",
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
@@ -1661,19 +1628,21 @@
      ],
      "extraction_confidence": 1.0,
      "result": {
-      "requirement_id": "REQ-015",
+      "requirement_id": "REQ-016",
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
-      "supporting_evidence_ids": [],
-      "rationale": "The provided evidence mentions a project for network infrastructure, but does not provide details about RTUs or electricity transmission at voltage levels above 36 kV totaling at least 2,500,000 EUR.",
+      "supporting_evidence_ids": [
+       "EVD-P-001"
+      ],
+      "rationale": "The evidence provides information on a network modernization project, but does not state experience regarding RTU deliveries above 36 kV totaling at least 2,500,000 EUR.",
       "confidence": 1.0,
       "risk_severity": "HIGH",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
      }
     },
     {
-     "requirement_id": "REQ-016",
-     "text": "For Lot 2, the tenderer has delivered supplies under at most 5 contracts with a cumulative amount of at least 2 500 000 EUR in the fields relating to IT Network Equipment implemented within 5 years from the submission deadline",
+     "requirement_id": "REQ-017",
+     "text": "For Lot 2, the tenderer has delivered supplies under at most 5 contracts with a cumulative amount of at least 2 500 000 EUR in the fields relating to IT Network Equipment within the last 5 years from submission deadline.",
      "category": "EXPERIENCE",
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
@@ -1694,20 +1663,91 @@
      ],
      "extraction_confidence": 1.0,
      "result": {
-      "requirement_id": "REQ-016",
+      "requirement_id": "REQ-017",
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
       "supporting_evidence_ids": [
        "EVD-P-001"
       ],
-      "rationale": "The provided evidence mentions Network Modernization A with a value of 420,000 AZN, which does not meet the cumulative amount of 2,500,000 EUR required for Lot 2.",
+      "rationale": "The evidence provides information on a network project, but does not confirm cumulative IT Network Equipment contract amounts of at least 2,500,000 EUR.",
       "confidence": 1.0,
       "risk_severity": "HIGH",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
      }
     },
     {
-     "requirement_id": "REQ-017",
+     "requirement_id": "REQ-018",
+     "text": "In case a tenderer applies to multiple lots, the tenderer must meet the cumulative amount of the average annual turnover required for the relative lots.",
+     "category": "FINANCIAL",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_CFCU_IT_network_equipment_2018",
+       "page": 3,
+       "section": null,
+       "excerpt": "— for economic and financial capacity criterion, the cumulative amount of the average annual turnover required for the relative lots,"
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-018",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [
+       "EVD-R-2025"
+      ],
+      "rationale": "The evidence provides annual revenue for 2025, but does not specify the required average annual turnovers for multiple lots to evaluate cumulative compliance.",
+      "confidence": 1.0,
+      "risk_severity": "HIGH",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    },
+    {
+     "requirement_id": "REQ-019",
+     "text": "In case a tenderer applies to multiple lots, the tenderer must meet the cumulative number of staff required for the relative lots.",
+     "category": "PERSONNEL",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_CFCU_IT_network_equipment_2018",
+       "page": 3,
+       "section": null,
+       "excerpt": "— for professional capacity criterion, cumulative number of staff required for the relative lots."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-019",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [
+       "EVD-F-employees",
+       "EVD-P-001"
+      ],
+      "rationale": "The evidence shows employee count and past projects, but does not contain information about multiple lots or cumulative staff requirements.",
+      "confidence": 1.0,
+      "risk_severity": "MEDIUM",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    },
+    {
+     "requirement_id": "REQ-020",
      "text": "If the tender relies on other entities it must prove to the Contracting Authority that it will have at its disposal the resources necessary for performance of the contract, for example by producing a commitment on the part of those entities to place those resources at its disposal.",
      "category": "LEGAL",
      "mandatory_level": "MANDATORY",
@@ -1729,19 +1769,22 @@
      ],
      "extraction_confidence": 1.0,
      "result": {
-      "requirement_id": "REQ-017",
+      "requirement_id": "REQ-020",
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
-      "supporting_evidence_ids": [],
-      "rationale": "The provided evidence contains only company founding year and employee count, and does not mention reliance on other entities or commitments of resources.",
+      "supporting_evidence_ids": [
+       "EVD-F-founded_year",
+       "EVD-F-employees"
+      ],
+      "rationale": "The evidence provides foundational data about the tenderer but lacks any mention of relying on other entities or commitments of resources.",
       "confidence": 1.0,
       "risk_severity": "HIGH",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
      }
     },
     {
-     "requirement_id": "REQ-018",
-     "text": "Such entities, for instance the parent company of the economic operator, must respect the same rules of eligibility and notably that of nationality, as the economic operator relying on them and must comply with the selection criteria for which the economic operator relies on them.",
+     "requirement_id": "REQ-021",
+     "text": "Third entities relied upon must respect the same rules of eligibility and notably that of nationality, as the economic operator relying on them and must comply with the selection criteria for which the economic operator relies on them.",
      "category": "LEGAL",
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
@@ -1762,19 +1805,22 @@
      ],
      "extraction_confidence": 1.0,
      "result": {
-      "requirement_id": "REQ-018",
+      "requirement_id": "REQ-021",
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
-      "supporting_evidence_ids": [],
-      "rationale": "The evidence does not contain information regarding third-party entities, their eligibility, nationality, or compliance with selection criteria.",
+      "supporting_evidence_ids": [
+       "EVD-F-founded_year",
+       "EVD-F-employees"
+      ],
+      "rationale": "The evidence does not mention third entities or their eligibility/nationality rules.",
       "confidence": 1.0,
       "risk_severity": "HIGH",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
      }
     },
     {
-     "requirement_id": "REQ-019",
-     "text": "Furthermore, the data for this third entity for the relevant selection criterion should be included in the tender in a separate document. Proof of the capacity will also have to be furnished when requested by the Contracting Authority.",
+     "requirement_id": "REQ-022",
+     "text": "The data for this third entity for the relevant selection criterion should be included in the tender in a separate document.",
      "category": "DOCUMENTATION",
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
@@ -1790,25 +1836,63 @@
        "document_id": "TR_CFCU_IT_network_equipment_2018",
        "page": 4,
        "section": null,
-       "excerpt": "selection criterion should be included in the tender in a separate document. Proof of the capacity will also have to be furnished when requested by the Contracting Authority."
+       "excerpt": "selection criterion should be included in the tender in a separate document."
       }
      ],
      "extraction_confidence": 1.0,
      "result": {
-      "requirement_id": "REQ-019",
+      "requirement_id": "REQ-022",
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
-      "supporting_evidence_ids": [],
-      "rationale": "The evidence does not mention third entity data in a separate document or proof of capacity regarding other entities.",
+      "supporting_evidence_ids": [
+       "EVD-001",
+       "EVD-P-001"
+      ],
+      "rationale": "The evidence contains certifications and project information but does not include data for a third entity in a separate document.",
       "confidence": 1.0,
       "risk_severity": "HIGH",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
      }
     },
     {
-     "requirement_id": "REQ-020",
+     "requirement_id": "REQ-023",
+     "text": "Proof of the capacity of other entities will have to be furnished when requested by the Contracting Authority.",
+     "category": "DOCUMENTATION",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_CFCU_IT_network_equipment_2018",
+       "page": 4,
+       "section": null,
+       "excerpt": "Proof of the capacity will also have to be furnished when requested by the Contracting Authority."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-023",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [
+       "EVD-001"
+      ],
+      "rationale": "The evidence provides an ISO 9001 certificate but does not mention proof of capacity of other entities.",
+      "confidence": 1.0,
+      "risk_severity": "HIGH",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    },
+    {
+     "requirement_id": "REQ-024",
      "text": "With regard to technical and professional criteria, a tenderer may only rely on the capacities of other entities where the latter will perform the tasks for which these capacities are required.",
-     "category": "LEGAL",
+     "category": "TECHNICAL",
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
       "rule_type": "none",
@@ -1828,20 +1912,22 @@
      ],
      "extraction_confidence": 1.0,
      "result": {
-      "requirement_id": "REQ-020",
+      "requirement_id": "REQ-024",
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
-      "supporting_evidence_ids": [],
-      "rationale": "The evidence does not mention reliance on other entities for technical and professional capacities or who will perform the tasks.",
+      "supporting_evidence_ids": [
+       "EVD-P-001"
+      ],
+      "rationale": "The evidence mentions a project description but does not address reliance on other entities for technical and professional criteria.",
       "confidence": 1.0,
-      "risk_severity": "HIGH",
+      "risk_severity": "MEDIUM",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
      }
     },
     {
-     "requirement_id": "REQ-021",
+     "requirement_id": "REQ-025",
      "text": "With regard to economic and financial criteria, the entities upon whose capacity the tenderer relies, become jointly and severally liable for the performance of the contract.",
-     "category": "LEGAL",
+     "category": "CONTRACTUAL",
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
       "rule_type": "none",
@@ -1861,18 +1947,18 @@
      ],
      "extraction_confidence": 1.0,
      "result": {
-      "requirement_id": "REQ-021",
+      "requirement_id": "REQ-025",
       "status": "UNKNOWN",
-      "method": "LLM_SEMANTIC",
+      "method": "NO_EVIDENCE",
       "supporting_evidence_ids": [],
-      "rationale": "The evidence does not mention joint and several liability of entities upon whose capacity the tenderer relies.",
+      "rationale": "No supplier evidence available to verify this requirement.",
       "confidence": 1.0,
-      "risk_severity": "HIGH",
+      "risk_severity": "MEDIUM",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
      }
     },
     {
-     "requirement_id": "REQ-022",
+     "requirement_id": "REQ-026",
      "text": "Tenders must be submitted using the standard tender form for a supply contract included in the tender dossier, whose format and instructions must be strictly observed.",
      "category": "DOCUMENTATION",
      "mandatory_level": "MANDATORY",
@@ -1894,18 +1980,51 @@
      ],
      "extraction_confidence": 1.0,
      "result": {
-      "requirement_id": "REQ-022",
+      "requirement_id": "REQ-026",
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
       "supporting_evidence_ids": [],
-      "rationale": "The evidence contains an ISO 9001 certificate, project history, and employee count, but does not provide the standard tender form submission or show strict observance of its format.",
+      "rationale": "The provided evidence records relate to ISO 9001 certification, project references, and employee count, but do not contain information regarding the submission of a standard tender form.",
       "confidence": 1.0,
       "risk_severity": "HIGH",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
      }
     },
     {
-     "requirement_id": "REQ-023",
+     "requirement_id": "REQ-027",
+     "text": "Tenders must be submitted before 20.11.2018 (12:00 noon), local time — Turkey.",
+     "category": "COMMERCIAL",
+     "mandatory_level": "INFORMATIONAL",
+     "normalized_rule": {
+      "rule_type": "date",
+      "field": "submission_deadline",
+      "operator": "<=",
+      "value": "2018-11-20T12:00:00",
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_CFCU_IT_network_equipment_2018",
+       "page": 4,
+       "section": null,
+       "excerpt": "20.11.2018 (12:00 noon), local time — Turkey."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-027",
+      "status": "UNKNOWN",
+      "method": "NO_EVIDENCE",
+      "supporting_evidence_ids": [],
+      "rationale": "Tender-process clause (informational); not assessed against supplier evidence.",
+      "confidence": 1.0,
+      "risk_severity": null,
+      "reason_code": null
+     }
+    },
+    {
+     "requirement_id": "REQ-028",
      "text": "Any tender submitted to the Contracting Authority after this deadline will not be considered.",
      "category": "COMMERCIAL",
      "mandatory_level": "INFORMATIONAL",
@@ -1927,7 +2046,7 @@
      ],
      "extraction_confidence": 1.0,
      "result": {
-      "requirement_id": "REQ-023",
+      "requirement_id": "REQ-028",
       "status": "UNKNOWN",
       "method": "NO_EVIDENCE",
       "supporting_evidence_ids": [],
@@ -1938,8 +2057,8 @@
      }
     },
     {
-     "requirement_id": "REQ-024",
-     "text": "Tenders must be submitted in English exclusively to the Contracting Authority in a sealed envelope",
+     "requirement_id": "REQ-029",
+     "text": "Tenders must be submitted in English exclusively to the Contracting Authority in a sealed envelope.",
      "category": "DOCUMENTATION",
      "mandatory_level": "INFORMATIONAL",
      "normalized_rule": {
@@ -1960,7 +2079,7 @@
      ],
      "extraction_confidence": 1.0,
      "result": {
-      "requirement_id": "REQ-024",
+      "requirement_id": "REQ-029",
       "status": "UNKNOWN",
       "method": "NO_EVIDENCE",
       "supporting_evidence_ids": [],
@@ -1971,8 +2090,41 @@
      }
     },
     {
-     "requirement_id": "REQ-025",
-     "text": "In case a tenderer applies to multiple lots, the tenderer should meet, for economic and financial capacity criterion, the cumulative amount of the average annual turnover required for the relative lots",
+     "requirement_id": "REQ-030",
+     "text": "If the tenderer does not meet the required selection criteria for all the lots he applied, his tender will only be taken into consideration for the lot(s) he is qualified for.",
+     "category": "CONTRACTUAL",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_CFCU_IT_network_equipment_2018",
+       "page": 3,
+       "section": null,
+       "excerpt": "If the tenderer does not meet the required selection criteria for all the lots he applied, his tender will only be taken into consideration for the lot(s) he is qualified for."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-030",
+      "status": "UNKNOWN",
+      "method": "NO_EVIDENCE",
+      "supporting_evidence_ids": [],
+      "rationale": "No supplier evidence available to verify this requirement.",
+      "confidence": 1.0,
+      "risk_severity": "MEDIUM",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    },
+    {
+     "requirement_id": "REQ-031",
+     "text": "The reference period which will be taken into account for economic and financial capacity will be the last three years for which accounts have been closed.",
      "category": "FINANCIAL",
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
@@ -1988,28 +2140,27 @@
        "document_id": "TR_CFCU_IT_network_equipment_2018",
        "page": 3,
        "section": null,
-       "excerpt": "In case a tenderer applies to multiple lots, the tenderer should meet:\n— for economic and financial capacity criterion, the cumulative amount of the average annual turnover required\nfor the relative lots,"
+       "excerpt": "The reference period which will be taken into account will be the last three years for which accounts have been closed."
       }
      ],
      "extraction_confidence": 1.0,
      "result": {
-      "requirement_id": "REQ-025",
+      "requirement_id": "REQ-031",
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
       "supporting_evidence_ids": [
-       "EVD-R-2025",
-       "EVD-P-001"
+       "EVD-R-2025"
       ],
-      "rationale": "The evidence provides the annual revenue for 2025 and a project value, but does not contain information regarding the cumulative requirement for multiple lots.",
+      "rationale": "The evidence provides revenue for 2025, but does not explicitly state or confirm that the reference period for economic and financial capacity encompasses the last three years for which accounts have been closed.",
       "confidence": 1.0,
       "risk_severity": "HIGH",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
      }
     },
     {
-     "requirement_id": "REQ-026",
-     "text": "In case a tenderer applies to multiple lots, the tenderer should meet, for professional capacity criterion, cumulative number of staff required for the relative lots",
-     "category": "PERSONNEL",
+     "requirement_id": "REQ-032",
+     "text": "The reference period which will be taken into account for professional capacity will be the last three years from submission deadline.",
+     "category": "EXPERIENCE",
      "mandatory_level": "MANDATORY",
      "normalized_rule": {
       "rule_type": "none",
@@ -2024,27 +2175,60 @@
        "document_id": "TR_CFCU_IT_network_equipment_2018",
        "page": 3,
        "section": null,
-       "excerpt": "for professional capacity criterion, cumulative number of staff required for the relative lots."
+       "excerpt": "The reference period which will be taken into account will be the last three years from submission deadline."
       }
      ],
      "extraction_confidence": 1.0,
      "result": {
-      "requirement_id": "REQ-026",
+      "requirement_id": "REQ-032",
       "status": "UNKNOWN",
       "method": "LLM_SEMANTIC",
       "supporting_evidence_ids": [
-       "EVD-F-founded_year",
-       "EVD-F-employees",
        "EVD-P-001"
       ],
-      "rationale": "The evidence provides the total number of employees and founded year, but lacks any statement or data addressing the cumulative number of staff required for multiple lots.",
+      "rationale": "The evidence mentions a project from 2025, but does not state whether the reference period taken into account for professional capacity is the last three years from the submission deadline.",
       "confidence": 1.0,
-      "risk_severity": "MEDIUM",
+      "risk_severity": "HIGH",
       "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
      }
     },
     {
-     "requirement_id": "REQ-027",
+     "requirement_id": "REQ-033",
+     "text": "The reference period which will be taken into account for technical capacity will be the last five years from submission deadline.",
+     "category": "EXPERIENCE",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_CFCU_IT_network_equipment_2018",
+       "page": 3,
+       "section": null,
+       "excerpt": "The reference period which will be taken into account will be the last five years from submission deadline."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-033",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [
+       "EVD-P-001"
+      ],
+      "rationale": "The evidence lists a project from 2025, but does not explicitly confirm that the reference period taken into account for technical capacity is the last five years from the submission deadline.",
+      "confidence": 1.0,
+      "risk_severity": "HIGH",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    },
+    {
+     "requirement_id": "REQ-034",
      "text": "Tenders must be submitted by post, courier service, or hand delivery to the specified address.",
      "category": "DOCUMENTATION",
      "mandatory_level": "INFORMATIONAL",
@@ -2061,12 +2245,12 @@
        "document_id": "TR_CFCU_IT_network_equipment_2018",
        "page": 5,
        "section": null,
-       "excerpt": "— EITHER by post or by courier service, in which case the evidence shall be constituted by the postmark or the\ndate of the deposit slip, to:\nCentral Finance and Contracts Unit (CFCU)\nAttn: Mr. M. Selim Uslu - PAO - CFCU Director\nT.C. Hazine ve Maliye Bakanlığı Kampüsü\nE Blok İnönü Bulvarı No: 36, 06510 Emek/Ankara, TURKEY\n— OR hand delivered by the participant in person or by an agent directly to the premises of the Contracting\nAuthority in return for a signed and dated receipt, in which case the evidence shall be constituted by this\nacknowledgement of receipt, to:\nCentral Finance and Contracts Unit (CFCU)\nAttn: Mr. M. Selim Uslu - PAO - CFCU Director\nT.C. Hazine ve Maliye Bakanlığı Kampüsü\nE Blok İnönü Bulvarı No: 36, 06510 Emek/Ankara, TURKEY\nTel: +90 312 295 49 00\n(The opening hours of the Contracting Authority are 09:00-18:00)"
+       "excerpt": "— EITHER by post or by courier service, in which case the evidence shall be constituted by the postmark or the date of the deposit slip, to:\nCentral Finance and Contracts Unit (CFCU)\nAttn: Mr. M. Selim Uslu - PAO - CFCU Director\nT.C. Hazine ve Maliye Bakanlığı Kampüsü\nE Blok İnönü Bulvarı No: 36, 06510 Emek/Ankara, TURKEY\n— OR hand delivered by the participant in person or by an agent directly to the premises of the Contracting\nAuthority in return for a signed and dated receipt, in which case the evidence shall be constituted by this\nacknowledgement of receipt, to:\nCentral Finance and Contracts Unit (CFCU)\nAttn: Mr. M. Selim Uslu - PAO - CFCU Director\nT.C. Hazine ve Maliye Bakanlığı Kampüsü\nE Blok İnönü Bulvarı No: 36, 06510 Emek/Ankara, TURKEY"
       }
      ],
-     "extraction_confidence": 1.0,
+     "extraction_confidence": 0.95,
      "result": {
-      "requirement_id": "REQ-027",
+      "requirement_id": "REQ-034",
       "status": "UNKNOWN",
       "method": "NO_EVIDENCE",
       "supporting_evidence_ids": [],
@@ -2077,7 +2261,7 @@
      }
     },
     {
-     "requirement_id": "REQ-028",
+     "requirement_id": "REQ-035",
      "text": "The contract title and the Publication reference must be clearly marked on the envelope containing the tender.",
      "category": "DOCUMENTATION",
      "mandatory_level": "INFORMATIONAL",
@@ -2097,9 +2281,9 @@
        "excerpt": "The contract title and the Publication reference (see item 1 above) must be clearly marked on the envelope\ncontaining the tender and must always be mentioned in all subsequent correspondence with the Contracting\nAuthority."
       }
      ],
-     "extraction_confidence": 1.0,
+     "extraction_confidence": 0.95,
      "result": {
-      "requirement_id": "REQ-028",
+      "requirement_id": "REQ-035",
       "status": "UNKNOWN",
       "method": "NO_EVIDENCE",
       "supporting_evidence_ids": [],
@@ -2110,7 +2294,7 @@
      }
     },
     {
-     "requirement_id": "REQ-029",
+     "requirement_id": "REQ-036",
      "text": "Tenders submitted by any other means will not be considered.",
      "category": "DOCUMENTATION",
      "mandatory_level": "INFORMATIONAL",
@@ -2130,9 +2314,9 @@
        "excerpt": "Tenders submitted by any other means will not be considered."
       }
      ],
-     "extraction_confidence": 1.0,
+     "extraction_confidence": 0.95,
      "result": {
-      "requirement_id": "REQ-029",
+      "requirement_id": "REQ-036",
       "status": "UNKNOWN",
       "method": "NO_EVIDENCE",
       "supporting_evidence_ids": [],
@@ -2143,7 +2327,7 @@
      }
     },
     {
-     "requirement_id": "REQ-030",
+     "requirement_id": "REQ-037",
      "text": "Candidates accept to receive notification of the outcome of the procedure by electronic means.",
      "category": "COMMERCIAL",
      "mandatory_level": "INFORMATIONAL",
@@ -2160,12 +2344,12 @@
        "document_id": "TR_CFCU_IT_network_equipment_2018",
        "page": 5,
        "section": null,
-       "excerpt": "By submitting a tender candidates accept to receive notification of the outcome of the procedure by electronic\nmeans. Such notification shall be deemed to have been received on the date upon which the Contracting\nAuthority sends it to the electronic address referred to in the tender."
+       "excerpt": "By submitting a tender candidates accept to receive notification of the outcome of the procedure by electronic\nmeans."
       }
      ],
-     "extraction_confidence": 1.0,
+     "extraction_confidence": 0.95,
      "result": {
-      "requirement_id": "REQ-030",
+      "requirement_id": "REQ-037",
       "status": "UNKNOWN",
       "method": "NO_EVIDENCE",
       "supporting_evidence_ids": [],
@@ -2176,7 +2360,7 @@
      }
     },
     {
-     "requirement_id": "REQ-031",
+     "requirement_id": "REQ-038",
      "text": "It is recommended to use registered mail in case the postmark would not be readable.",
      "category": "DOCUMENTATION",
      "mandatory_level": "INFORMATIONAL",
@@ -2196,9 +2380,9 @@
        "excerpt": "(1) It is recommended to use registered mail in case the postmark would not be readable."
       }
      ],
-     "extraction_confidence": 1.0,
+     "extraction_confidence": 0.95,
      "result": {
-      "requirement_id": "REQ-031",
+      "requirement_id": "REQ-038",
       "status": "UNKNOWN",
       "method": "NO_EVIDENCE",
       "supporting_evidence_ids": [],
@@ -2209,9 +2393,9 @@
      }
     },
     {
-     "requirement_id": "REQ-032",
+     "requirement_id": "REQ-039",
      "text": "All written communications for this tender procedure and contract must be in English.",
-     "category": "COMMERCIAL",
+     "category": "DOCUMENTATION",
      "mandatory_level": "INFORMATIONAL",
      "normalized_rule": {
       "rule_type": "none",
@@ -2229,9 +2413,9 @@
        "excerpt": "All written communications for this tender procedure and contract must be in English."
       }
      ],
-     "extraction_confidence": 1.0,
+     "extraction_confidence": 0.95,
      "result": {
-      "requirement_id": "REQ-032",
+      "requirement_id": "REQ-039",
       "status": "UNKNOWN",
       "method": "NO_EVIDENCE",
       "supporting_evidence_ids": [],

@@ -1,0 +1,1997 @@
+{
+ "runs": [
+  {
+   "requirements": [
+    {
+     "requirement_id": "REQ-001",
+     "text": "The supply and installation period is eleven (11) months.",
+     "category": "DELIVERY",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "threshold",
+      "field": "delivery_period",
+      "operator": "==",
+      "value": 11,
+      "unit": "months",
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 1,
+       "section": null,
+       "excerpt": "The supply and installation period is eleven (11) months."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-001",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [],
+      "rationale": "The evidence mentions project completion and authorization letters, but does not state the supply and installation period.",
+      "confidence": 1.0,
+      "risk_severity": "MEDIUM",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    },
+    {
+     "requirement_id": "REQ-002",
+     "text": "During the past five (5) years, the Bidders must have successfully completed at least one (1) similar contract for the establishment, testing, installation, and technical support of infrastructure corporate network with at least 150 clients of similar functional/technical characteristics given in the Technical Requirements in Section VI of this Bidding Documents.",
+     "category": "EXPERIENCE",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 1,
+       "section": null,
+       "excerpt": "During the past five (5) years, the Bidders must have successfully completed at least one (1) similar contract for the establishment, testing, installation, and technical support of infrastructure corporate network with at least 150 clients of similar functional/technical characteristics given in the Technical Requirements in Section VI of this Bidding Documents."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-002",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [
+       "EVD-P-001",
+       "EVD-P-002",
+       "EVD-P-003"
+      ],
+      "rationale": "The projects provided demonstrate similar infrastructure network experience, but none of the evidence explicitly states whether they involved at least 150 clients.",
+      "confidence": 1.0,
+      "risk_severity": "HIGH",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    },
+    {
+     "requirement_id": "REQ-003",
+     "text": "The Bidder shall give a reference list of the systems installed in Turkey and abroad within last five years in relation with the system(s) mentioned in the scope of the bid (similar in nature and complexity), and the names and addresses, fax numbers and contact person of major customers, including reference letters at least from two major customers.",
+     "category": "DOCUMENTATION",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 1,
+       "section": null,
+       "excerpt": "The Bidder shall give a reference list of the systems installed in Turkey and abroad within last five years in relation with the system(s) mentioned in the scope of the bid (similar in nature and complexity), and the names and addresses, fax numbers and contact person of major customers, including reference letters at least from two major customers."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-003",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [],
+      "rationale": "The evidence contains country of establishment, bank letter, and manufacturer authorization, but lacks the required reference list and reference letters from major customers.",
+      "confidence": 1.0,
+      "risk_severity": "HIGH",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    },
+    {
+     "requirement_id": "REQ-004",
+     "text": "The annual average turnover of the Bidder must exceed USD 20 Million (twenty million US Dollars) or an equivalent amount in a freely convertible currency during last three (3) years.",
+     "category": "FINANCIAL",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "threshold",
+      "field": "annual_revenue",
+      "operator": ">",
+      "value": 20000000,
+      "unit": "USD",
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 2,
+       "section": null,
+       "excerpt": "The annual average turnover of the Bidder must exceed USD 20 Million (twenty million US Dollars) or an equivalent amount in a freely convertible currency during last three (3) years."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-004",
+      "status": "NOT_MET",
+      "method": "DETERMINISTIC_RULE",
+      "supporting_evidence_ids": [
+       "EVD-R-2024"
+      ],
+      "rationale": "required annual_revenue > 17,435,897 EUR; supplier has 4,600,000 EUR.",
+      "confidence": 0.99,
+      "risk_severity": "CRITICAL",
+      "reason_code": "FINANCIAL_THRESHOLD_NOT_MET"
+     }
+    },
+    {
+     "requirement_id": "REQ-005",
+     "text": "The Bidder shall furnish documentary evidence that the bidder has access to, or has available, liquid assets, lines of credit, and other financial means to successfully perform the contract, in an amount not less than USD 2.000.000 (two million US Dollars) or an equivalent amount in a freely convertible currency.",
+     "category": "FINANCIAL",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "threshold",
+      "field": "liquid_assets",
+      "operator": ">=",
+      "value": 2000000,
+      "unit": "USD",
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 2,
+       "section": null,
+       "excerpt": "The Bidder shall furnish documentary evidence that the bidder has access to, or has available, liquid assets, lines of credit, and other financial means to successfully perform the contract, in an amount not less than USD 2.000.000 (two million US Dollars) or an equivalent amount in a freely convertible currency."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-005",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [
+       "EVD-D-bank"
+      ],
+      "rationale": "The bank guarantee facility confirmation shows 300,000 EUR, but this does not establish the total liquid assets or lines of credit amounting to at least USD 2,000,000, nor does it explicitly conflict with the total requirement since partial facilities do not constitute a full contradiction.",
+      "confidence": 1.0,
+      "risk_severity": "HIGH",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    },
+    {
+     "requirement_id": "REQ-006",
+     "text": "All joint venture partners shall operate in the Information Technology Sector.",
+     "category": "LEGAL",
+     "mandatory_level": "INFORMATIONAL",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 2,
+       "section": null,
+       "excerpt": "All joint venture partners shall operate in the Information Technology Sector."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-006",
+      "status": "UNKNOWN",
+      "method": "NO_EVIDENCE",
+      "supporting_evidence_ids": [],
+      "rationale": "Applies only to joint-venture bids; this supplier is bidding alone. Not assessed.",
+      "confidence": 1.0,
+      "risk_severity": null,
+      "reason_code": null
+     }
+    },
+    {
+     "requirement_id": "REQ-007",
+     "text": "The JV Partners shall collectively demonstrate that during the past five (5) years, they have successfully completed at least one (1) similar contract for the establishment, testing, installation, and technical support of infrastructure corporate network with at least 150 clients of similar functional/technical characteristics given in the Technical Requirements in Section VI of this Bidding Documents.",
+     "category": "EXPERIENCE",
+     "mandatory_level": "INFORMATIONAL",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 2,
+       "section": null,
+       "excerpt": "The JV Partners shall collectively demonstrate that during the past five (5) years, they have successfully completed at least one (1) similar contract for the establishment, testing, installation, and technical support of infrastructure corporate network with at least 150 clients of similar functional/technical characteristics given in the Technical Requirements in Section VI of this Bidding Documents."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-007",
+      "status": "UNKNOWN",
+      "method": "NO_EVIDENCE",
+      "supporting_evidence_ids": [],
+      "rationale": "Applies only to joint-venture bids; this supplier is bidding alone. Not assessed.",
+      "confidence": 1.0,
+      "risk_severity": null,
+      "reason_code": null
+     }
+    },
+    {
+     "requirement_id": "REQ-008",
+     "text": "The JV partners shall give a reference list of the systems installed in Turkey and abroad within last five years in relation with the system(s) mentioned in the scope of the bid (similar in nature and complexity), and the names and addresses, fax numbers and contact person of major customers, including reference letters at least from two major customers.",
+     "category": "DOCUMENTATION",
+     "mandatory_level": "INFORMATIONAL",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 2,
+       "section": null,
+       "excerpt": "The JV partners shall give a reference list of the systems installed in Turkey and abroad within last five years in relation with the system(s) mentioned in the scope of the bid (similar in nature and complexity), and the names and addresses, fax numbers and contact person of major customers, including reference letters at least from two major customers."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-008",
+      "status": "UNKNOWN",
+      "method": "NO_EVIDENCE",
+      "supporting_evidence_ids": [],
+      "rationale": "Applies only to joint-venture bids; this supplier is bidding alone. Not assessed.",
+      "confidence": 1.0,
+      "risk_severity": null,
+      "reason_code": null
+     }
+    },
+    {
+     "requirement_id": "REQ-009",
+     "text": "The annual average turnover of the JV Partners collectively must exceed USD 20 Million (twenty million US Dollars) or an equivalent amount in a freely convertible currency during last 3 (three) years, where the average turnover of the Lead Partner must exceed 40% of this amount and each of the other partners having at least 25% of this amount during the last 3 years.",
+     "category": "FINANCIAL",
+     "mandatory_level": "INFORMATIONAL",
+     "normalized_rule": {
+      "rule_type": "threshold",
+      "field": "annual_revenue",
+      "operator": ">",
+      "value": 20000000,
+      "unit": "USD",
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 2,
+       "section": null,
+       "excerpt": "The annual average turnover of the JV Partners collectively must exceed USD 20 Million (twenty million US Dollars) or an equivalent amount in a freely convertible currency during last 3 (three) years, where the average turnover of the Lead Partner must exceed 40% of this amount and each of the other partners having at least 25% of this amount during the last 3 years."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-009",
+      "status": "UNKNOWN",
+      "method": "NO_EVIDENCE",
+      "supporting_evidence_ids": [],
+      "rationale": "Applies only to joint-venture bids; this supplier is bidding alone. Not assessed.",
+      "confidence": 1.0,
+      "risk_severity": null,
+      "reason_code": null
+     }
+    },
+    {
+     "requirement_id": "REQ-010",
+     "text": "The Bidder shall furnish documentary evidence that the JV Partners collectively have access to, or have available, liquid assets, lines of credit, and other financial means to successfully perform the contract, in an amount not less than USD 2.000.000 (two million US Dollars) or an equivalent amount in a freely convertible currency.",
+     "category": "FINANCIAL",
+     "mandatory_level": "INFORMATIONAL",
+     "normalized_rule": {
+      "rule_type": "threshold",
+      "field": "liquid_assets",
+      "operator": ">=",
+      "value": 2000000,
+      "unit": "USD",
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 2,
+       "section": null,
+       "excerpt": "The Bidder shall furnish documentary evidence that the JV Partners collectively have access to, or have available, liquid assets, lines of credit, and other financial means to successfully perform the contract, in an amount not less than USD 2.000.000 (two million US Dollars) or an equivalent amount in a freely convertible currency."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-010",
+      "status": "UNKNOWN",
+      "method": "NO_EVIDENCE",
+      "supporting_evidence_ids": [],
+      "rationale": "Applies only to joint-venture bids; this supplier is bidding alone. Not assessed.",
+      "confidence": 1.0,
+      "risk_severity": null,
+      "reason_code": null
+     }
+    },
+    {
+     "requirement_id": "REQ-011",
+     "text": "Non-performance of a contract did not occur as a result of the Bidder's default since 1st January 2010.",
+     "category": "LEGAL",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "date",
+      "field": "founded_year",
+      "operator": ">=",
+      "value": "2010-01-01",
+      "unit": "date",
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 2,
+       "section": null,
+       "excerpt": "Non-performance of a contract did not occur as a result of the Bidder's default since 1st January 2010."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-011",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [],
+      "rationale": "The provided evidence contains bank guarantee confirmation, manufacturer authorization, and country of establishment, but provides no information regarding historical contract non-performance.",
+      "confidence": 1.0,
+      "risk_severity": "HIGH",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    },
+    {
+     "requirement_id": "REQ-012",
+     "text": "In the case of Joint Ventures, none of the Joint Venture partners should have a non-performance of a contract.",
+     "category": "LEGAL",
+     "mandatory_level": "INFORMATIONAL",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 3,
+       "section": null,
+       "excerpt": "In the case of Joint Ventures, none of the Joint Venture partners should have a non-performance of a contract."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-012",
+      "status": "UNKNOWN",
+      "method": "NO_EVIDENCE",
+      "supporting_evidence_ids": [],
+      "rationale": "Applies only to joint-venture bids; this supplier is bidding alone. Not assessed.",
+      "confidence": 1.0,
+      "risk_severity": null,
+      "reason_code": null
+     }
+    },
+    {
+     "requirement_id": "REQ-013",
+     "text": "There shall not be a consistent history of court/arbitral award decisions against the Bidder since 1st January 2010.",
+     "category": "LEGAL",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "threshold",
+      "field": "founded_year",
+      "operator": ">=",
+      "value": 2010,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 3,
+       "section": null,
+       "excerpt": "There shall not be a consistent history of court/arbitral award decisions against the Bidder since 1st January 2010."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-013",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [],
+      "rationale": "The evidence provides the founding year and other non-relevant details, but contains no information regarding court or arbitral award decisions.",
+      "confidence": 1.0,
+      "risk_severity": "HIGH",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    },
+    {
+     "requirement_id": "REQ-014",
+     "text": "The Bidder shall provide accurate information about any litigation or arbitration resulting from contracts completed or ongoing under its execution over the last five years.",
+     "category": "DOCUMENTATION",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 3,
+       "section": null,
+       "excerpt": "The Bidder shall provide accurate information about any litigation or arbitration resulting from contracts completed or ongoing under its execution over the last five years."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-014",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [],
+      "rationale": "The provided evidence contains manufacturer authorizations, a bank guarantee facility confirmation, and a signed declaration on grounds for exclusion, but none of these documents provide information regarding litigation or arbitration over the last five years.",
+      "confidence": 1.0,
+      "risk_severity": "HIGH",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    },
+    {
+     "requirement_id": "REQ-015",
+     "text": "A complete set of bidding documents in English may be purchased by interested Bidders on submission of a written application to the address below and upon payment of a nonrefundable fee of 250 TL or in 100 Euros.",
+     "category": "DOCUMENTATION",
+     "mandatory_level": "INFORMATIONAL",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 3,
+       "section": null,
+       "excerpt": "A complete set of bidding documents in English may be purchased by interested Bidders on submission of a written application to the address below and upon payment of a nonrefundable fee of 250 TL or in 100 Euros."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-015",
+      "status": "UNKNOWN",
+      "method": "NO_EVIDENCE",
+      "supporting_evidence_ids": [],
+      "rationale": "Tender-process clause (informational); not assessed against supplier evidence.",
+      "confidence": 1.0,
+      "risk_severity": null,
+      "reason_code": null
+     }
+    },
+    {
+     "requirement_id": "REQ-016",
+     "text": "Bids must be delivered to the address below at or before March 06, 2014 at 14:00 hrs (Turkey time).",
+     "category": "DELIVERY",
+     "mandatory_level": "INFORMATIONAL",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 3,
+       "section": null,
+       "excerpt": "Bids must be delivered to the address below at or before March 06, 2014 at 14:00 hrs (Turkey time)."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-016",
+      "status": "UNKNOWN",
+      "method": "NO_EVIDENCE",
+      "supporting_evidence_ids": [],
+      "rationale": "Tender-process clause (informational); not assessed against supplier evidence.",
+      "confidence": 1.0,
+      "risk_severity": null,
+      "reason_code": null
+     }
+    },
+    {
+     "requirement_id": "REQ-017",
+     "text": "Bids need to be secured by a Bid Security. The amount of Bid Security required is: USD 200.000 (Two hundred thousand US Dollars) or an equivalent amount in a freely convertible currency.",
+     "category": "COMMERCIAL",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "threshold",
+      "field": null,
+      "operator": ">=",
+      "value": 200000,
+      "unit": "USD",
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 3,
+       "section": null,
+       "excerpt": "Bids need to be secured by a Bid Security. The amount of Bid Security required is: USD 200.000 (Two hundred thousand US Dollars) or an equivalent amount in a freely convertible currency."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-017",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [
+       "EVD-D-bank"
+      ],
+      "rationale": "The evidence shows a bank guarantee facility confirmation of 300,000 EUR approved for tender and performance guarantees, but it does not establish that a bid security of USD 200,000 or equivalent has been actually provided for this bid.",
+      "confidence": 1.0,
+      "risk_severity": "MEDIUM",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    },
+    {
+     "requirement_id": "REQ-018",
+     "text": "Late bids will be rejected.",
+     "category": "DELIVERY",
+     "mandatory_level": "INFORMATIONAL",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 3,
+       "section": null,
+       "excerpt": "Late bids will be rejected."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-018",
+      "status": "UNKNOWN",
+      "method": "NO_EVIDENCE",
+      "supporting_evidence_ids": [],
+      "rationale": "Tender-process clause (informational); not assessed against supplier evidence.",
+      "confidence": 1.0,
+      "risk_severity": null,
+      "reason_code": null
+     }
+    },
+    {
+     "requirement_id": "REQ-019",
+     "text": "The attention of prospective Bidders is drawn to (i) the fact that they will be required to certify in their bids that all software is either covered by a valid license or was produced by the Bidder",
+     "category": "CERTIFICATION",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 3,
+       "section": null,
+       "excerpt": "The attention of prospective Bidders is drawn to (i) the fact that they will be required to certify in their bids that all software is either covered by a valid license or was produced by the Bidder"
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-019",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [],
+      "rationale": "The evidence includes manufacturer authorizations, a bank guarantee facility confirmation, and a declaration of exclusion grounds, but none contain the required certification that all software is covered by a valid license or produced by the Bidder.",
+      "confidence": 1.0,
+      "risk_severity": "HIGH",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    }
+   ],
+   "chunks": [
+    {
+     "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+     "page_number": 1,
+     "text": "Specific Procurement Notice – AF-GA2.2 \n \n1 \nINVITATION FOR BIDS (IFB) \nJanuary 2014 \nTURKEY \nISTANBUL SEISMIC RISK MITIGATION AND PREPAREDNESS (ISMEP) PROJECT  \nProcurement of Supply and Installation of Akfırat DMC IT Equipment \nLoan Number: 8033-TU \nISMEP_AF-GA2.2 \n1. \nThis Invitation for Bids (IFB) follows the Specific Procurement Notice (SPN) for this \nproject that appeared in UNDB online on March 16, 2011. \n2. \nIn order to prepare Istanbul for a potential earthquake the Republic of Turkey has \nreceived an Additional Loan from the International Bank for Reconstruction and \nDevelopment toward the cost of the Istanbul Seismic Risk Mitigation and Emergency \nPreparedness Project (ISMEP) and it intends to apply part of the proceeds of this \nLoan to payments under the Contract resulting from this IFB:  ISMEP-AF-GA2.2. \n3. \nIstanbul Project Coordination Unit (IPCU) serves as the implementing agency for the \nProject and now invites sealed bids from eligible Bidders for Supply and Installation \nof servers, backup system, network equipment, IT peripherals, COTS software, \nimplementing data center infrastructure (power, cooling, cabling, fire protection, \nCCTV, access control system, etc…). The supply and installation period is eleven \n(11) months. \n \n4. \nBidding will be conducted using the International Competitive Bidding (ICB) \nprocedures specified in the World Bank’s Guidelines: Procurement under IBRD \nLoans and IDA Credits, edition of May 2004 and revised in October 2006 and May \n2010, and is open to all Bidders eligible as defined in these Guidelines, that meet the \nfollowing minimum qualification criteria: \n  During the past five (5) years, the Bidders must have successfully completed at least \none (1) similar contract for the establishment, testing, installation, and technical \nsupport of infrastructure corporate network with at least 150 clients of similar \nfunctional/technical characteristics given in the Technical Requirements in Section VI \nof this Bidding Documents.  \nThe Bidder shall give a reference list of the systems installed in Turkey and abroad \nwithin last five years in relation with the system(s) mentioned in the scope of the bid \n(similar in nature and complexity), and the names and addresses, fax numbers and \ncontact person of major customers, including reference letters at least from two major \ncustomers. IPCU has the right to contact with these customers. Should any wrong \ndeclaration exist; the bid will be evaluated as non-responsive."
+    },
+    {
+     "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+     "page_number": 2,
+     "text": "Specific Procurement Notice – AF-GA2.2 \n \n \n \n The annual average turnover of the Bidder must exceed USD 20 Million (twenty \nmillion US Dollars) or an equivalent amount in a freely convertible currency during \nlast three (3) years. \n The Bidder shall furnish documentary evidence that the bidder has access to, or has \navailable, liquid assets, lines of credit, and other financial means to successfully \nperform the contract, in an amount not less than USD 2.000.000 (two million US \nDollars) or an equivalent amount in a freely convertible currency. \n The Bidders may establish Joint Ventures (JV) to enhance their capabilities. All joint \nventure partners shall operate in the Information Technology Sector. Qualification \nrequirements for Joint Ventures (JV) are as follows: \n The JV Partners shall collectively demonstrate that during the past five (5) years, they \nhave successfully completed at least one (1) similar contract for the establishment, \ntesting, installation, and technical support of infrastructure corporate network with at \nleast 150 clients of similar functional/technical characteristics given in the Technical \nRequirements in Section VI of this Bidding Documents.   \nThe JV partners shall give a reference list of the systems installed in Turkey and \nabroad within last five years in relation with the system(s) mentioned in the scope of \nthe bid (similar in nature and complexity), and the names and addresses, fax numbers \nand contact person of major customers, including reference letters at least from two \nmajor customers. IPCU has the right to contact with these customers. Should any \nwrong declaration exist; the bid will be evaluated as non-responsive. \n The annual average turnover of the JV Partners collectively must exceed USD 20 \nMillion (twenty million US Dollars) or an equivalent amount in a freely convertible \ncurrency during last 3 (three) years, where the average turnover of the Lead Partner \nmust exceed 40% of this amount and each of the other partners having at least 25% of \nthis amount during the last 3 years. \n The Bidder shall furnish documentary evidence that the JV Partners collectively have \naccess to, or have available, liquid assets, lines of credit, and other financial means to \nsuccessfully perform the contract, in an amount not less than USD 2.000.000 (two \nmillion US Dollars) or an equivalent amount in a freely convertible currency. \nIn addition, following qualification requirements shall be complied by the single \nBidders or Joint Ventures: \n Non-performance of a contract did not occur as a result of the Bidder's default since \n1st January 2010.  Non performance, as decided by the Employer, shall include all \ncontracts where (a) non performance was not challenged by the supplier, including \nthrough referral to the dispute resolution mechanism under the respective contract, \nand (b) contracts that were so challenged but fully settled against the supplier. Non \nperformance shall not include contracts where Employers decision was overruled by \nthe dispute resolution mechanism. Non performance must be based on all information \non fully settled disputes or litigation, i.e. dispute or litigation that has been resolved in"
+    },
+    {
+     "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+     "page_number": 3,
+     "text": "Specific Procurement Notice – AF-GA2.2 \n \n \naccordance with the dispute resolution mechanism under the respective contract and \nwhere all appeal instances available to the applicant have been exhausted. In the case \nof Joint Ventures, none of the Joint Venture partners should have a non-performance \nof a contract. \n There shall not be a consistent history of court/arbitral award decisions against the \nBidder since 1st January 2010. The Bidder shall provide accurate information about \nany litigation or arbitration resulting from contracts completed or ongoing under its \nexecution over the last five years. A consistent history of awards against the Bidder or \nany member of a joint venture may result in failure of the qualification.\" \n5. \nInterested eligible Bidders may obtain further information from IPCU and inspect the \nbidding documents at the address given below from 9:00 a.m to 5:00 p.m. (Turkey \ntime).  \n6. \nA complete set of bidding documents in English may be purchased by interested \nBidders on submission of a written application to the address below and upon \npayment of a nonrefundable fee of 250 TL or in 100 Euros.  The method of payment \nwill \nbe \ndirect \ndeposit \nto \nbank \naccount \nnumbers \nare \nas \nfollows: \n \n \nTL Account:  \n \nVakıfbank Mercan Branch Istanbul, \n \nIBAN Number: TR31 0001 5001 5800 7286 1036 53  \n \n \n \nEURO Account:  \n \nVakıfbank Mercan Branch Istanbul, \n \nIBAN Number: TR91 0001 5001 5804 8000 3946 63 \n \n \n \nThe document will be sent by certified mail. \n \n7. \nBids must be delivered to the address below at or before March 06, 2014 at 14:00 hrs \n(Turkey time).  Bids need to be secured by a Bid Security. The amount of Bid \nSecurity required is: USD 200.000 (Two hundred thousand US Dollars) or an \nequivalent amount in a freely convertible currency.  Late bids will be rejected. Bids \nwill be opened in the presence of Bidders’ representatives who choose to attend at the \naddress below at March 06, 2014 at 14:00 hrs (Turkey time). \n8. \nThe attention of prospective Bidders is drawn to (i) the fact that they will be required \nto certify in their bids that all software is either covered by a valid license or was \nproduced by the Bidder and (ii) that violations are considered fraud, which can result \nin ineligibility to be awarded World Bank-financed contracts."
+    },
+    {
+     "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+     "page_number": 4,
+     "text": "Specific Procurement Notice – AF-GA2.2 \n \n \n \nADDRESS FOR OBTAINING FURTHER INFORMATION: \nK Gökhan ELGİN - Director \nIstanbul Project Coordination Unit \nM. Kemalettin Mah. Tiyatro Cad. No: 8    34126  \n \nBeyazıt-Fatih  \n \nİSTANBUL - TURKEY \n \nTel: +90.212.5185500 \nFax: +90.212.5185505 \ne-mail: info@ipkb.gov.tr   \n \nADDRESS FOR BID SUBMISSION AND BID OPENING: \nIstanbul Project Coordination Unit \nSatınalma Birimi (Department of Procurement Unit) \nM. Kemalettin Mah. Tiyatro Cad. No: 8    34126  \n \nBeyazıt-Fatih  \nİSTANBUL - TURKEY"
+    }
+   ]
+  },
+  {
+   "requirements": [
+    {
+     "requirement_id": "REQ-001",
+     "text": "The supply and installation period is eleven (11) months.",
+     "category": "DELIVERY",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "threshold",
+      "field": "delivery_period",
+      "operator": "<=",
+      "value": 11,
+      "unit": "months",
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 1,
+       "section": null,
+       "excerpt": "The supply and installation period is eleven (11) months."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-001",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [],
+      "rationale": "The evidence does not mention the supply and installation period of eleven months.",
+      "confidence": 1.0,
+      "risk_severity": "MEDIUM",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    },
+    {
+     "requirement_id": "REQ-002",
+     "text": "During the past five (5) years, the Bidders must have successfully completed at least one (1) similar contract for the establishment, testing, installation, and technical support of infrastructure corporate network with at least 150 clients of similar functional/technical characteristics given in the Technical Requirements in Section VI of this Bidding Documents.",
+     "category": "EXPERIENCE",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 1,
+       "section": null,
+       "excerpt": "During the past five (5) years, the Bidders must have successfully completed at least one (1) similar contract for the establishment, testing, installation, and technical support of infrastructure corporate network with at least 150 clients of similar functional/technical characteristics given in the Technical Requirements in Section VI of this Bidding Documents."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-002",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [
+       "EVD-P-001",
+       "EVD-P-002",
+       "EVD-P-003"
+      ],
+      "rationale": "The evidence lists similar projects completed in the past years, but does not explicitly state the number of clients (at least 150) for each corporate network infrastructure project.",
+      "confidence": 0.9,
+      "risk_severity": "HIGH",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    },
+    {
+     "requirement_id": "REQ-003",
+     "text": "The Bidder shall give a reference list of the systems installed in Turkey and abroad within last five years in relation with the system(s) mentioned in the scope of the bid (similar in nature and complexity), and the names and addresses, fax numbers and contact person of major customers, including reference letters at least from two major customers.",
+     "category": "EXPERIENCE",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 1,
+       "section": null,
+       "excerpt": "The Bidder shall give a reference list of the systems installed in Turkey and abroad within last five years in relation with the system(s) mentioned in the scope of the bid (similar in nature and complexity), and the names and addresses, fax numbers and contact person of major customers, including reference letters at least from two major customers."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-003",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [
+       "EVD-P-001",
+       "EVD-P-002",
+       "EVD-P-003"
+      ],
+      "rationale": "While the evidence lists completed projects with customer names, it does not include contact details (addresses, fax numbers, contact persons) or reference letters from at least two major customers as required.",
+      "confidence": 0.9,
+      "risk_severity": "HIGH",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    },
+    {
+     "requirement_id": "REQ-004",
+     "text": "The annual average turnover of the Bidder must exceed USD 20 Million (twenty million US Dollars) or an equivalent amount in a freely convertible currency during last three (3) years.",
+     "category": "FINANCIAL",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "threshold",
+      "field": "annual_revenue",
+      "operator": ">",
+      "value": 20000000,
+      "unit": "USD",
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 2,
+       "section": null,
+       "excerpt": "The annual average turnover of the Bidder must exceed USD 20 Million (twenty million US Dollars) or an equivalent amount in a freely convertible currency during last three (3) years."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-004",
+      "status": "NOT_MET",
+      "method": "DETERMINISTIC_RULE",
+      "supporting_evidence_ids": [
+       "EVD-R-2024"
+      ],
+      "rationale": "required annual_revenue > 17,435,897 EUR; supplier has 4,600,000 EUR.",
+      "confidence": 0.99,
+      "risk_severity": "CRITICAL",
+      "reason_code": "FINANCIAL_THRESHOLD_NOT_MET"
+     }
+    },
+    {
+     "requirement_id": "REQ-005",
+     "text": "The Bidder shall furnish documentary evidence that the bidder has access to, or has available, liquid assets, lines of credit, and other financial means to successfully perform the contract, in an amount not less than USD 2.000.000 (two million US Dollars) or an equivalent amount in a freely convertible currency.",
+     "category": "FINANCIAL",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "threshold",
+      "field": "liquid_assets",
+      "operator": ">=",
+      "value": 2000000,
+      "unit": "USD",
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 2,
+       "section": null,
+       "excerpt": "The Bidder shall furnish documentary evidence that the bidder has access to, or has available, liquid assets, lines of credit, and other financial means to successfully perform the contract, in an amount not less than USD 2.000.000 (two million US Dollars) or an equivalent amount in a freely convertible currency."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-005",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [
+       "EVD-D-bank"
+      ],
+      "rationale": "The bank letter confirms a guarantee facility of 300,000 EUR, but does not provide evidence of the total required liquid assets or lines of credit of USD 2,000,000.",
+      "confidence": 0.9,
+      "risk_severity": "HIGH",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    },
+    {
+     "requirement_id": "REQ-006",
+     "text": "All joint venture partners shall operate in the Information Technology Sector.",
+     "category": "LEGAL",
+     "mandatory_level": "INFORMATIONAL",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 2,
+       "section": null,
+       "excerpt": "All joint venture partners shall operate in the Information Technology Sector."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-006",
+      "status": "UNKNOWN",
+      "method": "NO_EVIDENCE",
+      "supporting_evidence_ids": [],
+      "rationale": "Applies only to joint-venture bids; this supplier is bidding alone. Not assessed.",
+      "confidence": 1.0,
+      "risk_severity": null,
+      "reason_code": null
+     }
+    },
+    {
+     "requirement_id": "REQ-007",
+     "text": "The JV Partners shall collectively demonstrate that during the past five (5) years, they have successfully completed at least one (1) similar contract for the establishment, testing, installation, and technical support of infrastructure corporate network with at least 150 clients of similar functional/technical characteristics given in the Technical Requirements in Section VI of this Bidding Documents.",
+     "category": "EXPERIENCE",
+     "mandatory_level": "INFORMATIONAL",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 2,
+       "section": null,
+       "excerpt": "The JV Partners shall collectively demonstrate that during the past five (5) years, they have successfully completed at least one (1) similar contract for the establishment, testing, installation, and technical support of infrastructure corporate network with at least 150 clients of similar functional/technical characteristics given in the Technical Requirements in Section VI of this Bidding Documents."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-007",
+      "status": "UNKNOWN",
+      "method": "NO_EVIDENCE",
+      "supporting_evidence_ids": [],
+      "rationale": "Applies only to joint-venture bids; this supplier is bidding alone. Not assessed.",
+      "confidence": 1.0,
+      "risk_severity": null,
+      "reason_code": null
+     }
+    },
+    {
+     "requirement_id": "REQ-008",
+     "text": "The JV partners shall give a reference list of the systems installed in Turkey and abroad within last five years in relation with the system(s) mentioned in the scope of the bid (similar in nature and complexity), and the names and addresses, fax numbers and contact person of major customers, including reference letters at least from two major customers.",
+     "category": "EXPERIENCE",
+     "mandatory_level": "INFORMATIONAL",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 2,
+       "section": null,
+       "excerpt": "The JV partners shall give a reference list of the systems installed in Turkey and abroad within last five years in relation with the system(s) mentioned in the scope of the bid (similar in nature and complexity), and the names and addresses, fax numbers and contact person of major customers, including reference letters at least from two major customers."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-008",
+      "status": "UNKNOWN",
+      "method": "NO_EVIDENCE",
+      "supporting_evidence_ids": [],
+      "rationale": "Applies only to joint-venture bids; this supplier is bidding alone. Not assessed.",
+      "confidence": 1.0,
+      "risk_severity": null,
+      "reason_code": null
+     }
+    },
+    {
+     "requirement_id": "REQ-009",
+     "text": "The annual average turnover of the JV Partners collectively must exceed USD 20 Million (twenty million US Dollars) or an equivalent amount in a freely convertible currency during last 3 (three) years, where the average turnover of the Lead Partner must exceed 40% of this amount and each of the other partners having at least 25% of this amount during the last 3 years.",
+     "category": "FINANCIAL",
+     "mandatory_level": "INFORMATIONAL",
+     "normalized_rule": {
+      "rule_type": "threshold",
+      "field": "annual_revenue",
+      "operator": ">",
+      "value": 20000000,
+      "unit": "USD",
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 2,
+       "section": null,
+       "excerpt": "The annual average turnover of the JV Partners collectively must exceed USD 20 Million (twenty million US Dollars) or an equivalent amount in a freely convertible currency during last 3 (three) years, where the average turnover of the Lead Partner must exceed 40% of this amount and each of the other partners having at least 25% of this amount during the last 3 years."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-009",
+      "status": "UNKNOWN",
+      "method": "NO_EVIDENCE",
+      "supporting_evidence_ids": [],
+      "rationale": "Applies only to joint-venture bids; this supplier is bidding alone. Not assessed.",
+      "confidence": 1.0,
+      "risk_severity": null,
+      "reason_code": null
+     }
+    },
+    {
+     "requirement_id": "REQ-010",
+     "text": "The Bidder shall furnish documentary evidence that the JV Partners collectively have access to, or have available, liquid assets, lines of credit, and other financial means to successfully perform the contract, in an amount not less than USD 2.000.000 (two million US Dollars) or an equivalent amount in a freely convertible currency.",
+     "category": "FINANCIAL",
+     "mandatory_level": "INFORMATIONAL",
+     "normalized_rule": {
+      "rule_type": "threshold",
+      "field": "liquid_assets",
+      "operator": ">=",
+      "value": 2000000,
+      "unit": "USD",
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 2,
+       "section": null,
+       "excerpt": "The Bidder shall furnish documentary evidence that the JV Partners collectively have access to, or have available, liquid assets, lines of credit, and other financial means to successfully perform the contract, in an amount not less than USD 2.000.000 (two million US Dollars) or an equivalent amount in a freely convertible currency."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-010",
+      "status": "UNKNOWN",
+      "method": "NO_EVIDENCE",
+      "supporting_evidence_ids": [],
+      "rationale": "Applies only to joint-venture bids; this supplier is bidding alone. Not assessed.",
+      "confidence": 1.0,
+      "risk_severity": null,
+      "reason_code": null
+     }
+    },
+    {
+     "requirement_id": "REQ-011",
+     "text": "Non-performance of a contract did not occur as a result of the Bidder's default since 1st January 2010.",
+     "category": "LEGAL",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "date",
+      "field": "non_performance_since",
+      "operator": ">=",
+      "value": "2010-01-01",
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 2,
+       "section": null,
+       "excerpt": "Non-performance of a contract did not occur as a result of the Bidder's default since 1st January 2010."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-011",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [],
+      "rationale": "The provided evidence does not contain information regarding non-performance of contracts since 1st January 2010.",
+      "confidence": 1.0,
+      "risk_severity": "HIGH",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    },
+    {
+     "requirement_id": "REQ-012",
+     "text": "In the case of Joint Ventures, none of the Joint Venture partners should have a non-performance of a contract.",
+     "category": "LEGAL",
+     "mandatory_level": "INFORMATIONAL",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 3,
+       "section": null,
+       "excerpt": "In the case of Joint Ventures, none of the Joint Venture partners should have a non-performance of a contract."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-012",
+      "status": "UNKNOWN",
+      "method": "NO_EVIDENCE",
+      "supporting_evidence_ids": [],
+      "rationale": "Applies only to joint-venture bids; this supplier is bidding alone. Not assessed.",
+      "confidence": 1.0,
+      "risk_severity": null,
+      "reason_code": null
+     }
+    },
+    {
+     "requirement_id": "REQ-013",
+     "text": "There shall not be a consistent history of court/arbitral award decisions against the Bidder since 1st January 2010.",
+     "category": "LEGAL",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "date",
+      "field": "founded_year",
+      "operator": ">=",
+      "value": "2010-01-01",
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 3,
+       "section": null,
+       "excerpt": "There shall not be a consistent history of court/arbitral award decisions against the Bidder since 1st January 2010."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-013",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [],
+      "rationale": "The evidence does not mention the history of court or arbitral award decisions against the bidder.",
+      "confidence": 1.0,
+      "risk_severity": "HIGH",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    },
+    {
+     "requirement_id": "REQ-014",
+     "text": "The Bidder shall provide accurate information about any litigation or arbitration resulting from contracts completed or ongoing under its execution over the last five years.",
+     "category": "DOCUMENTATION",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 3,
+       "section": null,
+       "excerpt": "The Bidder shall provide accurate information about any litigation or arbitration resulting from contracts completed or ongoing under its execution over the last five years."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-014",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [],
+      "rationale": "The provided evidence contains manufacturer authorization letters, a bank guarantee facility confirmation, and a signed declaration on grounds for exclusion, but none of these documents provide information regarding litigation or arbitration over the last five years.",
+      "confidence": 1.0,
+      "risk_severity": "HIGH",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    },
+    {
+     "requirement_id": "REQ-015",
+     "text": "A complete set of bidding documents in English may be purchased by interested Bidders on submission of a written application to the address below and upon payment of a nonrefundable fee of 250 TL or in 100 Euros.",
+     "category": "COMMERCIAL",
+     "mandatory_level": "INFORMATIONAL",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 3,
+       "section": null,
+       "excerpt": "A complete set of bidding documents in English may be purchased by interested Bidders on submission of a written application to the address below and upon payment of a nonrefundable fee of 250 TL or in 100 Euros."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-015",
+      "status": "UNKNOWN",
+      "method": "NO_EVIDENCE",
+      "supporting_evidence_ids": [],
+      "rationale": "Tender-process clause (informational); not assessed against supplier evidence.",
+      "confidence": 1.0,
+      "risk_severity": null,
+      "reason_code": null
+     }
+    },
+    {
+     "requirement_id": "REQ-016",
+     "text": "Bids must be delivered to the address below at or before March 06, 2014 at 14:00 hrs (Turkey time).",
+     "category": "DELIVERY",
+     "mandatory_level": "INFORMATIONAL",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 3,
+       "section": null,
+       "excerpt": "Bids must be delivered to the address below at or before March 06, 2014 at 14:00 hrs (Turkey time)."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-016",
+      "status": "UNKNOWN",
+      "method": "NO_EVIDENCE",
+      "supporting_evidence_ids": [],
+      "rationale": "Tender-process clause (informational); not assessed against supplier evidence.",
+      "confidence": 1.0,
+      "risk_severity": null,
+      "reason_code": null
+     }
+    },
+    {
+     "requirement_id": "REQ-017",
+     "text": "Bids need to be secured by a Bid Security. The amount of Bid Security required is: USD 200.000 (Two hundred thousand US Dollars) or an equivalent amount in a freely convertible currency.",
+     "category": "COMMERCIAL",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "threshold",
+      "field": "annual_revenue",
+      "operator": ">=",
+      "value": 200000,
+      "unit": "USD",
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 3,
+       "section": null,
+       "excerpt": "Bids need to be secured by a Bid Security. The amount of Bid Security required is: USD 200.000 (Two hundred thousand US Dollars) or an equivalent amount in a freely convertible currency."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-017",
+      "status": "PARTIALLY_MET",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [
+       "EVD-D-bank"
+      ],
+      "rationale": "The evidence shows a bank guarantee facility of 300,000 EUR approved for tender and performance guarantees, which exceeds USD 200,000 equivalent, but does not provide the actual Bid Security instrument for this specific tender.",
+      "confidence": 0.9,
+      "risk_severity": "HIGH",
+      "reason_code": "MANDATORY_PARTIALLY_MET"
+     }
+    },
+    {
+     "requirement_id": "REQ-018",
+     "text": "Late bids will be rejected.",
+     "category": "DELIVERY",
+     "mandatory_level": "INFORMATIONAL",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 3,
+       "section": null,
+       "excerpt": "Late bids will be rejected."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-018",
+      "status": "UNKNOWN",
+      "method": "NO_EVIDENCE",
+      "supporting_evidence_ids": [],
+      "rationale": "Tender-process clause (informational); not assessed against supplier evidence.",
+      "confidence": 1.0,
+      "risk_severity": null,
+      "reason_code": null
+     }
+    },
+    {
+     "requirement_id": "REQ-019",
+     "text": "The attention of prospective Bidders is drawn to (i) the fact that they will be required to certify in their bids that all software is either covered by a valid license or was produced by the Bidder",
+     "category": "CERTIFICATION",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 3,
+       "section": null,
+       "excerpt": "The attention of prospective Bidders is drawn to (i) the fact that they will be required to certify in their bids that all software is either covered by a valid license or was produced by the Bidder"
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-019",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [],
+      "rationale": "The evidence includes manufacturer authorizations, a declaration on exclusion grounds, and a bank guarantee confirmation, but none contain the required certification that all software is covered by a valid license or produced by the Bidder.",
+      "confidence": 1.0,
+      "risk_severity": "HIGH",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    }
+   ],
+   "chunks": [
+    {
+     "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+     "page_number": 1,
+     "text": "Specific Procurement Notice – AF-GA2.2 \n \n1 \nINVITATION FOR BIDS (IFB) \nJanuary 2014 \nTURKEY \nISTANBUL SEISMIC RISK MITIGATION AND PREPAREDNESS (ISMEP) PROJECT  \nProcurement of Supply and Installation of Akfırat DMC IT Equipment \nLoan Number: 8033-TU \nISMEP_AF-GA2.2 \n1. \nThis Invitation for Bids (IFB) follows the Specific Procurement Notice (SPN) for this \nproject that appeared in UNDB online on March 16, 2011. \n2. \nIn order to prepare Istanbul for a potential earthquake the Republic of Turkey has \nreceived an Additional Loan from the International Bank for Reconstruction and \nDevelopment toward the cost of the Istanbul Seismic Risk Mitigation and Emergency \nPreparedness Project (ISMEP) and it intends to apply part of the proceeds of this \nLoan to payments under the Contract resulting from this IFB:  ISMEP-AF-GA2.2. \n3. \nIstanbul Project Coordination Unit (IPCU) serves as the implementing agency for the \nProject and now invites sealed bids from eligible Bidders for Supply and Installation \nof servers, backup system, network equipment, IT peripherals, COTS software, \nimplementing data center infrastructure (power, cooling, cabling, fire protection, \nCCTV, access control system, etc…). The supply and installation period is eleven \n(11) months. \n \n4. \nBidding will be conducted using the International Competitive Bidding (ICB) \nprocedures specified in the World Bank’s Guidelines: Procurement under IBRD \nLoans and IDA Credits, edition of May 2004 and revised in October 2006 and May \n2010, and is open to all Bidders eligible as defined in these Guidelines, that meet the \nfollowing minimum qualification criteria: \n  During the past five (5) years, the Bidders must have successfully completed at least \none (1) similar contract for the establishment, testing, installation, and technical \nsupport of infrastructure corporate network with at least 150 clients of similar \nfunctional/technical characteristics given in the Technical Requirements in Section VI \nof this Bidding Documents.  \nThe Bidder shall give a reference list of the systems installed in Turkey and abroad \nwithin last five years in relation with the system(s) mentioned in the scope of the bid \n(similar in nature and complexity), and the names and addresses, fax numbers and \ncontact person of major customers, including reference letters at least from two major \ncustomers. IPCU has the right to contact with these customers. Should any wrong \ndeclaration exist; the bid will be evaluated as non-responsive."
+    },
+    {
+     "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+     "page_number": 2,
+     "text": "Specific Procurement Notice – AF-GA2.2 \n \n \n \n The annual average turnover of the Bidder must exceed USD 20 Million (twenty \nmillion US Dollars) or an equivalent amount in a freely convertible currency during \nlast three (3) years. \n The Bidder shall furnish documentary evidence that the bidder has access to, or has \navailable, liquid assets, lines of credit, and other financial means to successfully \nperform the contract, in an amount not less than USD 2.000.000 (two million US \nDollars) or an equivalent amount in a freely convertible currency. \n The Bidders may establish Joint Ventures (JV) to enhance their capabilities. All joint \nventure partners shall operate in the Information Technology Sector. Qualification \nrequirements for Joint Ventures (JV) are as follows: \n The JV Partners shall collectively demonstrate that during the past five (5) years, they \nhave successfully completed at least one (1) similar contract for the establishment, \ntesting, installation, and technical support of infrastructure corporate network with at \nleast 150 clients of similar functional/technical characteristics given in the Technical \nRequirements in Section VI of this Bidding Documents.   \nThe JV partners shall give a reference list of the systems installed in Turkey and \nabroad within last five years in relation with the system(s) mentioned in the scope of \nthe bid (similar in nature and complexity), and the names and addresses, fax numbers \nand contact person of major customers, including reference letters at least from two \nmajor customers. IPCU has the right to contact with these customers. Should any \nwrong declaration exist; the bid will be evaluated as non-responsive. \n The annual average turnover of the JV Partners collectively must exceed USD 20 \nMillion (twenty million US Dollars) or an equivalent amount in a freely convertible \ncurrency during last 3 (three) years, where the average turnover of the Lead Partner \nmust exceed 40% of this amount and each of the other partners having at least 25% of \nthis amount during the last 3 years. \n The Bidder shall furnish documentary evidence that the JV Partners collectively have \naccess to, or have available, liquid assets, lines of credit, and other financial means to \nsuccessfully perform the contract, in an amount not less than USD 2.000.000 (two \nmillion US Dollars) or an equivalent amount in a freely convertible currency. \nIn addition, following qualification requirements shall be complied by the single \nBidders or Joint Ventures: \n Non-performance of a contract did not occur as a result of the Bidder's default since \n1st January 2010.  Non performance, as decided by the Employer, shall include all \ncontracts where (a) non performance was not challenged by the supplier, including \nthrough referral to the dispute resolution mechanism under the respective contract, \nand (b) contracts that were so challenged but fully settled against the supplier. Non \nperformance shall not include contracts where Employers decision was overruled by \nthe dispute resolution mechanism. Non performance must be based on all information \non fully settled disputes or litigation, i.e. dispute or litigation that has been resolved in"
+    },
+    {
+     "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+     "page_number": 3,
+     "text": "Specific Procurement Notice – AF-GA2.2 \n \n \naccordance with the dispute resolution mechanism under the respective contract and \nwhere all appeal instances available to the applicant have been exhausted. In the case \nof Joint Ventures, none of the Joint Venture partners should have a non-performance \nof a contract. \n There shall not be a consistent history of court/arbitral award decisions against the \nBidder since 1st January 2010. The Bidder shall provide accurate information about \nany litigation or arbitration resulting from contracts completed or ongoing under its \nexecution over the last five years. A consistent history of awards against the Bidder or \nany member of a joint venture may result in failure of the qualification.\" \n5. \nInterested eligible Bidders may obtain further information from IPCU and inspect the \nbidding documents at the address given below from 9:00 a.m to 5:00 p.m. (Turkey \ntime).  \n6. \nA complete set of bidding documents in English may be purchased by interested \nBidders on submission of a written application to the address below and upon \npayment of a nonrefundable fee of 250 TL or in 100 Euros.  The method of payment \nwill \nbe \ndirect \ndeposit \nto \nbank \naccount \nnumbers \nare \nas \nfollows: \n \n \nTL Account:  \n \nVakıfbank Mercan Branch Istanbul, \n \nIBAN Number: TR31 0001 5001 5800 7286 1036 53  \n \n \n \nEURO Account:  \n \nVakıfbank Mercan Branch Istanbul, \n \nIBAN Number: TR91 0001 5001 5804 8000 3946 63 \n \n \n \nThe document will be sent by certified mail. \n \n7. \nBids must be delivered to the address below at or before March 06, 2014 at 14:00 hrs \n(Turkey time).  Bids need to be secured by a Bid Security. The amount of Bid \nSecurity required is: USD 200.000 (Two hundred thousand US Dollars) or an \nequivalent amount in a freely convertible currency.  Late bids will be rejected. Bids \nwill be opened in the presence of Bidders’ representatives who choose to attend at the \naddress below at March 06, 2014 at 14:00 hrs (Turkey time). \n8. \nThe attention of prospective Bidders is drawn to (i) the fact that they will be required \nto certify in their bids that all software is either covered by a valid license or was \nproduced by the Bidder and (ii) that violations are considered fraud, which can result \nin ineligibility to be awarded World Bank-financed contracts."
+    },
+    {
+     "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+     "page_number": 4,
+     "text": "Specific Procurement Notice – AF-GA2.2 \n \n \n \nADDRESS FOR OBTAINING FURTHER INFORMATION: \nK Gökhan ELGİN - Director \nIstanbul Project Coordination Unit \nM. Kemalettin Mah. Tiyatro Cad. No: 8    34126  \n \nBeyazıt-Fatih  \n \nİSTANBUL - TURKEY \n \nTel: +90.212.5185500 \nFax: +90.212.5185505 \ne-mail: info@ipkb.gov.tr   \n \nADDRESS FOR BID SUBMISSION AND BID OPENING: \nIstanbul Project Coordination Unit \nSatınalma Birimi (Department of Procurement Unit) \nM. Kemalettin Mah. Tiyatro Cad. No: 8    34126  \n \nBeyazıt-Fatih  \nİSTANBUL - TURKEY"
+    }
+   ]
+  },
+  {
+   "requirements": [
+    {
+     "requirement_id": "REQ-001",
+     "text": "The supply and installation period is eleven (11) months.",
+     "category": "DELIVERY",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "threshold",
+      "field": "delivery_period",
+      "operator": "<=",
+      "value": 11,
+      "unit": "months",
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 1,
+       "section": null,
+       "excerpt": "The supply and installation period is eleven (11) months."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-001",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [],
+      "rationale": "The evidence does not mention the supply and installation period.",
+      "confidence": 1.0,
+      "risk_severity": "MEDIUM",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    },
+    {
+     "requirement_id": "REQ-002",
+     "text": "During the past five (5) years, the Bidders must have successfully completed at least one (1) similar contract for the establishment, testing, installation, and technical support of infrastructure corporate network with at least 150 clients of similar functional/technical characteristics given in the Technical Requirements in Section VI of this Bidding Documents.",
+     "category": "EXPERIENCE",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 1,
+       "section": null,
+       "excerpt": "During the past five (5) years, the Bidders must have successfully completed at least one (1) similar contract for the establishment, testing, installation, and technical support of infrastructure corporate network with at least 150 clients of similar functional/technical characteristics given in the Technical Requirements in Section VI of this Bidding Documents."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-002",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [
+       "EVD-P-001",
+       "EVD-P-002",
+       "EVD-P-003"
+      ],
+      "rationale": "The projects listed provide details on value, equipment, and completion, but do not state the number of clients (at least 150 clients) for the similar contracts.",
+      "confidence": 1.0,
+      "risk_severity": "HIGH",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    },
+    {
+     "requirement_id": "REQ-003",
+     "text": "The Bidder shall give a reference list of the systems installed in Turkey and abroad within last five years in relation with the system(s) mentioned in the scope of the bid (similar in nature and complexity), and the names and addresses, fax numbers and contact person of major customers, including reference letters at least from two major customers.",
+     "category": "DOCUMENTATION",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 1,
+       "section": null,
+       "excerpt": "The Bidder shall give a reference list of the systems installed in Turkey and abroad within last five years in relation with the system(s) mentioned in the scope of the bid (similar in nature and complexity), and the names and addresses, fax numbers and contact person of major customers, including reference letters at least from two major customers."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-003",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [],
+      "rationale": "The provided evidence contains manufacturer authorizations, a bank guarantee facility, and the country of establishment, but lacks the required reference list of installed systems and reference letters from major customers.",
+      "confidence": 1.0,
+      "risk_severity": "HIGH",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    },
+    {
+     "requirement_id": "REQ-004",
+     "text": "The annual average turnover of the Bidder must exceed USD 20 Million (twenty million US Dollars) or an equivalent amount in a freely convertible currency during last three (3) years.",
+     "category": "FINANCIAL",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "threshold",
+      "field": "annual_revenue",
+      "operator": ">",
+      "value": 20000000,
+      "unit": "USD",
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 2,
+       "section": null,
+       "excerpt": "The annual average turnover of the Bidder must exceed USD 20 Million (twenty million US Dollars) or an equivalent amount in a freely convertible currency during last three (3) years."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-004",
+      "status": "NOT_MET",
+      "method": "DETERMINISTIC_RULE",
+      "supporting_evidence_ids": [
+       "EVD-R-2024"
+      ],
+      "rationale": "required annual_revenue > 17,435,897 EUR; supplier has 4,600,000 EUR.",
+      "confidence": 0.99,
+      "risk_severity": "CRITICAL",
+      "reason_code": "FINANCIAL_THRESHOLD_NOT_MET"
+     }
+    },
+    {
+     "requirement_id": "REQ-005",
+     "text": "The Bidder shall furnish documentary evidence that the bidder has access to, or has available, liquid assets, lines of credit, and other financial means to successfully perform the contract, in an amount not less than USD 2.000.000 (two million US Dollars) or an equivalent amount in a freely convertible currency.",
+     "category": "FINANCIAL",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "threshold",
+      "field": "liquid_assets",
+      "operator": ">=",
+      "value": 2000000,
+      "unit": "USD",
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 2,
+       "section": null,
+       "excerpt": "The Bidder shall furnish documentary evidence that the bidder has access to, or has available, liquid assets, lines of credit, and other financial means to successfully perform the contract, in an amount not less than USD 2.000.000 (two million US Dollars) or an equivalent amount in a freely convertible currency."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-005",
+      "status": "NOT_MET",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [
+       "EVD-D-bank"
+      ],
+      "rationale": "The evidence shows a bank guarantee facility of 300,000 EUR, which falls well short of the required USD 2,000,000 (or equivalent in a freely convertible currency) in liquid assets or credit lines.",
+      "confidence": 1.0,
+      "risk_severity": "CRITICAL",
+      "reason_code": "FINANCIAL_THRESHOLD_NOT_MET"
+     }
+    },
+    {
+     "requirement_id": "REQ-006",
+     "text": "All joint venture partners shall operate in the Information Technology Sector.",
+     "category": "LEGAL",
+     "mandatory_level": "INFORMATIONAL",
+     "normalized_rule": {
+      "rule_type": "boolean",
+      "field": "it_sector_operation",
+      "operator": "==",
+      "value": true,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 2,
+       "section": null,
+       "excerpt": "All joint venture partners shall operate in the Information Technology Sector."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-006",
+      "status": "UNKNOWN",
+      "method": "NO_EVIDENCE",
+      "supporting_evidence_ids": [],
+      "rationale": "Applies only to joint-venture bids; this supplier is bidding alone. Not assessed.",
+      "confidence": 1.0,
+      "risk_severity": null,
+      "reason_code": null
+     }
+    },
+    {
+     "requirement_id": "REQ-007",
+     "text": "The JV Partners shall collectively demonstrate that during the past five (5) years, they have successfully completed at least one (1) similar contract for the establishment, testing, installation, and technical support of infrastructure corporate network with at least 150 clients of similar functional/technical characteristics given in the Technical Requirements in Section VI of this Bidding Documents.",
+     "category": "EXPERIENCE",
+     "mandatory_level": "INFORMATIONAL",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 2,
+       "section": null,
+       "excerpt": "The JV Partners shall collectively demonstrate that during the past five (5) years, they have successfully completed at least one (1) similar contract for the establishment, testing, installation, and technical support of infrastructure corporate network with at least 150 clients of similar functional/technical characteristics given in the Technical Requirements in Section VI of this Bidding Documents."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-007",
+      "status": "UNKNOWN",
+      "method": "NO_EVIDENCE",
+      "supporting_evidence_ids": [],
+      "rationale": "Applies only to joint-venture bids; this supplier is bidding alone. Not assessed.",
+      "confidence": 1.0,
+      "risk_severity": null,
+      "reason_code": null
+     }
+    },
+    {
+     "requirement_id": "REQ-008",
+     "text": "The JV partners shall give a reference list of the systems installed in Turkey and abroad within last five years in relation with the system(s) mentioned in the scope of the bid (similar in nature and complexity), and the names and addresses, fax numbers and contact person of major customers, including reference letters at least from two major customers.",
+     "category": "DOCUMENTATION",
+     "mandatory_level": "INFORMATIONAL",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 2,
+       "section": null,
+       "excerpt": "The JV partners shall give a reference list of the systems installed in Turkey and abroad within last five years in relation with the system(s) mentioned in the scope of the bid (similar in nature and complexity), and the names and addresses, fax numbers and contact person of major customers, including reference letters at least from two major customers."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-008",
+      "status": "UNKNOWN",
+      "method": "NO_EVIDENCE",
+      "supporting_evidence_ids": [],
+      "rationale": "Applies only to joint-venture bids; this supplier is bidding alone. Not assessed.",
+      "confidence": 1.0,
+      "risk_severity": null,
+      "reason_code": null
+     }
+    },
+    {
+     "requirement_id": "REQ-009",
+     "text": "The annual average turnover of the JV Partners collectively must exceed USD 20 Million (twenty million US Dollars) or an equivalent amount in a freely convertible currency during last 3 (three) years, where the average turnover of the Lead Partner must exceed 40% of this amount and each of the other partners having at least 25% of this amount during the last 3 years.",
+     "category": "FINANCIAL",
+     "mandatory_level": "INFORMATIONAL",
+     "normalized_rule": {
+      "rule_type": "threshold",
+      "field": "annual_revenue",
+      "operator": ">",
+      "value": 20000000,
+      "unit": "USD",
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 2,
+       "section": null,
+       "excerpt": "The annual average turnover of the JV Partners collectively must exceed USD 20 Million (twenty million US Dollars) or an equivalent amount in a freely convertible currency during last 3 (three) years, where the average turnover of the Lead Partner must exceed 40% of this amount and each of the other partners having at least 25% of this amount during the last 3 years."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-009",
+      "status": "UNKNOWN",
+      "method": "NO_EVIDENCE",
+      "supporting_evidence_ids": [],
+      "rationale": "Applies only to joint-venture bids; this supplier is bidding alone. Not assessed.",
+      "confidence": 1.0,
+      "risk_severity": null,
+      "reason_code": null
+     }
+    },
+    {
+     "requirement_id": "REQ-010",
+     "text": "The Bidder shall furnish documentary evidence that the JV Partners collectively have access to, or have available, liquid assets, lines of credit, and other financial means to successfully perform the contract, in an amount not less than USD 2.000.000 (two million US Dollars) or an equivalent amount in a freely convertible currency.",
+     "category": "FINANCIAL",
+     "mandatory_level": "INFORMATIONAL",
+     "normalized_rule": {
+      "rule_type": "threshold",
+      "field": "liquid_assets",
+      "operator": ">=",
+      "value": 2000000,
+      "unit": "USD",
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 2,
+       "section": null,
+       "excerpt": "The Bidder shall furnish documentary evidence that the JV Partners collectively have access to, or have available, liquid assets, lines of credit, and other financial means to successfully perform the contract, in an amount not less than USD 2.000.000 (two million US Dollars) or an equivalent amount in a freely convertible currency."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-010",
+      "status": "UNKNOWN",
+      "method": "NO_EVIDENCE",
+      "supporting_evidence_ids": [],
+      "rationale": "Applies only to joint-venture bids; this supplier is bidding alone. Not assessed.",
+      "confidence": 1.0,
+      "risk_severity": null,
+      "reason_code": null
+     }
+    },
+    {
+     "requirement_id": "REQ-011",
+     "text": "Non-performance of a contract did not occur as a result of the Bidder's default since 1st January 2010.",
+     "category": "LEGAL",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "date",
+      "field": "non_performance_since",
+      "operator": ">=",
+      "value": "2010-01-01",
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 2,
+       "section": null,
+       "excerpt": "Non-performance of a contract did not occur as a result of the Bidder's default since 1st January 2010."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-011",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [],
+      "rationale": "The evidence does not contain any statements regarding contract non-performance or default history.",
+      "confidence": 1.0,
+      "risk_severity": "HIGH",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    },
+    {
+     "requirement_id": "REQ-012",
+     "text": "In the case of Joint Ventures, none of the Joint Venture partners should have a non-performance of a contract.",
+     "category": "LEGAL",
+     "mandatory_level": "INFORMATIONAL",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 3,
+       "section": null,
+       "excerpt": "In the case of Joint Ventures, none of the Joint Venture partners should have a non-performance of a contract."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-012",
+      "status": "UNKNOWN",
+      "method": "NO_EVIDENCE",
+      "supporting_evidence_ids": [],
+      "rationale": "Applies only to joint-venture bids; this supplier is bidding alone. Not assessed.",
+      "confidence": 1.0,
+      "risk_severity": null,
+      "reason_code": null
+     }
+    },
+    {
+     "requirement_id": "REQ-013",
+     "text": "There shall not be a consistent history of court/arbitral award decisions against the Bidder since 1st January 2010.",
+     "category": "LEGAL",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "threshold",
+      "field": "founded_year",
+      "operator": ">=",
+      "value": "2010-01-01",
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 3,
+       "section": null,
+       "excerpt": "There shall not be a consistent history of court/arbitral award decisions against the Bidder since 1st January 2010."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-013",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [],
+      "rationale": "The evidence does not contain any information regarding court or arbitral award decisions against the bidder.",
+      "confidence": 1.0,
+      "risk_severity": "HIGH",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    },
+    {
+     "requirement_id": "REQ-014",
+     "text": "The Bidder shall provide accurate information about any litigation or arbitration resulting from contracts completed or ongoing under its execution over the last five years.",
+     "category": "DOCUMENTATION",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 3,
+       "section": null,
+       "excerpt": "The Bidder shall provide accurate information about any litigation or arbitration resulting from contracts completed or ongoing under its execution over the last five years."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-014",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [],
+      "rationale": "The provided evidence contains manufacturer authorization letters, a bank guarantee facility confirmation, and a signed declaration on grounds for exclusion, but none of these mention litigation or arbitration history.",
+      "confidence": 1.0,
+      "risk_severity": "HIGH",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    },
+    {
+     "requirement_id": "REQ-015",
+     "text": "A complete set of bidding documents in English may be purchased by interested Bidders on submission of a written application to the address below and upon payment of a nonrefundable fee of 250 TL or in 100 Euros.",
+     "category": "DOCUMENTATION",
+     "mandatory_level": "INFORMATIONAL",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 3,
+       "section": null,
+       "excerpt": "A complete set of bidding documents in English may be purchased by interested Bidders on submission of a written application to the address below and upon payment of a nonrefundable fee of 250 TL or in 100 Euros."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-015",
+      "status": "UNKNOWN",
+      "method": "NO_EVIDENCE",
+      "supporting_evidence_ids": [],
+      "rationale": "Tender-process clause (informational); not assessed against supplier evidence.",
+      "confidence": 1.0,
+      "risk_severity": null,
+      "reason_code": null
+     }
+    },
+    {
+     "requirement_id": "REQ-016",
+     "text": "Bids must be delivered to the address below at or before March 06, 2014 at 14:00 hrs (Turkey time).",
+     "category": "DELIVERY",
+     "mandatory_level": "INFORMATIONAL",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 3,
+       "section": null,
+       "excerpt": "Bids must be delivered to the address below at or before March 06, 2014 at 14:00 hrs (Turkey time)."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-016",
+      "status": "UNKNOWN",
+      "method": "NO_EVIDENCE",
+      "supporting_evidence_ids": [],
+      "rationale": "Tender-process clause (informational); not assessed against supplier evidence.",
+      "confidence": 1.0,
+      "risk_severity": null,
+      "reason_code": null
+     }
+    },
+    {
+     "requirement_id": "REQ-017",
+     "text": "Bids need to be secured by a Bid Security. The amount of Bid Security required is: USD 200.000 (Two hundred thousand US Dollars) or an equivalent amount in a freely convertible currency.",
+     "category": "COMMERCIAL",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "threshold",
+      "field": "annual_revenue",
+      "operator": ">=",
+      "value": 200000,
+      "unit": "USD",
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 3,
+       "section": null,
+       "excerpt": "Bids need to be secured by a Bid Security. The amount of Bid Security required is: USD 200.000 (Two hundred thousand US Dollars) or an equivalent amount in a freely convertible currency."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-017",
+      "status": "MET",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [
+       "EVD-D-bank"
+      ],
+      "rationale": "The bank letter confirms a guarantee facility of 300,000 EUR approved for tender and performance guarantees, which exceeds the required USD 200,000 or equivalent.",
+      "confidence": 0.9,
+      "risk_severity": null,
+      "reason_code": null
+     }
+    },
+    {
+     "requirement_id": "REQ-018",
+     "text": "Late bids will be rejected.",
+     "category": "DELIVERY",
+     "mandatory_level": "INFORMATIONAL",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 3,
+       "section": null,
+       "excerpt": "Late bids will be rejected."
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-018",
+      "status": "UNKNOWN",
+      "method": "NO_EVIDENCE",
+      "supporting_evidence_ids": [],
+      "rationale": "Tender-process clause (informational); not assessed against supplier evidence.",
+      "confidence": 1.0,
+      "risk_severity": null,
+      "reason_code": null
+     }
+    },
+    {
+     "requirement_id": "REQ-019",
+     "text": "The attention of prospective Bidders is drawn to (i) the fact that they will be required to certify in their bids that all software is either covered by a valid license or was produced by the Bidder",
+     "category": "CERTIFICATION",
+     "mandatory_level": "MANDATORY",
+     "normalized_rule": {
+      "rule_type": "none",
+      "field": null,
+      "operator": null,
+      "value": null,
+      "unit": null,
+      "filters": {}
+     },
+     "sources": [
+      {
+       "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+       "page": 3,
+       "section": null,
+       "excerpt": "The attention of prospective Bidders is drawn to (i) the fact that they will be required to certify in their bids that all software is either covered by a valid license or was produced by the Bidder"
+      }
+     ],
+     "extraction_confidence": 1.0,
+     "result": {
+      "requirement_id": "REQ-019",
+      "status": "UNKNOWN",
+      "method": "LLM_SEMANTIC",
+      "supporting_evidence_ids": [],
+      "rationale": "The provided evidence does not contain a certification regarding software licenses or production.",
+      "confidence": 1.0,
+      "risk_severity": "HIGH",
+      "reason_code": "MANDATORY_EVIDENCE_UNKNOWN"
+     }
+    }
+   ],
+   "chunks": [
+    {
+     "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+     "page_number": 1,
+     "text": "Specific Procurement Notice – AF-GA2.2 \n \n1 \nINVITATION FOR BIDS (IFB) \nJanuary 2014 \nTURKEY \nISTANBUL SEISMIC RISK MITIGATION AND PREPAREDNESS (ISMEP) PROJECT  \nProcurement of Supply and Installation of Akfırat DMC IT Equipment \nLoan Number: 8033-TU \nISMEP_AF-GA2.2 \n1. \nThis Invitation for Bids (IFB) follows the Specific Procurement Notice (SPN) for this \nproject that appeared in UNDB online on March 16, 2011. \n2. \nIn order to prepare Istanbul for a potential earthquake the Republic of Turkey has \nreceived an Additional Loan from the International Bank for Reconstruction and \nDevelopment toward the cost of the Istanbul Seismic Risk Mitigation and Emergency \nPreparedness Project (ISMEP) and it intends to apply part of the proceeds of this \nLoan to payments under the Contract resulting from this IFB:  ISMEP-AF-GA2.2. \n3. \nIstanbul Project Coordination Unit (IPCU) serves as the implementing agency for the \nProject and now invites sealed bids from eligible Bidders for Supply and Installation \nof servers, backup system, network equipment, IT peripherals, COTS software, \nimplementing data center infrastructure (power, cooling, cabling, fire protection, \nCCTV, access control system, etc…). The supply and installation period is eleven \n(11) months. \n \n4. \nBidding will be conducted using the International Competitive Bidding (ICB) \nprocedures specified in the World Bank’s Guidelines: Procurement under IBRD \nLoans and IDA Credits, edition of May 2004 and revised in October 2006 and May \n2010, and is open to all Bidders eligible as defined in these Guidelines, that meet the \nfollowing minimum qualification criteria: \n  During the past five (5) years, the Bidders must have successfully completed at least \none (1) similar contract for the establishment, testing, installation, and technical \nsupport of infrastructure corporate network with at least 150 clients of similar \nfunctional/technical characteristics given in the Technical Requirements in Section VI \nof this Bidding Documents.  \nThe Bidder shall give a reference list of the systems installed in Turkey and abroad \nwithin last five years in relation with the system(s) mentioned in the scope of the bid \n(similar in nature and complexity), and the names and addresses, fax numbers and \ncontact person of major customers, including reference letters at least from two major \ncustomers. IPCU has the right to contact with these customers. Should any wrong \ndeclaration exist; the bid will be evaluated as non-responsive."
+    },
+    {
+     "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+     "page_number": 2,
+     "text": "Specific Procurement Notice – AF-GA2.2 \n \n \n \n The annual average turnover of the Bidder must exceed USD 20 Million (twenty \nmillion US Dollars) or an equivalent amount in a freely convertible currency during \nlast three (3) years. \n The Bidder shall furnish documentary evidence that the bidder has access to, or has \navailable, liquid assets, lines of credit, and other financial means to successfully \nperform the contract, in an amount not less than USD 2.000.000 (two million US \nDollars) or an equivalent amount in a freely convertible currency. \n The Bidders may establish Joint Ventures (JV) to enhance their capabilities. All joint \nventure partners shall operate in the Information Technology Sector. Qualification \nrequirements for Joint Ventures (JV) are as follows: \n The JV Partners shall collectively demonstrate that during the past five (5) years, they \nhave successfully completed at least one (1) similar contract for the establishment, \ntesting, installation, and technical support of infrastructure corporate network with at \nleast 150 clients of similar functional/technical characteristics given in the Technical \nRequirements in Section VI of this Bidding Documents.   \nThe JV partners shall give a reference list of the systems installed in Turkey and \nabroad within last five years in relation with the system(s) mentioned in the scope of \nthe bid (similar in nature and complexity), and the names and addresses, fax numbers \nand contact person of major customers, including reference letters at least from two \nmajor customers. IPCU has the right to contact with these customers. Should any \nwrong declaration exist; the bid will be evaluated as non-responsive. \n The annual average turnover of the JV Partners collectively must exceed USD 20 \nMillion (twenty million US Dollars) or an equivalent amount in a freely convertible \ncurrency during last 3 (three) years, where the average turnover of the Lead Partner \nmust exceed 40% of this amount and each of the other partners having at least 25% of \nthis amount during the last 3 years. \n The Bidder shall furnish documentary evidence that the JV Partners collectively have \naccess to, or have available, liquid assets, lines of credit, and other financial means to \nsuccessfully perform the contract, in an amount not less than USD 2.000.000 (two \nmillion US Dollars) or an equivalent amount in a freely convertible currency. \nIn addition, following qualification requirements shall be complied by the single \nBidders or Joint Ventures: \n Non-performance of a contract did not occur as a result of the Bidder's default since \n1st January 2010.  Non performance, as decided by the Employer, shall include all \ncontracts where (a) non performance was not challenged by the supplier, including \nthrough referral to the dispute resolution mechanism under the respective contract, \nand (b) contracts that were so challenged but fully settled against the supplier. Non \nperformance shall not include contracts where Employers decision was overruled by \nthe dispute resolution mechanism. Non performance must be based on all information \non fully settled disputes or litigation, i.e. dispute or litigation that has been resolved in"
+    },
+    {
+     "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+     "page_number": 3,
+     "text": "Specific Procurement Notice – AF-GA2.2 \n \n \naccordance with the dispute resolution mechanism under the respective contract and \nwhere all appeal instances available to the applicant have been exhausted. In the case \nof Joint Ventures, none of the Joint Venture partners should have a non-performance \nof a contract. \n There shall not be a consistent history of court/arbitral award decisions against the \nBidder since 1st January 2010. The Bidder shall provide accurate information about \nany litigation or arbitration resulting from contracts completed or ongoing under its \nexecution over the last five years. A consistent history of awards against the Bidder or \nany member of a joint venture may result in failure of the qualification.\" \n5. \nInterested eligible Bidders may obtain further information from IPCU and inspect the \nbidding documents at the address given below from 9:00 a.m to 5:00 p.m. (Turkey \ntime).  \n6. \nA complete set of bidding documents in English may be purchased by interested \nBidders on submission of a written application to the address below and upon \npayment of a nonrefundable fee of 250 TL or in 100 Euros.  The method of payment \nwill \nbe \ndirect \ndeposit \nto \nbank \naccount \nnumbers \nare \nas \nfollows: \n \n \nTL Account:  \n \nVakıfbank Mercan Branch Istanbul, \n \nIBAN Number: TR31 0001 5001 5800 7286 1036 53  \n \n \n \nEURO Account:  \n \nVakıfbank Mercan Branch Istanbul, \n \nIBAN Number: TR91 0001 5001 5804 8000 3946 63 \n \n \n \nThe document will be sent by certified mail. \n \n7. \nBids must be delivered to the address below at or before March 06, 2014 at 14:00 hrs \n(Turkey time).  Bids need to be secured by a Bid Security. The amount of Bid \nSecurity required is: USD 200.000 (Two hundred thousand US Dollars) or an \nequivalent amount in a freely convertible currency.  Late bids will be rejected. Bids \nwill be opened in the presence of Bidders’ representatives who choose to attend at the \naddress below at March 06, 2014 at 14:00 hrs (Turkey time). \n8. \nThe attention of prospective Bidders is drawn to (i) the fact that they will be required \nto certify in their bids that all software is either covered by a valid license or was \nproduced by the Bidder and (ii) that violations are considered fraud, which can result \nin ineligibility to be awarded World Bank-financed contracts."
+    },
+    {
+     "document_id": "TR_WB_IT_servers_network_AFGA2.2",
+     "page_number": 4,
+     "text": "Specific Procurement Notice – AF-GA2.2 \n \n \n \nADDRESS FOR OBTAINING FURTHER INFORMATION: \nK Gökhan ELGİN - Director \nIstanbul Project Coordination Unit \nM. Kemalettin Mah. Tiyatro Cad. No: 8    34126  \n \nBeyazıt-Fatih  \n \nİSTANBUL - TURKEY \n \nTel: +90.212.5185500 \nFax: +90.212.5185505 \ne-mail: info@ipkb.gov.tr   \n \nADDRESS FOR BID SUBMISSION AND BID OPENING: \nIstanbul Project Coordination Unit \nSatınalma Birimi (Department of Procurement Unit) \nM. Kemalettin Mah. Tiyatro Cad. No: 8    34126  \n \nBeyazıt-Fatih  \nİSTANBUL - TURKEY"
+    }
+   ]
+  }
+ ]
+}

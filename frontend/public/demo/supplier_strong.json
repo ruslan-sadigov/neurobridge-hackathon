@@ -103,5 +103,6 @@
   },
   "bid_lots": [
     "2"
-  ]
+  ],
+  "bid_as": "single"
 }

@@ -40,8 +40,9 @@ def run_analysis(chunks: list[PageChunk], profile: dict[str, Any], llm: LLMClien
     with stage("evidence"):
         # Lot scope: requirements that only name lots the supplier is not bidding for are not scored.
         skipped = scope.out_of_scope(reqs, profile.get("bid_lots"))
+        jv_ids = scope.jv_only(reqs, profile.get("bid_as"))
         for r in reqs:
-            if r.requirement_id in skipped:
+            if r.requirement_id in skipped or r.requirement_id in jv_ids:
                 r.mandatory_level = MandatoryLevel.INFORMATIONAL
         ev: list[Evidence] = evidence_svc.build_evidence(profile)
         complete_types = set(profile.get("complete_evidence_types", []))  # FR-012
@@ -50,7 +51,11 @@ def run_analysis(chunks: list[PageChunk], profile: dict[str, Any], llm: LLMClien
         fx = profile.get("fx_rates")
         results = compliance.classify_many(reqs, ev, matches, llm, complete_types, fx, warnings=warnings)
         for i, r in enumerate(reqs):
-            if r.requirement_id in skipped:
+            if r.requirement_id in jv_ids and r.requirement_id not in skipped:
+                results[i] = ComplianceResult(
+                    requirement_id=r.requirement_id, status=Status.UNKNOWN, method=Method.NO_EVIDENCE, confidence=1.0,
+                    rationale="Applies only to joint-venture bids; this supplier is bidding alone. Not assessed.")
+            elif r.requirement_id in skipped:
                 named, targets = skipped[r.requirement_id]
                 results[i] = ComplianceResult(
                     requirement_id=r.requirement_id, status=Status.UNKNOWN, method=Method.NO_EVIDENCE, confidence=1.0,

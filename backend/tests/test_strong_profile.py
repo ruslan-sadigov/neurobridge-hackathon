@@ -60,3 +60,30 @@ def test_lot_scope_marks_other_lot_requirements_out_of_scope():
     skipped = out_of_scope(reqs, ["2"])
     assert set(skipped) == {"A"}  # B targets lot 2, C names both, D names no lot
     assert out_of_scope(reqs, None) == {} and out_of_scope(reqs, []) == {}  # no declared scope: nothing skipped
+
+
+def test_jv_only_conditions_are_out_of_scope_for_a_single_bidder():
+    from app.enums import Category, MandatoryLevel
+    from app.schemas import Requirement, SourceRef
+    from app.services.scope import jv_only
+
+    def r(rid, text):
+        return Requirement(requirement_id=rid, text=text, category=Category.FINANCIAL,
+                           mandatory_level=MandatoryLevel.MANDATORY, sources=[SourceRef(document_id="d", page=1, excerpt="e")],
+                           extraction_confidence=0.9)
+
+    reqs = [r("A", "The annual average turnover of the JV Partners collectively must exceed USD 20 Million"),
+            r("B", "All joint venture partners shall operate in the Information Technology Sector"),
+            r("C", "The annual average turnover of the Bidder must exceed USD 20 Million"),
+            r("D", "Requirements shall be complied by the single Bidders or Joint Ventures")]
+    assert jv_only(reqs, "single") == {"A", "B"}  # C names no JV; D also addresses single bidders
+    assert jv_only(reqs, None) == set() and jv_only(reqs, "joint_venture") == set()
+    assert PROFILE["bid_as"] == "single"
+
+
+def test_declarations_are_not_treated_as_certificates():
+    decl = NormalizedRule(rule_type=RuleType.MEMBERSHIP, field="certifications", operator="contains",
+                          value="valid software license or produced by Bidder")
+    assert evaluate(decl, EVIDENCE, complete_types={"CERTIFICATE"}) is None  # not a named certificate: semantic review
+    named = NormalizedRule(rule_type=RuleType.MEMBERSHIP, field="certifications", operator="contains", value="ISO 14001")
+    assert evaluate(named, EVIDENCE, complete_types={"CERTIFICATE"}).status == Status.NOT_MET  # real standard: still checked

@@ -36,3 +36,13 @@ def test_metrics_recall_accuracy_and_citation_validity():
 def test_unsupported_positive_rate_flags_llm_met_without_evidence():
     reqs = [req("R1", "turnover 2 500 000", "MET", method="LLM_SEMANTIC", evidence=())]
     assert evaluate_run(ANN, reqs, CHUNKS)["unsupported_positive_rate"] == 1.0
+
+
+def test_acceptable_alternative_statuses_count_as_correct():
+    ann = {"requirements": [{"id": "A", "page": 1, "category": "FINANCIAL", "mandatory_level": "MANDATORY",
+                             "anchors": ["turnover"], "expected_status": "PARTIALLY_MET", "acceptable_statuses": ["UNKNOWN"]}]}
+    for got, ok in (("PARTIALLY_MET", True), ("UNKNOWN", True), ("NOT_MET", False), ("MET", False)):
+        m = evaluate_run(ann, [req("R1", "turnover must exceed", got)], CHUNKS)
+        assert (m["compliance_accuracy"] == 1.0) is ok, got
+    # a MET answer where only PARTIALLY_MET/UNKNOWN are accepted is not a "false MET", PARTIALLY_MET is allowed
+    assert evaluate_run(ann, [req("R1", "turnover must exceed", "MET")], CHUNKS)["false_positive_met_rate"] == 0.0

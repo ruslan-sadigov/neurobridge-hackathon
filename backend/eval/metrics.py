@@ -13,6 +13,11 @@ def _page_text(chunks: list[dict], doc_id: str, page: int) -> str:
     return " ".join(norm(c["text"]) for c in chunks if c["document_id"] == doc_id and c["page_number"] == page)
 
 
+def allowed(a: dict) -> set[str]:
+    """Statuses accepted for an annotated item: the main label plus any `acceptable_statuses` (ambiguous cases)."""
+    return {a["expected_status"], *a.get("acceptable_statuses", [])}
+
+
 def match(annotations: list[dict], reqs: list[dict]) -> tuple[dict[str, dict], list[dict]]:
     """One-to-one match of annotated items to extracted requirements by page + anchors."""
     used: set[str] = set()
@@ -43,15 +48,19 @@ def evaluate_run(annotation: dict, reqs: list[dict], chunks: list[dict]) -> dict
     missed = [a["id"] for a in scored if a["id"] not in matched]
     mand_found = [a for a in mandatory if a["id"] in matched]
 
-    level_ok = sum(1 for a in anns if a["id"] in matched and matched[a["id"]]["mandatory_level"] == a["mandatory_level"])
+    def out_of_scope(r):  # the pipeline relabels these INFORMATIONAL on purpose (other lots, JV-only conditions)
+        return r["result"]["rationale"].startswith("Applies only to")
+
+    level_ok = sum(1 for a in anns if a["id"] in matched and (out_of_scope(matched[a["id"]])
+                   or matched[a["id"]]["mandatory_level"] == a["mandatory_level"]))
     level_total = sum(1 for a in anns if a["id"] in matched)
     cat_ok = sum(1 for a in anns if a["id"] in matched and matched[a["id"]]["category"] == a["category"])
 
     status_rows = [(a, matched[a["id"]]) for a in scored if a["id"] in matched]
-    status_ok = [a["id"] for a, r in status_rows if r["result"]["status"] == a["expected_status"]]
-    status_wrong = [{"id": a["id"], "expected": a["expected_status"], "got": r["result"]["status"],
+    status_ok = [a["id"] for a, r in status_rows if r["result"]["status"] in allowed(a)]
+    status_wrong = [{"id": a["id"], "expected": sorted(allowed(a)), "got": r["result"]["status"],
                      "why": r["result"]["rationale"][:140]} for a, r in status_rows
-                    if r["result"]["status"] != a["expected_status"]]
+                    if r["result"]["status"] not in allowed(a)]
 
     # citation validity: the cited excerpt really occurs on the cited page
     valid = total = 0
@@ -65,7 +74,7 @@ def evaluate_run(annotation: dict, reqs: list[dict], chunks: list[dict]) -> dict
     unsupported = [r for r in positives
                    if not r["result"]["supporting_evidence_ids"] and r["result"]["method"] != "DETERMINISTIC_RULE"]
     false_met = [a["id"] for a, r in status_rows
-                 if r["result"]["status"] in ("MET", "PARTIALLY_MET") and a["expected_status"] in ("NOT_MET", "UNKNOWN")]
+                 if r["result"]["status"] in ("MET", "PARTIALLY_MET") and not (allowed(a) & {"MET", "PARTIALLY_MET"})]
 
     def ratio(n, d):
         return round(n / d, 3) if d else None
