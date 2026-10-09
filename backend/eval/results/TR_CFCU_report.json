@@ -1,0 +1,151 @@
+{
+ "aggregate": {
+  "n_extracted": {
+   "mean": 12.667,
+   "min": 10,
+   "max": 15
+  },
+  "n_annotated_scored": {
+   "mean": 14.0,
+   "min": 14,
+   "max": 14
+  },
+  "requirement_recall": {
+   "mean": 0.69,
+   "min": 0.571,
+   "max": 0.786
+  },
+  "mandatory_recall": {
+   "mean": 0.69,
+   "min": 0.571,
+   "max": 0.786
+  },
+  "requirement_precision": {
+   "mean": 1.0,
+   "min": 1.0,
+   "max": 1.0
+  },
+  "mandatory_level_accuracy": {
+   "mean": 0.978,
+   "min": 0.933,
+   "max": 1.0
+  },
+  "category_accuracy": {
+   "mean": 1.0,
+   "min": 1.0,
+   "max": 1.0
+  },
+  "citation_validity": {
+   "mean": 1.0,
+   "min": 1.0,
+   "max": 1.0
+  },
+  "compliance_accuracy": {
+   "mean": 0.873,
+   "min": 0.8,
+   "max": 1.0
+  },
+  "false_positive_met_rate": {
+   "mean": 0.03,
+   "min": 0.0,
+   "max": 0.091
+  },
+  "unsupported_positive_rate": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  }
+ },
+ "per_run": [
+  {
+   "n_extracted": 10,
+   "n_annotated_scored": 14,
+   "requirement_recall": 0.571,
+   "mandatory_recall": 0.571,
+   "requirement_precision": 1.0,
+   "mandatory_level_accuracy": 1.0,
+   "category_accuracy": 1.0,
+   "citation_validity": 1.0,
+   "compliance_accuracy": 1.0,
+   "false_positive_met_rate": 0.0,
+   "unsupported_positive_rate": 0.0,
+   "missed": [
+    "A02",
+    "A04",
+    "A07",
+    "A08",
+    "A13",
+    "A14"
+   ],
+   "status_wrong": [],
+   "unmatched_extracted": []
+  },
+  {
+   "n_extracted": 13,
+   "n_annotated_scored": 14,
+   "requirement_recall": 0.786,
+   "mandatory_recall": 0.786,
+   "requirement_precision": 1.0,
+   "mandatory_level_accuracy": 1.0,
+   "category_accuracy": 1.0,
+   "citation_validity": 1.0,
+   "compliance_accuracy": 0.818,
+   "false_positive_met_rate": 0.091,
+   "unsupported_positive_rate": 0.0,
+   "missed": [
+    "A04",
+    "A07",
+    "A08"
+   ],
+   "status_wrong": [
+    {
+     "id": "A13",
+     "expected": "NOT_MET",
+     "got": "UNKNOWN",
+     "why": "The evidence lists a project worth 420,000 AZN in network infrastructure, but does not mention the currency equivalent in EUR, whether it re"
+    },
+    {
+     "id": "A14",
+     "expected": "NOT_MET",
+     "got": "PARTIALLY_MET",
+     "why": "The evidence shows 1 contract in the relevant field, but the cumulative amount and contract count fall short of the requirement of at least "
+    }
+   ],
+   "unmatched_extracted": []
+  },
+  {
+   "n_extracted": 15,
+   "n_annotated_scored": 14,
+   "requirement_recall": 0.714,
+   "mandatory_recall": 0.714,
+   "requirement_precision": 1.0,
+   "mandatory_level_accuracy": 0.933,
+   "category_accuracy": 1.0,
+   "citation_validity": 1.0,
+   "compliance_accuracy": 0.8,
+   "false_positive_met_rate": 0.0,
+   "unsupported_positive_rate": 0.0,
+   "missed": [
+    "A02",
+    "A04",
+    "A07",
+    "A08"
+   ],
+   "status_wrong": [
+    {
+     "id": "A13",
+     "expected": "NOT_MET",
+     "got": "UNKNOWN",
+     "why": "The evidence does not mention the delivery and installation of RTUs under contracts totaling at least 2,500,000 EUR in electricity transmiss"
+    },
+    {
+     "id": "A14",
+     "expected": "NOT_MET",
+     "got": "UNKNOWN",
+     "why": "The evidence mentions a single network modernization project with a value in AZN, but does not provide sufficient information regarding the "
+    }
+   ],
+   "unmatched_extracted": []
+  }
+ ]
+}
