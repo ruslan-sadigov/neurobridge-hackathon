@@ -41,6 +41,19 @@ Optional: `docker compose up -d db` and set `DATABASE_URL=postgresql+psycopg://b
 Local embeddings: `pip install sentence-transformers` (set `EMBEDDING_BACKEND=hash` to skip the model download).
 OCR: `pip install pytesseract pillow` plus the Tesseract binary with the `aze` language pack.
 
+## Run everything with Docker
+
+```bash
+cp .env.example .env   # set LLM_PROVIDER and your API key
+docker compose up --build
+```
+
+Frontend http://localhost:3000, API http://localhost:8000 (docs at `/docs`). Uploads and the SQLite database live in the
+`appdata` volume. Frontend only, with canned data and no backend: `NEXT_PUBLIC_USE_MOCK=true` in `frontend/.env.local`,
+then `npm run dev` in `frontend/`.
+
+Docs: `docs/api-contract.md`, `docs/evaluation-and-failures.md`, `docs/feasibility.md`, `docs/deploy-digitalocean.md`.
+
 ## Status
 
 Backend skeleton and deterministic core done and tested. Still to build (spec section 14):
