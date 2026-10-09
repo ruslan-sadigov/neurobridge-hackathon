@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import { useState, useRef, useCallback } from "react";
@@ -188,7 +188,7 @@ export function SetupForm({ onAnalysisStarted }: SetupFormProps) {
                 size="sm"
                 className="text-brand-600 hover:text-brand-700 hover:bg-brand-50 font-medium"
                 onClick={() => {
-                  const demo = `{"company_name":"CaspianTech LLC","founded_year":2018,"employees":42,"annual_revenue":{"2025":1200000,"currency":"AZN"},"certifications":[{"name":"ISO 9001","evidence_id":"EVD-001","issued_date":"2025-01-10","expiry_date":"2028-01-09"}],"projects":[{"name":"Network Modernization A","year":2025,"value":420000,"currency":"AZN","tags":["network infrastructure","enterprise"]}],"documents":[{"type":"certificate","name":"ISO 9001","evidence_id":"EVD-001"}],"complete_evidence_types":["CERTIFICATE"]}`;
+                  const demo = `{"company_name":"CaspianTech LLC","founded_year":2018,"employees":42,"annual_revenue":{"2025":1200000,"currency":"AZN"},"certifications":[{"name":"ISO 9001","evidence_id":"EVD-001","issued_date":"2025-01-10","expiry_date":"2028-01-09"}],"projects":[{"name":"Network Modernization A","year":2025,"value":420000,"currency":"AZN","tags":["network infrastructure","enterprise"]}],"documents":[{"type":"certificate","name":"ISO 9001","evidence_id":"EVD-001"}],"complete_evidence_types":["CERTIFICATE"],"fx_rates":{"EUR":1.95}}`;
                   setSupplierJson(demo);
                   validateJson(demo);
                 }}

@@ -1,6 +1,8 @@
-﻿"use client";
+"use client";
 
+import { useState } from "react";
 import { FileText, Link, Shield, ChevronRight } from "lucide-react";
+import { SourcePageViewer } from "@/components/SourcePageViewer";
 import {
   Dialog,
   DialogContent,
@@ -33,6 +35,7 @@ interface DrillDownModalProps {
 }
 
 export function DrillDownModal({ requirement, open, onClose }: DrillDownModalProps) {
+  const [openPage, setOpenPage] = useState<string | null>(null);
   if (!requirement) return null;
 
   const { result } = requirement;
@@ -74,7 +77,9 @@ export function DrillDownModal({ requirement, open, onClose }: DrillDownModalPro
 
           {/* Compliance Rationale */}
           <section>
-            <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-400 mb-2">AI Rationale</h3>
+            <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-400 mb-2">
+              {result.method === "DETERMINISTIC_RULE" ? "Rationale (verified by rule engine)" : "Rationale (AI-assisted)"}
+            </h3>
             <div className={cn("rounded-lg border p-4 text-sm", statusCfg.bg, statusCfg.border)}>
               <p className={cn("text-sm leading-relaxed", statusCfg.color)}>{result.rationale}</p>
               {result.reason_code && (
@@ -109,6 +114,19 @@ export function DrillDownModal({ requirement, open, onClose }: DrillDownModalPro
                   <blockquote className="text-sm text-slate-700 italic border-l-2 border-brand-300 pl-3">
                     "{src.excerpt}"
                   </blockquote>
+                  <button
+                    type="button"
+                    className="text-xs font-medium text-brand-600 hover:underline"
+                    onClick={() => {
+                      const k = `${requirement.requirement_id}-${i}`;
+                      setOpenPage(openPage === k ? null : k);
+                    }}
+                  >
+                    {openPage === `${requirement.requirement_id}-${i}` ? "Hide page" : "View full page"}
+                  </button>
+                  {openPage === `${requirement.requirement_id}-${i}` && (
+                    <SourcePageViewer documentId={src.document_id} page={src.page} excerpt={src.excerpt} />
+                  )}
                 </div>
               ))}
             </div>
@@ -119,7 +137,9 @@ export function DrillDownModal({ requirement, open, onClose }: DrillDownModalPro
             <section>
               <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-400 mb-2 flex items-center gap-1.5">
                 <Link className="h-3 w-3" />
-                Matched Supplier Evidence
+                {result.supporting_evidence_ids.length > 0
+                  ? "Supplier Evidence"
+                  : "Closest supplier evidence (does not satisfy this requirement)"}
               </h3>
               <div className="space-y-2">
                 {requirement.evidence_candidates.map(({ evidence, score }, i) => (
@@ -129,6 +149,9 @@ export function DrillDownModal({ requirement, open, onClose }: DrillDownModalPro
                         <div className="flex items-center gap-2">
                           <span className="text-xs font-semibold text-slate-700">{evidence.label}</span>
                           <Badge variant="secondary" className="text-xs">{evidence.type}</Badge>
+                          {result.supporting_evidence_ids.includes(evidence.evidence_id) && (
+                            <Badge className="text-xs bg-emerald-50 text-emerald-700 border border-emerald-200">Supports finding</Badge>
+                          )}
                         </div>
                         <code className="text-xs text-slate-400 font-mono">{evidence.evidence_id}</code>
                       </div>

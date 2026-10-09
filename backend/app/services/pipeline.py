@@ -14,6 +14,10 @@ from .parser import PageChunk, coverage
 log = logging.getLogger(__name__)
 
 
+class PipelineError(RuntimeError):
+    """The analysis cannot produce a trustworthy result; the job must be FAILED, not COMPLETE."""
+
+
 def run_analysis(chunks: list[PageChunk], profile: dict[str, Any], llm: LLMClient, embedder: Embedder) -> dict[str, Any]:
     timings: dict[str, float] = {}
 
@@ -29,6 +33,9 @@ def run_analysis(chunks: list[PageChunk], profile: dict[str, Any], llm: LLMClien
 
     with stage("extract"):
         reqs, warnings = extractor.extract_requirements(chunks, llm)
+    if not reqs:  # NFR-003: never report success with silently missing sections
+        detail = "; ".join(warnings[:3]) or "the documents contain no extractable text"
+        raise PipelineError(f"No requirements were extracted. {detail}")
     with stage("evidence"):
         ev: list[Evidence] = evidence_svc.build_evidence(profile)
         complete_types = set(profile.get("complete_evidence_types", []))  # FR-012

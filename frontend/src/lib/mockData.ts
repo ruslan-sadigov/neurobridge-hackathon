@@ -1,4 +1,4 @@
-﻿import type {
+import type {
   AnalysisSummary,
   RequirementWithResult,
   RiskItem,
@@ -517,13 +517,13 @@ export const MOCK_RISKS: RiskItem[] = [
 
 export const MOCK_SCORE: ScoreSnapshot = {
   dimensions: [
-    { name: "Legal", weight: 0.15, score: 85.0, coverage: 1.0, requirement_count: 2 },
-    { name: "Financial", weight: 0.25, score: 25.0, coverage: 1.0, requirement_count: 2 },
-    { name: "Technical", weight: 0.20, score: 80.0, coverage: 1.0, requirement_count: 1 },
-    { name: "Experience", weight: 0.20, score: 25.0, coverage: 1.0, requirement_count: 2 },
-    { name: "Certification", weight: 0.10, score: 50.0, coverage: 1.0, requirement_count: 2 },
-    { name: "Personnel", weight: 0.05, score: 20.0, coverage: 0.5, requirement_count: 2 },
-    { name: "Documentation", weight: 0.05, score: 25.0, coverage: 0.5, requirement_count: 2 },
+    { name: "Legal", weight: 0.15, score: 0.85, coverage: 1.0, requirement_count: 2 },
+    { name: "Financial", weight: 0.25, score: 0.25, coverage: 1.0, requirement_count: 2 },
+    { name: "Technical", weight: 0.20, score: 0.8, coverage: 1.0, requirement_count: 1 },
+    { name: "Experience", weight: 0.20, score: 0.25, coverage: 1.0, requirement_count: 2 },
+    { name: "Certification", weight: 0.10, score: 0.5, coverage: 1.0, requirement_count: 2 },
+    { name: "Personnel", weight: 0.05, score: 0.2, coverage: 0.5, requirement_count: 2 },
+    { name: "Documentation", weight: 0.05, score: 0.25, coverage: 0.5, requirement_count: 2 },
   ],
   final_score: 58.4,
   recommendation: "GO_WITH_CONDITIONS",

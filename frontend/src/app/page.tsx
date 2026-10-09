@@ -1,6 +1,6 @@
-﻿"use client";
+"use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { SetupForm } from "@/components/SetupForm";
 import { ProgressLoader } from "@/components/ProgressLoader";
 import { HeroSection } from "@/components/HeroSection";
@@ -25,6 +25,13 @@ function Dashboard({ analysisId, onReset }: { analysisId: string; onReset: () =>
     );
   }
 
+  const warnings = [
+    ...(summary.summary?.warnings ?? []),
+    ...((summary.summary?.parsing_coverage ?? 1) < 1
+      ? [`Only ${Math.round((summary.summary?.parsing_coverage ?? 0) * 100)}% of tender pages had readable text.`]
+      : []),
+  ];
+
   const criticalHighCount = risks.filter(
     (r) => r.severity === "CRITICAL" || r.severity === "HIGH"
   ).length;
@@ -34,6 +41,19 @@ function Dashboard({ analysisId, onReset }: { analysisId: string; onReset: () =>
       <HeroSection summary={summary} score={score} onReset={onReset} />
 
       <main className="max-w-7xl mx-auto px-6 py-8">
+        {warnings.length > 0 && (
+          <div className="mb-6 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+            <p className="font-semibold flex items-center gap-1.5">
+              <AlertTriangle className="h-4 w-4" /> Analysis completed with warnings. Results may be incomplete.
+            </p>
+            <ul className="mt-1.5 list-disc pl-5 text-xs space-y-0.5">
+              {warnings.slice(0, 5).map((w, i) => (
+                <li key={i}>{w}</li>
+              ))}
+              {warnings.length > 5 && <li>…and {warnings.length - 5} more</li>}
+            </ul>
+          </div>
+        )}
         <Tabs defaultValue="risks">
           <TabsList className="mb-6">
             <TabsTrigger value="risks" className="gap-1.5">
@@ -93,9 +113,19 @@ export default function HomePage() {
   const [analysisId, setAnalysisId] = useState<string | null>(null);
   const [loadError, setLoadError] = useState<string>("");
 
+  // Deep link: /?analysis=<id> reopens an existing analysis (shareable result link).
+  useEffect(() => {
+    const id = new URLSearchParams(window.location.search).get("analysis");
+    if (id) {
+      setAnalysisId(id);
+      setView("loading");
+    }
+  }, []);
+
   const handleAnalysisStarted = useCallback((id: string) => {
     setAnalysisId(id);
     setView("loading");
+    window.history.replaceState(null, "", `?analysis=${id}`);
   }, []);
 
   const handleComplete = useCallback(() => {
@@ -108,6 +138,7 @@ export default function HomePage() {
   }, []);
 
   const handleReset = useCallback(() => {
+    window.history.replaceState(null, "", window.location.pathname);
     setView("setup");
     setAnalysisId(null);
     setLoadError("");

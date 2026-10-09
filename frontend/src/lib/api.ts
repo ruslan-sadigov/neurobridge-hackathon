@@ -1,7 +1,8 @@
-﻿import axios from "axios";
+import axios from "axios";
 import type {
   AnalysisSummary,
   RequirementWithResult,
+  PageContent,
   RiskItem,
   ScoreSnapshot,
 } from "@/types";
@@ -20,7 +21,24 @@ const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 const client = axios.create({
   baseURL: BASE_URL,
   headers: { "Content-Type": "application/json" },
+  timeout: 120_000, // uploads parse PDFs synchronously
 });
+
+// Surface the backend's own message ({"detail": "..."}) instead of "Request failed with status code 415".
+client.interceptors.response.use(
+  (r) => r,
+  (err) => {
+    const detail = err?.response?.data?.detail;
+    if (detail) err.message = typeof detail === "string" ? detail : JSON.stringify(detail);
+    else if (err?.code === "ERR_NETWORK")
+      err.message = `Cannot reach the API at ${BASE_URL}. Is the backend running, and is this site's URL in its CORS_ORIGINS?`;
+    return Promise.reject(err);
+  }
+);
+
+/** Original PDF for a tender document (opens in a new tab; append #page=N to jump to a page). */
+export const documentFileUrl = (documentId: string) =>
+  USE_MOCK ? "#" : `${BASE_URL}/documents/${documentId}/file`;
 
 // ─── Mock Implementations ─────────────────────────────────────────────────────
 const mock = {
@@ -70,6 +88,15 @@ const mock = {
     await delay(100);
     return MOCK_SCORE;
   },
+  getPage: async (documentId: string, page: number): Promise<PageContent> => {
+    await delay(150);
+    return {
+      document_id: documentId,
+      page,
+      extraction_method: "native",
+      text: "(mock mode) Page text is only available when connected to the backend.",
+    };
+  },
 };
 
 // ─── Real API Implementations ─────────────────────────────────────────────────
@@ -113,6 +140,10 @@ const real = {
   },
   getScore: async (analysisId: string): Promise<ScoreSnapshot> => {
     const { data } = await client.get(`/analyses/${analysisId}/score`);
+    return data;
+  },
+  getPage: async (documentId: string, page: number): Promise<PageContent> => {
+    const { data } = await client.get(`/documents/${documentId}/pages/${page}`);
     return data;
   },
 };

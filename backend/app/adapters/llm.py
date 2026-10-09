@@ -25,6 +25,12 @@ class LLMError(RuntimeError):
     pass
 
 
+def _is_permanent(e: Exception) -> bool:
+    """Bad key / bad request / permission errors will not fix themselves: fail fast instead of retrying."""
+    code = getattr(e, "status_code", None) or getattr(e, "code", None)
+    return isinstance(code, int) and code in (400, 401, 403, 404)
+
+
 class LLMClient(Protocol):
     def complete_json(self, *, system: str, user: str, schema: type[T], model: str | None = None,
                       max_retries: int = 2) -> T: ...
@@ -49,7 +55,7 @@ class AnthropicLLM:
             try:
                 t0 = time.time()
                 resp = self._client.messages.create(
-                    model=model, max_tokens=8000, temperature=0,
+                    model=model, max_tokens=8000,
                     system=f"{SYSTEM_GUARD}\n\n{system}",
                     tools=[tool], tool_choice={"type": "tool", "name": "submit"},
                     messages=[{"role": "user", "content": user}],
@@ -67,6 +73,8 @@ class AnthropicLLM:
             except Exception as e:  # transient API failure, bounded retry
                 last_err = e
                 log.warning("LLM call failed (attempt %d): %s", attempt + 1, e)
+                if _is_permanent(e):
+                    raise LLMError(f"LLM call rejected (check API key/model): {e}") from e
                 time.sleep(1.5 * (attempt + 1))
         raise LLMError(f"LLM call failed after {max_retries + 1} attempts: {last_err}")
 
@@ -116,6 +124,8 @@ class GeminiLLM:
             except Exception as e:  # rate limit / transient -> back off
                 last_err = e
                 log.warning("Gemini call failed (attempt %d): %s", attempt + 1, e)
+                if _is_permanent(e):
+                    raise LLMError(f"LLM call rejected (check API key/model): {e}") from e
                 time.sleep(min(60, 8 * (attempt + 1)))
         raise LLMError(f"LLM call failed after {max_retries + 1} attempts: {last_err}")
 

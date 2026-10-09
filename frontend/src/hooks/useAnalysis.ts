@@ -54,3 +54,12 @@ export function useScore(analysisId: string | null) {
     staleTime: 30_000,
   });
 }
+
+export function usePage(documentId: string | null, page: number | null) {
+  return useQuery({
+    queryKey: ["page", documentId, page],
+    queryFn: () => api.getPage(documentId!, page!),
+    enabled: !!documentId && page != null,
+    staleTime: Infinity,
+  });
+}

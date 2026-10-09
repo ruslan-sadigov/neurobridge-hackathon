@@ -18,6 +18,7 @@ dist/
 .env
 .env.*
 !.env.example
+!.env.*.example
 
 # Local data
 *.db
@@ -37,3 +38,6 @@ Thumbs.db
 *.pdf
 !backend/tests/fixtures/*.pdf
 !backend/fixtures/tenders/*.pdf
+
+# Build output
+*.tsbuildinfo

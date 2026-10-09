@@ -1,4 +1,4 @@
-﻿// ─── Enums ───────────────────────────────────────────────────────────────────
+// ─── Enums ───────────────────────────────────────────────────────────────────
 export type Status = "MET" | "PARTIALLY_MET" | "NOT_MET" | "UNKNOWN";
 export type Category =
   | "LEGAL" | "FINANCIAL" | "TECHNICAL" | "EXPERIENCE"
@@ -107,6 +107,13 @@ export interface DocumentInfo {
   pages: number;
 }
 
+export interface PageContent {
+  document_id: string;
+  page: number;
+  text: string;
+  extraction_method: string;
+}
+
 export interface RequirementCounts {
   total: number;
   mandatory: number;
@@ -119,7 +126,7 @@ export interface RequirementCounts {
 export interface AnalysisSummary {
   analysis_id: string;
   status: JobStatus;
-  error?: string;
+  error?: string | null;
   summary?: {
     warnings: string[];
     timings: Record<string, number>;

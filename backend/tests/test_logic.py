@@ -162,3 +162,26 @@ def test_rule_mapped_to_wrong_field_is_not_applied():
     assert res.status == Status.UNKNOWN and res.method == Method.NO_EVIDENCE
     ok = req("R2", Category.FINANCIAL, rule=wrong, text="Average annual turnover must exceed USD 200.000")
     assert compliance.classify(ok, EVIDENCE, [], llm=None).status == Status.MET
+
+
+def test_pipeline_fails_instead_of_completing_empty():  # NFR-003
+    from app.adapters.llm import LLMError
+    from app.services.parser import PageChunk
+    from app.services.pipeline import PipelineError, run_analysis
+
+    class DeadLLM:
+        def complete_json(self, **kw):
+            raise LLMError("boom")
+
+    chunks = [PageChunk("d", 1, "Bidders must hold ISO 27001 certification and meet requirements.", "native")]
+    with pytest.raises(PipelineError):
+        run_analysis(chunks, PROFILE, DeadLLM(), HashingEmbedder())
+
+
+def test_permanent_llm_errors_are_not_retried():
+    from app.adapters.llm import _is_permanent
+
+    class E(Exception):
+        status_code = 401
+
+    assert _is_permanent(E()) and not _is_permanent(RuntimeError("timeout"))

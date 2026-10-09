@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -6,10 +6,10 @@ import { CheckCircle2, Circle, Loader2 } from "lucide-react";
 import { useAnalysisSummary } from "@/hooks/useAnalysis";
 
 const STAGES = [
-  { key: "parsing",    label: "Parsing documents",          desc: "Extracting text from PDF pages",              durationMs: 2000 },
-  { key: "extracting", label: "Extracting requirements",    desc: "Identifying tender criteria with AI",          durationMs: 6000 },
-  { key: "matching",   label: "Matching evidence",          desc: "Mapping supplier profile to requirements",    durationMs: 3000 },
-  { key: "scoring",    label: "Computing compliance score", desc: "Calculating weighted bid recommendation",     durationMs: 1000 },
+  { key: "parsing",    label: "Parsing documents",          desc: "Extracting text from PDF pages",              durationMs: 8000 },
+  { key: "extracting", label: "Extracting requirements",    desc: "Identifying tender criteria with AI",          durationMs: 40000 },
+  { key: "matching",   label: "Matching evidence",          desc: "Mapping supplier profile to requirements",    durationMs: 90000 },
+  { key: "scoring",    label: "Computing compliance score", desc: "Calculating weighted bid recommendation",     durationMs: 10000 },
 ] as const;
 
 interface ProgressLoaderProps {
@@ -54,6 +54,7 @@ export function ProgressLoader({ analysisId, onComplete, onError }: ProgressLoad
     95
   );
   const realProgress = analysis?.status === "COMPLETE" ? 100 : visualProgress;
+  const waitingToStart = analysis?.status === "PENDING" && elapsed > 15000;
 
   return (
     <div className="min-h-screen bg-slate-100/60 flex items-center justify-center p-6">
@@ -76,7 +77,7 @@ export function ProgressLoader({ analysisId, onComplete, onError }: ProgressLoad
               <Loader2 className="h-6 w-6 text-brand-500 animate-spin" />
             </div>
             <h2 className="text-xl font-bold text-navy-900">Analyzing Tender</h2>
-            <p className="text-slate-500 text-sm mt-1">AI pipeline is parsing, matching, and scoring</p>
+            <p className="text-slate-500 text-sm mt-1">AI pipeline is parsing, matching, and scoring. This usually takes 2–3 minutes.</p>
           </div>
 
           {/* Progress bar */}
@@ -121,6 +122,10 @@ export function ProgressLoader({ analysisId, onComplete, onError }: ProgressLoad
               );
             })}
           </div>
+
+          {waitingToStart && (
+            <p className="text-xs text-amber-600">Still queued; the server may be busy or restarting.</p>
+          )}
 
           <div className="flex items-center justify-between text-xs text-slate-400 pt-2 border-t border-slate-100">
             <span>Analysis ID: <code className="font-mono text-slate-600">{analysisId.slice(0, 8)}…</code></span>

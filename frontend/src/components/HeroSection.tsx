@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import { FileText, ArrowLeft, TrendingUp } from "lucide-react";
@@ -130,23 +130,34 @@ export function HeroSection({ summary, score, onReset }: HeroSectionProps) {
                 <TrendingUp className="h-3 w-3 text-brand-500" />
                 Score by Dimension
               </div>
-              {score.dimensions.filter((d) => d.score !== null).map((dim) => (
+              {score.dimensions.filter((d) => d.score !== null).map((dim) => {
+                // API sends dimension scores as 0-1 fractions; coverage = share of requirements that are not UNKNOWN
+                const pct = (dim.score ?? 0) * 100;
+                return (
                 <div key={dim.name} className="space-y-1">
                   <div className="flex justify-between text-xs">
                     <span className="text-slate-600">{dim.name}</span>
-                    <span className="font-medium text-navy-900">{Math.round(dim.score ?? 0)}</span>
+                    <span className="font-medium text-navy-900">
+                      {Math.round(pct)}
+                      {dim.coverage !== null && (
+                        <span className="ml-1 font-normal text-slate-400" title="Share of requirements verified from supplier evidence">
+                          ({Math.round(dim.coverage * 100)}% verified)
+                        </span>
+                      )}
+                    </span>
                   </div>
                   <div className="h-1.5 bg-slate-100 rounded-full overflow-hidden">
                     <div
                       className="h-full rounded-full transition-all duration-700"
                       style={{
-                        width: `${dim.score ?? 0}%`,
-                        backgroundColor: (dim.score ?? 0) >= 70 ? "#10b981" : (dim.score ?? 0) >= 40 ? "#00B4D8" : "#ef4444",
+                        width: `${pct}%`,
+                        backgroundColor: pct >= 70 ? "#10b981" : pct >= 40 ? "#00B4D8" : "#ef4444",
                       }}
                     />
                   </div>
                 </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
