@@ -11,16 +11,20 @@ CFCU/EU tender notice (5 pages, 14 annotated mandatory requirements), the synthe
 
 ## 1. Measured results (3 runs each, CFCU tender)
 
-| Metric | v1 baseline | v2 + gap pass | v2.1 + tighter prompt | Spec target |
-|---|---|---|---|---|
-| Requirement recall | 69% (57-79) | 95% (93-100) | 93% (79-100) | 90% |
-| Mandatory recall | 69% | 95% | 93% | 95% |
-| Citation validity (quote is on the cited page) | 100% | 100% | 100% | 95% |
-| Unsupported positives (MET with no evidence) | 0% | 0% | 0% | under 5% |
-| MET where answer should be NOT_MET/UNKNOWN | 3% | 0% | 0% | - |
-| Compliance accuracy (vs annotated status) | 87% | 85% | 84% | 85% |
-| Strict precision (extracted item is in annotation) | 100% | 58% | 59% | 90% |
-| Mandatory-level accuracy | 98% | 87% | 96% | - |
+| Metric | v1 baseline | v2 + gap pass | v2.1 + tighter prompt | v3 + batched classification | Spec target |
+|---|---|---|---|---|---|
+| Requirement recall | 69% (57-79) | 95% (93-100) | 93% (79-100) | 91% (86-93) | 90% |
+| Mandatory recall | 69% | 95% | 93% | 91% | 95% |
+| Citation validity (quote is on the cited page) | 100% | 100% | 100% | 100% | 95% |
+| Unsupported positives (MET with no evidence) | 0% | 0% | 0% | 0% | under 5% |
+| MET where answer should be NOT_MET/UNKNOWN | 3% | 0% | 0% | 0% | - |
+| Compliance accuracy (vs annotated status) | 87% | 85% | 84% | 90% (85-100) | 85% |
+| Strict precision (extracted item is in annotation) | 100% | 58% | 59% | 59% | 90% |
+| Mandatory-level accuracy | 98% | 87% | 96% | 92% | - |
+
+v3 cut the API requests per analysis from about 28 to 9-10 (batched classification, informational clauses skipped,
+identical calls cached) with no loss in the key trust metrics. Request counts are measured; the small movements in recall
+and accuracy are within the run-to-run variation seen between versions, so no accuracy claim is made for v3 over v2.1.
 
 Reading the table:
 - **Strict precision fell because the annotation is incomplete, not because the model invents text.** The extra items

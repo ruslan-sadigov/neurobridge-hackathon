@@ -13,15 +13,20 @@
 
 ## 2. Running cost (estimates, not measured billing)
 
-Measured structure of a run on the 5-page CFCU notice: about 28 LLM calls (6 extraction calls with the gap pass,
-about 22 per-requirement classification calls) and about 26-29 extracted requirements. Rough token estimate from page
-text length: **about 30-40K input tokens and 5K output tokens per 5-page tender**, which scales roughly linearly with
-page count. Only 4 of the 26 results came from deterministic rules; the other requirements were mostly UNKNOWN or
-judged by the LLM.
+**Measured API requests per analysis of the 5-page CFCU notice: 9-10** (3 runs), down from about 28 before the call
+reduction. They are 6 extraction requests (3 two-page windows, each with a gap-filling second pass) plus about 3-4
+batched classification requests (6 requirements per request; informational clauses are not sent at all). Identical
+repeat calls are served from a disk cache, so re-running the same tender with the same supplier profile costs no
+requests. Quality was re-measured after the change (see `evaluation-and-failures.md`): recall 90%, compliance accuracy
+90%, citation validity 100%, unsupported positives 0%.
 
-- **Prototype/hackathon:** free tier (15 requests/min, 250K tokens/min, 500 requests/day on the key we used). A run
-  takes about 2-3 minutes at the configured spacing and uses about 28 of the 500 daily requests, so about 15 tender
-  analyses per day.
+Token counts were **not** measured; a rough estimate from page text length is **about 20-30K input tokens and 5K
+output tokens per 5-page tender**, scaling roughly linearly with page count. Only 4 of about 26 results came from
+deterministic rules; the others were mostly UNKNOWN or judged by the LLM.
+
+- **Prototype/hackathon:** free tier (15 requests/min, 250K tokens/min, 500 requests/day on the key we used). One
+  analysis uses about 10 of the 500 daily requests, so about 50 tender analyses per day, and it should finish faster
+  than the earlier 2-3 minutes (not re-timed).
 - **Production:** cost per tender = input tokens x input price + output tokens x output price. Flash-lite class models
   are priced for high volume, but **we have not priced it**: check Google's current pricing page and multiply by the
   token counts above, then re-measure with the token usage the pipeline already logs (`model_run`).

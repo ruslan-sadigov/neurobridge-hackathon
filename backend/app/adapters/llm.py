@@ -1,9 +1,11 @@
 """Thin LLM provider adapter. Domain code depends on `LLMClient` only, so the provider is swappable."""
 from __future__ import annotations
 
+import hashlib
 import json
 import logging
 import time
+from pathlib import Path
 from typing import Protocol, TypeVar
 
 from pydantic import BaseModel, ValidationError
@@ -23,6 +25,10 @@ SYSTEM_GUARD = (
 
 class LLMError(RuntimeError):
     pass
+
+
+# Number of real provider requests made by this process (retries included); reported by the eval harness.
+REQUEST_COUNT = {"n": 0}
 
 
 def _is_permanent(e: Exception) -> bool:
@@ -54,6 +60,7 @@ class AnthropicLLM:
         for attempt in range(max_retries + 1):
             try:
                 t0 = time.time()
+                REQUEST_COUNT["n"] += 1
                 resp = self._client.messages.create(
                     model=model, max_tokens=8000,
                     system=f"{SYSTEM_GUARD}\n\n{system}",
@@ -109,6 +116,7 @@ class GeminiLLM:
             try:
                 t0 = time.time()
                 self._last_call = t0
+                REQUEST_COUNT["n"] += 1
                 resp = self._client.models.generate_content(model=model, contents=user, config=cfg)
                 result = schema.model_validate_json(resp.text)
                 u = resp.usage_metadata
@@ -130,5 +138,52 @@ class GeminiLLM:
         raise LLMError(f"LLM call failed after {max_retries + 1} attempts: {last_err}")
 
 
+class CachedLLM:
+    """Disk cache around any LLMClient. Same model + prompt version + system + user + schema -> same stored answer.
+
+    Calls are made at temperature 0, so replaying a stored answer is equivalent apart from run-to-run noise.
+    Only successful, schema-valid results are stored. Delete the cache directory to force fresh calls.
+    """
+
+    def __init__(self, inner: LLMClient, cache_dir: str | Path):
+        self._inner = inner
+        self._dir = Path(cache_dir)
+        self._dir.mkdir(parents=True, exist_ok=True)
+        self.hits = 0
+        self.misses = 0
+
+    @property
+    def last_run(self) -> dict:
+        return getattr(self._inner, "last_run", {})
+
+    def _key(self, model: str | None, system: str, user: str, schema: type[BaseModel]) -> str:
+        payload = json.dumps([get_settings().prompt_version, model, system, user, schema.__name__],
+                             ensure_ascii=False)
+        return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+    def complete_json(self, *, system: str, user: str, schema: type[T], model: str | None = None,
+                      max_retries: int = 2) -> T:
+        path = self._dir / f"{self._key(model, system, user, schema)}.json"
+        if path.exists():
+            try:
+                result = schema.model_validate_json(path.read_text(encoding="utf-8"))
+                self.hits += 1
+                return result
+            except (ValidationError, OSError, ValueError):
+                path.unlink(missing_ok=True)  # corrupt or outdated entry: fall through to a fresh call
+        result = self._inner.complete_json(system=system, user=user, schema=schema, model=model,
+                                           max_retries=max_retries)
+        self.misses += 1
+        try:
+            tmp = path.with_suffix(".tmp")
+            tmp.write_text(result.model_dump_json(), encoding="utf-8")
+            tmp.replace(path)
+        except OSError:
+            log.warning("could not write LLM cache entry %s", path)
+        return result
+
+
 def get_llm() -> LLMClient:
-    return GeminiLLM() if get_settings().llm_provider == "gemini" else AnthropicLLM()
+    s = get_settings()
+    llm: LLMClient = GeminiLLM() if s.llm_provider == "gemini" else AnthropicLLM()
+    return CachedLLM(llm, Path(s.storage_dir) / "llm_cache") if s.llm_cache else llm

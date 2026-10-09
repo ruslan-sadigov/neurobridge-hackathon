@@ -42,7 +42,7 @@ def run_analysis(chunks: list[PageChunk], profile: dict[str, Any], llm: LLMClien
         matches = matcher.match_evidence(reqs, ev, embedder)
     with stage("classify"):
         fx = profile.get("fx_rates")
-        results = [compliance.classify(r, ev, matches[r.requirement_id], llm, complete_types, fx) for r in reqs]
+        results = compliance.classify_many(reqs, ev, matches, llm, complete_types, fx, warnings=warnings)
     with stage("risk_score"):
         risks = risk.build_risks(reqs, results)
         snapshot = scoring.compute_score(reqs, results, risks)

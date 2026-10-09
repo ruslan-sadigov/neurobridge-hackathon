@@ -62,7 +62,7 @@ The backend only accepts browser calls from origins listed in `CORS_ORIGINS`.
 
 Order summary: backend (placeholder CORS) -> frontend (with backend URL) -> backend CORS (with frontend URL).
 
-## 4. Smoke test (about 5 minutes, one analysis = about 28 Gemini requests)
+## 4. Smoke test (about 5 minutes, one analysis = about 10 Gemini requests)
 
 ```bash
 curl https://<backend URL>/health
@@ -90,7 +90,7 @@ The second should show `access-control-allow-origin: https://<frontend URL>`. Th
 - **No authentication.** Anyone who has the URL can upload files and spend your Gemini quota (free tier: 15 requests
   per minute and 500 per day on the key we used, shared by all users). Share the URL only with judges and teammates,
   and consider adding a simple access check (shared token) before posting it publicly. This is a known MVP gap.
-- **Quota.** One analysis is about 28 requests. Keep a recorded fallback (screen recording or screenshots of a finished
+- **Quota.** One analysis is about 10 requests (repeat runs of the same tender and profile are cached). Keep a recorded fallback (screen recording or screenshots of a finished
   analysis) in case the daily quota is used up or the network is slow.
 - **Cold starts / slow first request.** Open the app a few minutes before presenting so the first page is warm.
 - **Cost.** Two small always-on services are billed per instance. Check the current DigitalOcean pricing page and

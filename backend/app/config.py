@@ -14,6 +14,8 @@ class Settings(BaseSettings):
     gemini_model: str = "gemini-2.5-flash"
     llm_min_interval_s: float = 0.0  # throttle between calls (free Gemini tier is rate limited)
     prompt_version: str = "v2"
+    classify_batch_size: int = 6  # requirements per classification call
+    llm_cache: bool = True  # reuse identical LLM calls (same prompt + model); saves quota on re-runs
     extraction_gap_pass: bool = True  # second extraction pass that only looks for missed requirements
 
     embedding_backend: str = "local"  # local | hash

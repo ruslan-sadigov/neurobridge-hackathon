@@ -185,3 +185,22 @@ def test_permanent_llm_errors_are_not_retried():
         status_code = 401
 
     assert _is_permanent(E()) and not _is_permanent(RuntimeError("timeout"))
+
+
+def test_api_is_served_with_and_without_api_prefix(tmp_path, monkeypatch):
+    # Behind a proxy that routes /api to this service, endpoints must work with and without the prefix.
+    import app.db as db
+    from app.config import get_settings
+    from fastapi.testclient import TestClient
+
+    from app.main import app
+
+    monkeypatch.setattr(get_settings(), "database_url", f"sqlite:///{tmp_path}/t.db")
+    monkeypatch.setattr(db, "_engine", None)
+    c = TestClient(app)
+    assert c.get("/health").json() == {"status": "ok"}
+    assert c.get("/api/health").json() == {"status": "ok"}
+    for prefix in ("", "/api"):
+        r = c.get(f"{prefix}/analyses/nope")
+        assert r.status_code == 404 and r.json() == {"detail": "analysis not found"}, prefix
+    assert "/api/analyses" not in c.get("/openapi.json").json()["paths"]  # prefixed copy stays out of the docs

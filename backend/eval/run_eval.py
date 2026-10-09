@@ -10,6 +10,8 @@ import json
 import os
 from pathlib import Path
 
+os.environ["LLM_CACHE"] = "false"  # measure real variance: never replay cached answers
+
 from .metrics import aggregate, evaluate_run
 
 
@@ -46,7 +48,11 @@ def main() -> None:
     if not stored:
         for i in range(args.runs):
             print(f"run {i + 1}/{args.runs} ...", flush=True)
+            from app.adapters.llm import REQUEST_COUNT
+
+            before = REQUEST_COUNT["n"]
             reqs, chunks = run_once(annotation)
+            print(f"  API requests this run: {REQUEST_COUNT['n'] - before}", flush=True)
             runs_data.append({"requirements": reqs, "chunks": chunks})
         out = Path("eval/results") / f"{Path(args.annotation).stem}_runs.json"
         out.write_text(json.dumps({"runs": runs_data}, ensure_ascii=False, indent=1), encoding="utf-8")

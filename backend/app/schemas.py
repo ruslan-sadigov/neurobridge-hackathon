@@ -125,3 +125,13 @@ class ScoreSnapshot(BaseModel):
     reason_codes: list[ReasonCode]
     overall_coverage: float
     config: dict[str, Any]  # weights + status points used, so the score is reproducible
+
+
+class BatchItem(ClassificationResult):
+    requirement_id: str
+
+
+class BatchClassification(BaseModel):
+    """Several classification verdicts returned by a single LLM call."""
+
+    results: list[BatchItem] = Field(default_factory=list)
