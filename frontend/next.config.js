@@ -1,5 +1,6 @@
 ﻿/** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "standalone", // small self-contained server build for the Docker image
   async rewrites() {
     return [
       {

@@ -1,11 +1,41 @@
+# Run everything locally:   docker compose up --build
+#   frontend  http://localhost:3000
+#   backend   http://localhost:8000   (API docs at /docs)
+# Secrets (GEMINI_API_KEY etc.) come from the root .env file, which is not committed.
 services:
+  backend:
+    build: ./backend
+    env_file: .env
+    environment:
+      # These override .env, whose values are meant for running outside Docker.
+      DATABASE_URL: sqlite:////data/bidbridge.db
+      STORAGE_DIR: /data/storage
+      EMBEDDING_BACKEND: hash
+      CORS_ORIGINS: http://localhost:3000
+    ports: ["8000:8080"]
+    volumes: [appdata:/data]
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        # Address the BROWSER uses to reach the backend; baked in at build time.
+        NEXT_PUBLIC_API_URL: http://localhost:8000
+        NEXT_PUBLIC_USE_MOCK: "false"
+    ports: ["3000:3000"]
+    depends_on: [backend]
+
+  # Optional Postgres (not used by default): docker compose --profile postgres up db
   db:
     image: pgvector/pgvector:pg16
+    profiles: ["postgres"]
     environment:
       POSTGRES_USER: bidbridge
       POSTGRES_PASSWORD: bidbridge
       POSTGRES_DB: bidbridge
     ports: ["5432:5432"]
     volumes: [pgdata:/var/lib/postgresql/data]
+
 volumes:
+  appdata:
   pgdata:
